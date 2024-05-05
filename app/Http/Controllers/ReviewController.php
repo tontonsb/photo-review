@@ -8,9 +8,21 @@ use Illuminate\Http\Request;
 
 class ReviewController
 {
-    public function index()
+    public function index(Request $request)
     {
-        return 'paginated review list';
+        $reviews = Review::latest()
+            ->when(
+                $request->has('problems'),
+                fn($reviews) => $reviews->whereNotNull('problem')
+            )
+            ->when(
+                $request->has('reviews'),
+                fn($reviews) => $reviews->whereNotNull('review')
+            )
+            ->cursorPaginate($request->pagesize ?? 20)
+            ->withQueryString();
+
+        return view('reviews', ['reviews' => $reviews]);
     }
 
     public function store(Request $request, ReviewerService $reviewer)

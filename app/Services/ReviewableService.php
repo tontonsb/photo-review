@@ -3,19 +3,17 @@
 namespace App\Services;
 
 use App\Models\Reviewable;
-use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Storage;
 use RuntimeException;
 
 class ReviewableService
 {
     protected Collection $files;
 
-    public function __construct(protected Filesystem $disk) {}
-
     public function files(): Collection
     {
-        return $this->files ??= collect($this->disk->allFiles())
+        return $this->files ??= collect(Storage::disk('reviewables')->allFiles())
             ->filter(fn($path) => !str_starts_with($path, '.'));
     }
 
@@ -32,8 +30,6 @@ class ReviewableService
 
         return new Reviewable(
             $file,
-            asset($this->disk->url($file)),
-            // TODO: varētu exif info padot, lai var lokāciju utml apskatīt. vai arī Reviewablē viņu ielādēt
         );
     }
 }
