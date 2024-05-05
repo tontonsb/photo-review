@@ -3,9 +3,9 @@
 @section('content')
 <img src="{{$file->url}}">
 
-<form method=post>
+<form method=post action="{{route('reviews.store')}}">
     @csrf
-    <input type=hidden name=file value="{{$file->path}}">
+    <input type=hidden name=filepath value="{{$file->path}}">
 
     <label>
         Ko aizdomīgu redzi?
