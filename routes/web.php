@@ -10,7 +10,3 @@ Route::get('reviewables/{path}', [ReviewableController::class, 'show']);
 
 Route::get('reviews', [ReviewController::class, 'index']);
 Route::post('reviews', [ReviewController::class, 'store']);
-
-Route::get('/', function () {
-    return view('welcome');
-});

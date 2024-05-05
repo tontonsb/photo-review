@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Services\ReviewableService;
 
 class ReviewableController
 {
-    public function random()
+    public function random(ReviewableService $reviewables)
     {
-        return 'a random photo';
+        return view('review', [
+            'file' => $reviewables->random(),
+        ]);
     }
 
     public function index()
