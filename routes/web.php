@@ -4,9 +4,13 @@ use App\Http\Controllers\ReviewableController;
 use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [ReviewableController::class, 'random'])->name('reviewables.random');
-Route::get('reviewables', [ReviewableController::class, 'index'])->name('reviewables.index');
-Route::get('reviewables/{path}', [ReviewableController::class, 'show'])->name('reviewables.show');
+Route::name('reviewables.')->controller(ReviewableController::class)->group(function() {
+    Route::get('/', 'random')->name('random');
+    Route::get('reviewables', 'index')->name('index');
+    Route::get('reviewables/{path}', 'show')->name('show');
+});
 
-Route::get('reviews', [ReviewController::class, 'index'])->name('reviews.index');
-Route::post('reviews', [ReviewController::class, 'store'])->name('reviews.store');
+Route::name('reviews.')->controller(ReviewController::class)->group(function() {
+    Route::get('reviews', 'index')->name('index');
+    Route::post('reviews', 'store')->name('store');
+});
