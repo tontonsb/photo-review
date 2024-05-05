@@ -11,10 +11,15 @@ class ReviewableService
 {
     protected Collection $files;
 
-    public function files(): Collection
+    protected function files(): Collection
     {
         return $this->files ??= collect(Storage::disk('reviewables')->allFiles())
             ->filter(fn($path) => !str_starts_with($path, '.'));
+    }
+
+    public function all(): Collection
+    {
+        return $this->files()->map(fn($file) => new Reviewable($file));
     }
 
     public function random()
