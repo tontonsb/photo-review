@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 Route::name('reviewables.')->controller(ReviewableController::class)->group(function() {
     Route::get('/', 'random')->name('random');
     Route::get('reviewables', 'index')->name('index');
-    Route::get('reviewables/{path}', 'show')->name('show');
+    Route::get('reviewables/{path}', 'show')->name('show')->where('path', '.*');
 });
 
 Route::name('reviews.')->controller(ReviewController::class)->group(function() {

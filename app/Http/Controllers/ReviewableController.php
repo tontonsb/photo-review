@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Review;
+use App\Models\Reviewable;
 use App\Services\ReviewableService;
 use Illuminate\Support\Facades\DB;
 
@@ -33,6 +34,11 @@ class ReviewableController
 
     public function show(string $path)
     {
-        return 'photo info';
+        $reviewable = new Reviewable($path);
+
+        return view('reviewable', [
+            'reviewable' => $reviewable,
+            'reviews' => Review::where('file', $path)->get(),
+        ]);
     }
 }
