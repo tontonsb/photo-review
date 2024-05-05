@@ -47,7 +47,7 @@ return [
         'reviewables' => [
             'driver' => 'local',
             'root' => storage_path('app/public/reviewables'),
-            'url' => env('APP_URL').'/storage/reviewables',
+            'url' => '/storage/reviewables',
             'visibility' => 'public',
             'throw' => false,
         ],

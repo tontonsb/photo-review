@@ -26,6 +26,9 @@ class ReviewableService
         if (!$file)
             throw new RuntimeException('No visible files in the `reviewables` disk.');
 
-        return new Reviewable($file, $this->disk->url($file));
+        return new Reviewable(
+            $file,
+            asset($this->disk->url($file)),
+        );
     }
 }
