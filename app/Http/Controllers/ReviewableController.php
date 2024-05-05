@@ -8,7 +8,7 @@ class ReviewableController
 {
     public function random(ReviewableService $reviewables)
     {
-        return view('review', [
+        return view('random', [
             'file' => $reviewables->random(),
         ]);
     }
