@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class PhotoController
+class ReviewableController
 {
     public function random()
     {
@@ -16,7 +16,7 @@ class PhotoController
         return 'photo list with info';
     }
 
-    public function show(string $photo)
+    public function show(string $path)
     {
         return 'photo info';
     }
