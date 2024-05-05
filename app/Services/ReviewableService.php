@@ -21,6 +21,10 @@ class ReviewableService
 
     public function random()
     {
+        // TODO: nāktonē, ja būs lietojums un dati, var
+        // - palielināt varbūtību failiem, ko neviens nav reviewojis
+        // - samazināt varbūtību failiem, ko pats jau esi reviewojis
+        // - blacklistot problemātiskos failus
         $file = $this->files()->random();
 
         if (!$file)
@@ -29,6 +33,7 @@ class ReviewableService
         return new Reviewable(
             $file,
             asset($this->disk->url($file)),
+            // TODO: varētu exif info padot, lai var lokāciju utml apskatīt. vai arī Reviewablē viņu ielādēt
         );
     }
 }
