@@ -1,14 +1,16 @@
 @extends('layout')
 
 @section('content')
-<img src="{{$file->url}}">
+<a href="{{$file->url}}" target="_blank">
+    <img src="{{$file->url}}">
+</a>
 
 <form method=post action="{{route('reviews.store')}}">
     @csrf
     <input type=hidden name=filepath value="{{$file->path}}">
 
     <label>
-        Ko aizdomīgu redzi?
+        <div>Ko aizdomīgu redzi?</div>
         <textarea name=review></textarea>
     </label>
 
