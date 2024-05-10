@@ -22,6 +22,7 @@ class ReviewableController
             'exif' => $reviewable->file->getData(),
             'reviewedByCurrentUser' => Review::distinct()
                 ->where('reviewer_id', $reviewer->getCurrentToken())
+                ->reviewed()
                 ->count('file'),
             'reviewableCount' => Reviewable::count(),
         ]);
