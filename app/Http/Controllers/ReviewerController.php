@@ -2,25 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Review;
+use App\Models\Reviewer;
 
 class ReviewerController
 {
     public function index()
     {
-        $reviewers = Review::groupBy('reviewer_id')
-            ->select('reviewer_id')
-            ->selectRaw('count(*) as review_count')
-            ->get();
-
-        return view('reviewers', ['reviewers' => $reviewers]);
+        return view('reviewers', [
+            'reviewers' => Reviewer::all(),
+        ]);
     }
 
-    public function show(string $id)
+    public function show(Reviewer $reviewer)
     {
         return view('reviewer', [
-            'reviewerId' => $id,
-            'reviews' => Review::where('reviewer_id', $id)->get(),
+            'reviewer' => $reviewer,
         ]);
     }
 }

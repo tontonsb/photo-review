@@ -18,7 +18,7 @@ Route::name('reviews.')->controller(ReviewController::class)->group(function() {
 
 Route::name('reviewers.')->controller(ReviewerController::class)->group(function() {
     Route::get('reviewers', 'index')->name('index');
-    Route::get('reviewers/{id}', 'show')->name('show');
+    Route::get('reviewers/{reviewer}', 'show')->name('show');
 });
 
 // TODO: varbūt stati grupējot pēc reviewer_id un reviewu filtri pēc tā. Lai identificētu spamerus utml

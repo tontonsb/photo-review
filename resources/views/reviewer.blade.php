@@ -1,13 +1,13 @@
 @extends('layout')
 
 @section('content')
-<h1>Pārskatītājs {{$reviewerId}}</h1>
+<h1>Pārskatītājs {{$reviewer->reviewer_id}}</h1>
 
 <table>
     <thead>
         <tr><th>Iesniegts <th>Info <th>Problēmas <th>Bilde
     <tbody>
-        @foreach ($reviews as $review)
+        @foreach ($reviewer->reviews as $review)
         <tr>
             <td>{{$review->created_at}}
             <td>{{$review->review}}
