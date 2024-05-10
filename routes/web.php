@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ReviewableController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\ReviewerController;
 use Illuminate\Support\Facades\Route;
 
 Route::name('reviewables.')->controller(ReviewableController::class)->group(function() {
@@ -13,6 +14,11 @@ Route::name('reviewables.')->controller(ReviewableController::class)->group(func
 Route::name('reviews.')->controller(ReviewController::class)->group(function() {
     Route::get('reviews', 'index')->name('index');
     Route::post('/', 'store')->name('store');
+});
+
+Route::name('reviewers.')->controller(ReviewerController::class)->group(function() {
+    Route::get('reviewers', 'index')->name('index');
+    Route::get('reviewers/{id}', 'show')->name('show');
 });
 
 // TODO: varbūt stati grupējot pēc reviewer_id un reviewu filtri pēc tā. Lai identificētu spamerus utml
