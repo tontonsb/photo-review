@@ -30,6 +30,10 @@
                 @foreach ($exif as $key => $value)
                     @if (is_string($value))
                         {{$key}}: {{$value}}
+                    @else
+                        @foreach ($value as $subkey => $subvalue)
+                            {{$key}} {{$subkey}}: {{is_string($subvalue) ? $subvalue : json_encode($subvalue)}}
+                        @endforeach
                     @endif
                 @endforeach
             </code>
