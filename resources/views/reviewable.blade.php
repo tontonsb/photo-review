@@ -10,7 +10,7 @@
         @foreach ($reviews as $review)
         <tr>
             <td>{{$review->created_at}}
-            <td>{{$review->conclusion->lv()}}
+            <td>{{$review->conclusion?->lv()}}
             <td>{{$review->review}}
             <td>{{$review->problem}}
             <td>{{number_format($review->reviewing_duration_ms / 1000, 1)}} s

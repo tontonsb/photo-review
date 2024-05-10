@@ -16,7 +16,7 @@
         @foreach ($reviews as $review)
         <tr>
             <td>{{$review->created_at}}
-            <td>{{$review->conclusion->lv()}}
+            <td>{{$review->conclusion?->lv()}}
             <td>{{$review->review}}
             <td>{{$review->problem}}
             <td><a href="{{route('reviewables.show', $review->reviewable->path)}}">
