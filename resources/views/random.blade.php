@@ -10,11 +10,12 @@
 @endsection
 
 @section('body')
+@dd($exif)
 <main>
     <div class=zoomist-container>
         <div class=zoomist-wrapper>
             <div class=zoomist-image>
-                <img src="{{$file->url}}" {!! $exif['COMPUTED']['html'] !!} >
+                <img src="{{$file->url}}" {!! $exif['COMPUTED']['html'] ?? '' !!} >
             </div>
         </div>
     </div>
@@ -25,12 +26,13 @@
         <input type=hidden name=reviewing_duration_ms value=0>
 
         <details>
-            <summary><a href="{{$file->url}}" target=_blank>{{$file->path}}</a></summary>
+            <summary>{{$file->path}}</summary>
+            <a href="{{$file->url}}" target=_blank>{{$file->path}}</a>
             <code>
                 @foreach ($exif as $key => $value)
-                    @if (is_scalar($value))
+                    @if (is_scalar($value) || is_null($value))
                         {{$key}}: {{$value}}
-                    @else
+                    @elseif (is_array($value))
                         @foreach ($value as $subkey => $subvalue)
                             {{$key}} {{$subkey}}: {{is_string($subvalue) ? $subvalue : json_encode($subvalue)}}
                         @endforeach
