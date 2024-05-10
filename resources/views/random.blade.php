@@ -18,17 +18,6 @@
     --zoomist-zoomer-button-color-hover: rgba(255, 255, 255, .9);
     --zoomist-zoomer-button-color-disabled: rgba(255, 255, 255, .3);
 }
-
-.zoomist-image {
-    container-name: zoomist-image;
-    container-type: normal;
-}
-
-@container zoomist-image not style(--scale: 1) {
-    .zoomist-image img {
-        cursor: pointer;
-    }
-}
 </style>
 @endsection
 
@@ -86,10 +75,33 @@
 <script type=module>
 import Zoomist from 'https://cdn.jsdelivr.net/npm/zoomist@2/zoomist.js'
 
+const zoomistOverlay = document.querySelector('.zoomist-wrapper')
 const zoomist = new Zoomist('.zoomist-container', {
     zoomer: true,
     slider: true,
     zoomRatio: 0.28,
+    on: {
+        zoom(zoomist, scale) {
+            if (1 == scale)
+                zoomistOverlay.style.cursor = 'unset'
+            else
+                zoomistOverlay.style.cursor = 'grab'
+        },
+    },
+})
+
+zoomistOverlay.addEventListener('mousedown', () => {
+    if (zoomist.transform.scale == 1)
+        return
+
+    zoomistOverlay.style.cursor = 'grabbing'
+})
+
+zoomistOverlay.addEventListener('mouseup', () => {
+    if (zoomist.transform.scale == 1)
+        return
+
+    zoomistOverlay.style.cursor = 'grab'
 })
 
 const timeStarted = new Date()
