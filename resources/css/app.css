@@ -13,6 +13,13 @@ body {
     margin: 10px;
 }
 
+h1 {
+    font-size: .8rem;
+    font-weight: normal;
+    text-align: right;
+    margin-bottom: 1rem;
+}
+
 img {
     display: block;
     width: 100%;
@@ -30,6 +37,11 @@ img {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        gap: 2rem;
+
+        > * {
+            margin: 0;
+        }
     }
 
     img {
@@ -96,12 +108,15 @@ button {
     border: none;
     transition: .2s background-color cubic-bezier(0, 0, 0.2, 1);
     background: var(--bg);
+    font-size: 1rem;
     color: black;
     color: color-mix(in hsl, black 90%, var(--bg));
     color: color-mix(in oklch, black 70%, var(--bg));
 
     &.button--ok {
-        --bg: #58b177;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        --bg: #7cf8a1;
     }
 
     &.button--suspect {
@@ -111,6 +126,7 @@ button {
     &.button--skip {
         --bg: white;
         width: auto;
+        font-size: .7rem;
         padding: .2rem;
         text-decoration: underline;
     }

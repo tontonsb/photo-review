@@ -11,6 +11,8 @@
         <input type=hidden name=filepath value="{{$file->path}}">
         <input type=hidden name=reviewing_duration_ms value=0>
 
+        <h1>{{$file->path}}</h1>
+
         <button type=submit name=conclusion value=ok class=button--ok>Apskatīju, nav nekā ievērības cienīga</button>
 
         <div>
