@@ -19,6 +19,26 @@ img {
     margin-bottom: 10px;
 }
 
+@media screen and (min-width: 700px) {
+    main {
+        display: grid;
+        grid-template-columns: 1fr max-content;
+        gap: 1rem;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    img {
+        max-height: calc(100vh - 20px);
+        object-fit: contain;
+        margin-bottom: 0;
+    }
+}
+
 label div {
     margin-bottom: 5px;
 }
