@@ -1,6 +1,6 @@
-@extends('layout')
+@extends('base-layout')
 
-@section('content')
+@section('body')
 <a href="{{$file->url}}" target="_blank">
     <img src="{{$file->url}}">
 </a>

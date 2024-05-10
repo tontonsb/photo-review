@@ -1,9 +1,13 @@
 @extends('layout')
 
 @section('content')
-<a href="{{route('reviews.index')}}">Visas</a>
-<a href="{{route('reviews.index', 'reviews')}}">Ar aprakstiem</a>
-<a href="{{route('reviews.index', 'problems')}}">Ar problēmām</a>
+<nav>
+    <ul>
+        <li><a href="{{route('reviews.index')}}">Visas</a>
+        <li><a href="{{route('reviews.index', 'reviews')}}">Ar aprakstiem</a>
+        <li><a href="{{route('reviews.index', 'problems')}}">Ar problēmām</a>
+    </ul>
+</nav>
 
 <table>
     <thead>

@@ -1,6 +1,8 @@
 @extends('layout')
 
 @section('content')
+Tavs pārskatītāja žetons: {{$currentToken}}
+
 <table>
     <thead>
         <tr><th>Pārskatītājs <th>Pārskatījumi
