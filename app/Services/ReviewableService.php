@@ -34,7 +34,7 @@ class ReviewableService
         if (!$file)
             throw new RuntimeException('No visible files in the `reviewables` disk.');
 
-        return new Reviewable(
+        return new ReviewableFile(
             $file,
         );
     }
