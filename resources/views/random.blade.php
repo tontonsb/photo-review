@@ -10,7 +10,6 @@
 @endsection
 
 @section('body')
-@dd($exif)
 <main>
     <div class=zoomist-container>
         <div class=zoomist-wrapper>
