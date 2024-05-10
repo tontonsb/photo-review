@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Reviewable;
+use App\Models\ReviewableFile;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 use RuntimeException;
@@ -17,9 +18,9 @@ class ReviewableService
             ->filter(fn($path) => !str_starts_with($path, '.'));
     }
 
-    public function all(): Collection
+    public function allFiles(): Collection
     {
-        return $this->files()->map(fn($file) => new Reviewable($file));
+        return $this->files()->map(fn($file) => new ReviewableFile($file));
     }
 
     public function random()

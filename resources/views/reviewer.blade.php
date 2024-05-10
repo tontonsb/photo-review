@@ -13,7 +13,7 @@
             <td>{{$review->conclusion?->lv()}}
             <td>{{$review->review}}
             <td>{{$review->problem}}
-            <td><a href="{{route('reviewables.show', $review->reviewable->path)}}">
+            <td><a href="{{route('reviewables.show', $review->file)}}">
                     {{$review->file}}
                 </a>
             <td>{{number_format($review->reviewing_duration_ms / 1000, 1)}} s

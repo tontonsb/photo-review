@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Review;
-use App\Models\Reviewable;
+use App\Models\ReviewableFile;
 use App\Services\ReviewableService;
 use Illuminate\Support\Facades\DB;
 
@@ -30,14 +30,14 @@ class ReviewableController
             ->pluck('review_count', 'file');
 
         return view('reviewables', [
-            'reviewables' => $reviewables->all()->sortBy('path'),
+            'reviewables' => $reviewables->allFiles()->sortBy('path'),
             'reviewCounts' => $reviewCounts,
         ]);
     }
 
     public function show(string $path)
     {
-        $reviewable = new Reviewable($path);
+        $reviewable = new ReviewableFile($path);
 
         return view('reviewable', [
             'reviewable' => $reviewable,

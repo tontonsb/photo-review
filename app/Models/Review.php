@@ -20,9 +20,9 @@ class Review extends Model
         'problem',
     ];
 
-    public function getReviewableAttribute()
+    public function getReviewableFileAttribute()
     {
-        return new Reviewable($this->file);
+        return new ReviewableFile($this->file);
     }
 
     public function reviewer(): BelongsTo
