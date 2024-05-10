@@ -7,7 +7,7 @@
 
 <table>
     <thead>
-        <tr><th>Iesniegts <th>Info <th>Problēmas <th>Bilde
+        <tr><th>Iesniegts <th>Info <th>Problēmas <th>Bilde <th>Pārskatītājs
     <tbody>
         @foreach ($reviews as $review)
         <tr>
@@ -16,6 +16,9 @@
             <td>{{$review->problem}}
             <td><a href="{{$review->reviewable->url}}">
                     {{$review->file}}
+                </a>
+            <td><a href="{{route('reviewers.show', $review->reviewer_id)}}">
+                    {{$review->reviewer_id}}
                 </a>
         @endforeach
 </table>
