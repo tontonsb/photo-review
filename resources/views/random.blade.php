@@ -1,17 +1,39 @@
 @extends('base-layout')
 
+@section('head')
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/zoomist@2/zoomist.css>
+<style>
+.zoomist-image img {
+    height: 100%;
+}
+</style>
+@endsection
+
 @section('body')
 <main>
-    <a href="{{$file->url}}" target="_blank">
-        <img src="{{$file->url}}">
-    </a>
+    <div class=zoomist-container>
+        <div class=zoomist-wrapper>
+            <div class=zoomist-image>
+                <img src="{{$file->url}}" {!! $exif['COMPUTED']['html'] !!} >
+            </div>
+        </div>
+    </div>
 
     <form method=post action="{{route('reviews.store')}}">
         @csrf
         <input type=hidden name=filepath value="{{$file->path}}">
         <input type=hidden name=reviewing_duration_ms value=0>
 
-        <h1>{{$file->path}}</h1>
+        <details>
+            <summary><a href="{{$file->url}}" target=_blank>{{$file->path}}</a></summary>
+            <code>
+                @foreach ($exif as $key => $value)
+                    @if (is_string($value))
+                        {{$key}}: {{$value}}
+                    @endif
+                @endforeach
+            </code>
+        </details>
 
         <button type=submit name=conclusion value=ok class=button--ok>Apskatīju, nav nekā ievērības cienīga</button>
 
@@ -33,12 +55,17 @@
     </form>
 </main>
 
-<script>
-const timeStarted = new Date()
+<script type=module>
+import Zoomist from 'https://cdn.jsdelivr.net/npm/zoomist@2/zoomist.js'
 
+const zoomist = new Zoomist('.zoomist-container', {
+    zoomer: true,
+    slider: true,
+})
+
+const timeStarted = new Date()
 const form = document.querySelector('form')
 const timeInput = document.querySelector('[name=reviewing_duration_ms]')
-
 form.addEventListener('submit', () => timeInput.value = (new Date()) - timeStarted)
 </script>
 @endsection

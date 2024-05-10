@@ -11,8 +11,11 @@ class ReviewableController
 {
     public function random(ReviewableService $reviewables)
     {
+        $file = $reviewables->random();
+
         return view('random', [
-            'file' => $reviewables->random(),
+            'file' => $file,
+            'exif' => $file->getData(),
         ]);
     }
 

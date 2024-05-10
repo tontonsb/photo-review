@@ -5,4 +5,6 @@
 @vite(['resources/css/app.css'])
 <title>PhotoReview</title>
 
+@yield('head')
+
 @yield('body')

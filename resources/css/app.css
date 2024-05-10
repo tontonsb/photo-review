@@ -13,7 +13,7 @@ body {
     margin: 10px;
 }
 
-h1 {
+h1, a {
     font-size: .8rem;
     font-weight: normal;
     text-align: right;
@@ -136,4 +136,8 @@ button {
         background: color-mix(in hsl, var(--bg) 85%, black);
         background: color-mix(in oklch, var(--bg) 93%, black);
     }
+}
+
+code {
+    white-space: pre-line;
 }
