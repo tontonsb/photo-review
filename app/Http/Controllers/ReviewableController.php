@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Conclusion;
 use App\Models\Review;
 use App\Models\Reviewable;
 use App\Models\ReviewableFile;
 use App\Services\ReviewableService;
+use App\Services\ReviewerService;
 use Illuminate\Support\Facades\DB;
 
 class ReviewableController
 {
-    public function random(ReviewableService $reviewables)
+    public function random(ReviewableService $reviewables, ReviewerService $reviewer)
     {
         $reviewable = $reviewables->random();
         $reviewable->increment('view_count');
@@ -18,6 +20,12 @@ class ReviewableController
         return view('random', [
             'file' => $reviewable->file,
             'exif' => $reviewable->file->getData(),
+            'reviewedByCurrentUser' => Review::distinct()
+                ->where('reviewer_id', $reviewer->getCurrentToken())
+                ->where('conclusion', '<>', Conclusion::skip)
+                ->where('reviewing_duration_ms', '>', 10000)
+                ->count('file'),
+            'reviewableCount' => Reviewable::count(),
         ]);
     }
 

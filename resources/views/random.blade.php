@@ -37,7 +37,9 @@
         <input type=hidden name=reviewing_duration_ms value=0>
 
         <details class="file">
-            <summary>{{$file->path}}</summary>
+            <summary>
+                {{$file->path}}
+            </summary>
             <a href="{{$file->url}}" target=_blank>{{$file->path}}</a>
             <code>
                 @foreach ($exif as $key => $value)
@@ -68,7 +70,15 @@
             <button type=submit name=conclusion value=suspect class=button--suspect>Iesniegt</button>
         </div>
 
-        <button type=submit name=conclusion value=skip class=button--skip>Izlaist šo bildi</button>
+        <div class=footer>
+            @if ($reviewedByCurrentUser > 5)
+                <span class=review-stats title="Pārskatītas jau {{$reviewedByCurrentUser}} no {{$reviewableCount}} bildēm">
+                    {{$reviewedByCurrentUser}}/{{$reviewableCount}}
+                </span>
+            @endif
+
+            <button type=submit name=conclusion value=skip class=button--skip>Izlaist šo bildi</button>
+        </div>
     </form>
 </main>
 

@@ -143,3 +143,9 @@ button {
         white-space: pre-line;
     }
 }
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: .7rem;
+}
