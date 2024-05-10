@@ -7,7 +7,7 @@
     <tbody>
         @foreach ($reviewers as $reviewer)
         <tr>
-            <td><a href="{{route('reviewers.show', $reviewer->reviewer_id)}}">
+            <td><a href="{{route('reviewers.show', $reviewer)}}">
                     {{$reviewer->reviewer_id}}
                 </a>
             <td>{{$reviewer->review_count}}

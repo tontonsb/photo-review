@@ -12,7 +12,7 @@
             <td>{{$review->created_at}}
             <td>{{$review->review}}
             <td>{{$review->problem}}
-            <td><a href="{{$review->reviewable->url}}">
+            <td><a href="{{route('reviewables.show', $review->reviewable->path)}}">
                     {{$review->file}}
                 </a>
         @endforeach
