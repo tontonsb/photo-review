@@ -39,6 +39,11 @@ img {
     }
 }
 
+form > div {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
 label div {
     margin-bottom: 5px;
 }
@@ -106,7 +111,6 @@ button {
     &.button--skip {
         --bg: white;
         width: auto;
-        margin-top: 2rem;
         padding: .2rem;
         text-decoration: underline;
     }
