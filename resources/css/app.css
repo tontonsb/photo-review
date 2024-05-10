@@ -13,11 +13,9 @@ body {
     margin: 10px;
 }
 
-h1, a {
+h1 {
     font-size: .8rem;
     font-weight: normal;
-    text-align: right;
-    margin-bottom: 1rem;
 }
 
 img {
@@ -138,6 +136,10 @@ button {
     }
 }
 
-code {
-    white-space: pre-line;
+.file {
+    font-size: .8rem;
+
+    code {
+        white-space: pre-line;
+    }
 }

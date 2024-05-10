@@ -24,7 +24,7 @@
         <input type=hidden name=filepath value="{{$file->path}}">
         <input type=hidden name=reviewing_duration_ms value=0>
 
-        <details>
+        <details class="file">
             <summary>{{$file->path}}</summary>
             <a href="{{$file->url}}" target=_blank>{{$file->path}}</a>
             <code>
