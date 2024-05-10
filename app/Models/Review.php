@@ -31,9 +31,12 @@ class Review extends Model
         return $this->belongsTo(Reviewer::class);
     }
 
+    // Mākslīgais intelekts™ par pārskatītām uzskatīs bildes
     public function scopeReviewed(Builder $reviews): void
     {
+        // Kuras nav skipotas
         $reviews->where('conclusion', '<>', Conclusion::skip)
-            ->where('reviewing_duration_ms', '>', 10000);
+            // un kuras ir skatītas ilgāk par 6 sekundēm
+            ->where('reviewing_duration_ms', '>', 6000);
     }
 }

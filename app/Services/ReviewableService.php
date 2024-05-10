@@ -44,10 +44,19 @@ class ReviewableService
         if ($imgWithNoReviews)
             return $imgWithNoReviews;
 
-        // Trešā prioritāte
+        // Trešā prioritāte — bildes, kuras tagadējais lietotājs nav redzējis
         $reviewerToken = $this->reviewerService->getCurrentToken();
+        $imgNotViewedByCurrentReviewer = Reviewable::inRandomOrder()
+            ->whereDoesntHave('reviews', fn($review) => $review
+                ->where('reviewer_id', $reviewerToken)
+            )->first();
+
+        if ($imgNotViewedByCurrentReviewer)
+            return $imgNotViewedByCurrentReviewer;
+
+        // Ceturtā prioritāte
         $imgNotReviewedByCurrentReviewer = Reviewable::inRandomOrder()
-            // Bildes, kuriem nav apskatījuma
+            // Bildes, kurām nav apskatījuma
             ->whereDoesntHave('reviews', fn($review) => $review
                     // no tagadējā lietotāja
                     ->where('reviewer_id', $reviewerToken)
