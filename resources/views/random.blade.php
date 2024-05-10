@@ -28,7 +28,7 @@
             <summary><a href="{{$file->url}}" target=_blank>{{$file->path}}</a></summary>
             <code>
                 @foreach ($exif as $key => $value)
-                    @if (is_string($value))
+                    @if (is_scalar($value))
                         {{$key}}: {{$value}}
                     @else
                         @foreach ($value as $subkey => $subvalue)
