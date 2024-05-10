@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('reviewables', function (Blueprint $table) {
             $table->string('path')->primary();
-            $table->integer('views')->default(0);
-            $table->integer('reviews')->default(0);
+            $table->integer('view_count')->default(0);
+            $table->integer('review_count')->default(0);
             $table->timestamps();
         });
     }

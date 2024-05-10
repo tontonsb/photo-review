@@ -37,7 +37,7 @@ class ReviewController
             'reviewing_duration_ms' => $request->reviewing_duration_ms,
         ]);
 
-        Reviewable::find($request->filepath)->increment('reviews');
+        Reviewable::find($request->filepath)->increment('review_count');
 
         return to_route('reviewables.random', status: 303);
     }

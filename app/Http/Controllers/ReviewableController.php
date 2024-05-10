@@ -12,16 +12,16 @@ class ReviewableController
 {
     public function random(ReviewableService $reviewables)
     {
-        $file = $reviewables->random();
-        Reviewable::find($file->path)->increment('views');
+        $reviewable = $reviewables->random();
+        $reviewable->increment('view_count');
 
         return view('random', [
-            'file' => $file,
-            'exif' => $file->getData(),
+            'file' => $reviewable->file,
+            'exif' => $reviewable->file->getData(),
         ]);
     }
 
-    public function index(ReviewableService $reviewables)
+    public function index()
     {
         // TODO: paginate, ja vajadzēs. un vrb filtrēt pēc kkā
         $reviewCounts = Review::groupBy('file')
@@ -32,7 +32,7 @@ class ReviewableController
             ->pluck('review_count', 'file');
 
         return view('reviewables', [
-            'reviewables' => $reviewables->allFiles()->sortBy('path'),
+            'reviewables' => Reviewable::orderBy('path')->get(),
             'reviewCounts' => $reviewCounts,
         ]);
     }

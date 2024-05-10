@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Conclusion;
 use App\Models\Reviewable;
 use App\Models\ReviewableFile;
 use Illuminate\Support\Collection;
@@ -11,6 +12,8 @@ use RuntimeException;
 class ReviewableService
 {
     protected Collection $files;
+
+    public function __construct(protected ReviewerService $reviewerService) {}
 
     protected function files(): Collection
     {
@@ -25,17 +28,31 @@ class ReviewableService
 
     public function random()
     {
-        // TODO: nāktonē, ja būs lietojums un dati, var
-        // - palielināt varbūtību failiem, ko neviens nav reviewojis
-        // - samazināt varbūtību failiem, ko pats jau esi reviewojis
-        // - blacklistot problemātiskos failus
-        $file = $this->files()->random();
+        // Pirmā prioritāte — bildes bez apskatījumiem
+        $imgWithNoReviews = Reviewable::inRandomOrder()
+            ->doesntHave('reviews')
+            ->first();
 
-        if (!$file)
-            throw new RuntimeException('No visible files in the `reviewables` disk.');
+        if ($imgWithNoReviews)
+            return $imgWithNoReviews;
 
-        return new ReviewableFile(
-            $file,
-        );
+        // Otrā prioritāte
+        $reviewerToken = $this->reviewerService->getCurrentToken();
+        $imgNotReviewedByCurrentReviewer = Reviewable::inRandomOrder()
+            // Bildes, kuriem nav apskatījuma
+            ->whereDoesntHave('reviews', fn($review) => $review
+                    // no tagadējā lietotāja
+                    ->where('reviewer_id', $reviewerToken)
+                    // bez izlaišanas
+                    ->where('conclusion', '!=', Conclusion::skip)
+                    // un vismaz 10 veltītām sekundēm
+                    ->where('reviewing_duration_ms', '>', 10000)
+            )->first();
+
+        if ($imgNotReviewedByCurrentReviewer)
+            return $imgNotReviewedByCurrentReviewer;
+
+        // Ja viss apskatīts, atgriežam jebkuru pārskatāmo bildi
+        return Reviewable::inRandomOrder()->firstOrFail();
     }
 }
