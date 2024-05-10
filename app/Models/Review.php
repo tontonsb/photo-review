@@ -7,9 +7,15 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Review extends Model
 {
+    protected $casts = [
+        'conclusion' => Conclusion::class,
+    ];
+
     protected $fillable = [
         'reviewer_id',
         'file',
+        'conclusion',
+        'reviewing_duration_ms',
         'review',
         'problem',
     ];

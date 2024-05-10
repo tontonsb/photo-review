@@ -30,8 +30,10 @@ class ReviewController
         Review::create([
             'reviewer_id' => $reviewer->getCurrentToken(),
             'file' => $request->filepath,
+            'conclusion' => $request->conclusion,
             'review' => $request->review,
             'problem' => $request->problem,
+            'reviewing_duration_ms' => $request->reviewing_duration_ms,
         ]);
 
         return to_route('reviewables.random', status: 303);

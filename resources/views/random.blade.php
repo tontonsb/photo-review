@@ -8,17 +8,31 @@
 <form method=post action="{{route('reviews.store')}}">
     @csrf
     <input type=hidden name=filepath value="{{$file->path}}">
+    <input type=hidden name=reviewing_duration_ms value=0>
 
-    <label>
-        <div>Ko aizdomīgu redzi?</div>
+    <button type=submit name=conclusion value=ok class=button--ok>Apskatīju, nav nekā ievērības cienīga</button>
+
+    <details open>
+        <summary>Redzi ko aizdomīgu?</summary>
         <textarea name=review></textarea>
-    </label>
+    </details>
 
     <details>
         <summary>Bilde ir nekvalitatīva vai cita problēma?</summary>
         <textarea name=problem></textarea>
     </details>
 
-    <button type=submit>Iesniegt</button>
+    <button type=submit name=conclusion value=suspect class=button>Iesniegt</button>
+
+    <button type=submit name=conclusion value=skip class=button--skip>Izlaist</button>
 </form>
+
+<script>
+const timeStarted = new Date()
+
+const form = document.querySelector('form')
+const timeInput = document.querySelector('[name=reviewing_duration_ms]')
+
+form.addEventListener('submit', () => timeInput.value = (new Date()) - timeStarted)
+</script>
 @endsection
