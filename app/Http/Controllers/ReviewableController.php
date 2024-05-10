@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Review;
+use App\Models\Reviewable;
 use App\Models\ReviewableFile;
 use App\Services\ReviewableService;
 use Illuminate\Support\Facades\DB;
@@ -12,6 +13,7 @@ class ReviewableController
     public function random(ReviewableService $reviewables)
     {
         $file = $reviewables->random();
+        Reviewable::find($file->path)->increment('views');
 
         return view('random', [
             'file' => $file,

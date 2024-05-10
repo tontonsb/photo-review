@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Review;
+use App\Models\Reviewable;
 use App\Services\ReviewerService;
 use Illuminate\Http\Request;
 
@@ -35,6 +36,8 @@ class ReviewController
             'problem' => $request->problem,
             'reviewing_duration_ms' => $request->reviewing_duration_ms,
         ]);
+
+        Reviewable::find($request->filepath)->increment('reviews');
 
         return to_route('reviewables.random', status: 303);
     }
