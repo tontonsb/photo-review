@@ -22,9 +22,9 @@
         <textarea name=problem></textarea>
     </details>
 
-    <button type=submit name=conclusion value=suspect class=button>Iesniegt</button>
+    <button type=submit name=conclusion value=suspect class=button--suspect>Iesniegt</button>
 
-    <button type=submit name=conclusion value=skip class=button--skip>Izlaist</button>
+    <button type=submit name=conclusion value=skip class=button--skip>Izlaist šo bildi</button>
 </form>
 
 <script>

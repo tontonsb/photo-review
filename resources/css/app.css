@@ -66,3 +66,34 @@ th {
 th, td {
     padding: .1rem .4rem;
 }
+
+button {
+    border: none;
+    transition: .2s background-color cubic-bezier(0, 0, 0.2, 1);
+    background: var(--bg);
+    color: black;
+    color: color-mix(in hsl, black 90%, var(--bg));
+    color: color-mix(in oklch, black 70%, var(--bg));
+
+    &.button--ok {
+        --bg: #58b177;
+    }
+
+    &.button--suspect {
+        --bg: #d66e59;
+    }
+
+    &.button--skip {
+        --bg: white;
+        width: auto;
+        margin-top: 2rem;
+        padding: .2rem;
+        text-decoration: underline;
+    }
+
+    &:hover {
+        background: white;
+        background: color-mix(in hsl, var(--bg) 85%, black);
+        background: color-mix(in oklch, var(--bg) 93%, black);
+    }
+}
