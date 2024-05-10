@@ -6,6 +6,29 @@
 .zoomist-image img {
     height: 100%;
 }
+
+.zoomist-container {
+    --zoomist-slider-bg-color: rgba(255, 255, 255, .3);
+    --zoomist-slider-padding-x: 10px;
+    --zoomist-slider-padding-y: 14px;
+    --zoomist-slider-bar-size: 100px;
+
+    --zoomist-zoomer-button-size: 40px;
+    --zoomist-zoomer-button-color: rgba(255, 255, 255, .6);
+    --zoomist-zoomer-button-color-hover: rgba(255, 255, 255, .9);
+    --zoomist-zoomer-button-color-disabled: rgba(255, 255, 255, .3);
+}
+
+.zoomist-image {
+    container-name: zoomist-image;
+    container-type: normal;
+}
+
+@container zoomist-image not style(--scale: 1) {
+    .zoomist-image img {
+        cursor: pointer;
+    }
+}
 </style>
 @endsection
 
@@ -66,6 +89,7 @@ import Zoomist from 'https://cdn.jsdelivr.net/npm/zoomist@2/zoomist.js'
 const zoomist = new Zoomist('.zoomist-container', {
     zoomer: true,
     slider: true,
+    zoomRatio: 0.28,
 })
 
 const timeStarted = new Date()
