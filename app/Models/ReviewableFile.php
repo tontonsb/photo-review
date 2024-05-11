@@ -15,9 +15,11 @@ class ReviewableFile
     public function __construct(
         public readonly string $path,
     ) {
-        $this->disk = Storage::disk('reviewables');
+        $this->disk = Storage::disk(config('filesystems.reviewable_disk'));
 
-        $this->url = asset($this->disk->url($this->path));
+        $localDisk = $this->disk instanceof \League\Flysystem\Local\LocalFilesystemAdapter;
+        $url = $this->disk->url($this->path);
+        $this->url = $localDisk ? asset($url) : $url;
     }
 
     public function getData(): array

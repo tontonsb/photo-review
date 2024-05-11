@@ -15,6 +15,8 @@ return [
 
     'default' => env('FILESYSTEM_DISK', 'local'),
 
+    'reviewable_disk' => env('FILESYSTEM_REVIEWABLE', 'local_reviewables'),
+
     /*
     |--------------------------------------------------------------------------
     | Filesystem Disks
@@ -44,11 +46,22 @@ return [
             'throw' => false,
         ],
 
-        'reviewables' => [
+        'local_reviewables' => [
             'driver' => 'local',
             'root' => storage_path('app/public/reviewables'),
             'url' => '/storage/reviewables',
             'visibility' => 'public',
+            'throw' => false,
+        ],
+
+        'cloud_reviewables' => [
+            'driver' => 's3',
+            'key' => env('AWS_ACCESS_KEY_ID'),
+            'secret' => env('AWS_SECRET_ACCESS_KEY'),
+            'region' => env('AWS_DEFAULT_REGION'),
+            'bucket' => env('AWS_BUCKET'),
+            'url' => env('AWS_URL'),
+            'endpoint' => env('AWS_ENDPOINT'),
             'throw' => false,
         ],
 
