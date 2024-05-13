@@ -2,12 +2,10 @@
 
 namespace App\Services;
 
-use App\Models\Conclusion;
 use App\Models\Reviewable;
 use App\Models\ReviewableFile;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
-use RuntimeException;
 
 class ReviewableService
 {
@@ -60,7 +58,7 @@ class ReviewableService
             ->whereDoesntHave('reviews', fn($review) => $review
                     // no tagadējā lietotāja
                     ->where('reviewer_id', $reviewerToken)
-                    // bez izlaišanas un ar vismaz 10 veltītām sekundēm
+                    // bez izlaišanas un ar vismaz 6 veltītām sekundēm
                     ->reviewed()
             )->first();
 
