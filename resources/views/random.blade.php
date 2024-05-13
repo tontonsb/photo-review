@@ -138,8 +138,8 @@
 
                 <p>Sistēma centīsies atcerēties aplūkotās bildes un vienam cilvēkam vienā pārlūkā atkārtoti nerādīt jau pārskatīto.
 
-                <p>Ja šajā brīdī kāda bilde šķiet par sarežģītu, lai to kārtīgi pārbaudīt, vari ekrāna apakšā spiest "Izlaist šo bildi".
-                Izlaistās bildes parādīs atkārtoti, ja visas pārējās būs jau apskatītas.
+                <p>Ja kāda bilde šķiet par sarežģītu, lai to kārtīgi pārbaudītu, vari ekrāna apakšā spiest "Izlaist šo bildi".
+                Izlaistās bildes parādīs atkal, ja visas pārējās būs jau apskatītas.
             </details>
 
 
