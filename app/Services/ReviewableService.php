@@ -15,7 +15,7 @@ class ReviewableService
 
     protected function files(): Collection
     {
-        return $this->files ??= collect(Storage::disk('reviewables')->allFiles())
+        return $this->files ??= collect(Storage::disk(config('filesystems.reviewable_disk'))->allFiles())
             ->filter(fn($path) => !str_starts_with($path, '.') && !str_ends_with($path, '.kml'));
     }
 
