@@ -8,6 +8,7 @@ use App\Models\Reviewable;
 use App\Models\ReviewableFile;
 use App\Services\ReviewableService;
 use App\Services\ReviewerService;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 
@@ -15,8 +16,11 @@ class ReviewableController
 {
     protected const INFOBOX_VERSION = 'v1.0.0';
 
-    public function random(ReviewableService $reviewables, ReviewerService $reviewer, Request $request)
-    {
+    public function random(
+        ReviewableService $reviewables,
+        ReviewerService $reviewer,
+        Request $request,
+    ) {
         $reviewable = $reviewables->random();
         $reviewable->increment('view_count');
 
