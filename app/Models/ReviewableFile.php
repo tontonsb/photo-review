@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Services\ParseExif;
 use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Storage;
+use SimpleXMLElement;
 
 class ReviewableFile
 {
@@ -17,9 +19,8 @@ class ReviewableFile
     ) {
         $this->disk = Storage::disk(config('filesystems.reviewable_disk'));
 
-        $localDisk = $this->disk instanceof \League\Flysystem\Local\LocalFilesystemAdapter;
         $url = $this->disk->url($this->path);
-        $this->url = $localDisk ? asset($url) : $url;
+        $this->url = $this->isLocal() ? asset($url) : $url;
     }
 
     public function getData(): array
@@ -29,16 +30,34 @@ class ReviewableFile
 
     protected function loadData(): array
     {
-        $path = $this->disk->path($this->path);
+        $path = $this->isLocal() ? $this->disk->path($this->path) : $this->disk->url($this->path);
 
         try {
-            $data = exif_read_data($path);
+            $exif = exif_read_data($path);
 
-            if ($data)
-                return $data;
+            if ($exif) {
+                if ($location = ParseExif::getLocation($exif))
+                    return [
+                        'LOCATION' => $location,
+                        ...$exif,
+                    ];
+
+                return $exif;
+            }
         } catch(\Throwable) {}
 
+        $data = [];
+
+        // Special handling for sonar images that have an associated .kml
+        if (str_ends_with($this->path, '.png')) {
+            try {
+                $location = $this->getLocationFromKml();
+                $data['LOCATION'] = $location;
+            } catch(\Throwable) {}
+        }
+
         $data = [
+            ...$data,
             'FileName' => basename($path),
             'FileDateTime' => $this->disk->lastModified($this->path),
             'FileSize' => $this->disk->size($this->path),
@@ -60,5 +79,21 @@ class ReviewableFile
         } catch(\Throwable) {}
 
         return $data;
+    }
+
+    protected function getLocationFromKml(): array
+    {
+        $kmlFile = $this->disk->url(
+            str_replace('.png', '.kml', $this->path)
+        );
+        $kmlString = file_get_contents($kmlFile);
+        $kml = new SimpleXMLElement($kmlString);
+
+        return (array) $kml->Folder->GroundOverlay->LatLonBox;
+    }
+
+    protected function isLocal(): bool
+    {
+        return $this->disk instanceof \League\Flysystem\Local\LocalFilesystemAdapter;
     }
 }
