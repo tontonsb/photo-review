@@ -94,6 +94,6 @@ class ReviewableFile
 
     protected function isLocal(): bool
     {
-        return $this->disk instanceof \League\Flysystem\Local\LocalFilesystemAdapter;
+        return $this->disk->getAdapter() instanceof \League\Flysystem\Local\LocalFilesystemAdapter;
     }
 }
