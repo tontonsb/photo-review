@@ -8,14 +8,22 @@ use App\Models\Reviewable;
 use App\Models\ReviewableFile;
 use App\Services\ReviewableService;
 use App\Services\ReviewerService;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 
 class ReviewableController
 {
-    public function random(ReviewableService $reviewables, ReviewerService $reviewer)
+    protected const INFOBOX_VERSION = 'v1.0.0';
+
+    public function random(ReviewableService $reviewables, ReviewerService $reviewer, Request $request)
     {
         $reviewable = $reviewables->random();
         $reviewable->increment('view_count');
+
+        $seenInfobox = $request->cookie('seen_infobox') === static::INFOBOX_VERSION;
+        Cookie::queue(
+            Cookie::forever('seen_infobox', static::INFOBOX_VERSION)
+        );
 
         return view('random', [
             'file' => $reviewable->file,
@@ -25,6 +33,7 @@ class ReviewableController
                 ->reviewed()
                 ->count('file'),
             'reviewableCount' => Reviewable::count(),
+            'seenInfobox' => $seenInfobox,
         ]);
     }
 

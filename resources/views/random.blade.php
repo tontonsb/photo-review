@@ -185,11 +185,13 @@ zoomistOverlay.addEventListener('mouseup', () => {
 })
 
 const infobox = document.querySelector('.js-infobox')
-infobox.showModal()
 infobox.querySelectorAll('.js-close').forEach(
     button => button.addEventListener('click', _ => infobox.close())
 )
 document.querySelector('.js-show-infobox').addEventListener('click', _ => infobox.showModal())
+@unless($seenInfobox)
+infobox.showModal()
+@endunless
 
 const timeStarted = new Date()
 const form = document.querySelector('form')
