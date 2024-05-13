@@ -1,4 +1,4 @@
-* {
+*:not(dialog) {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -121,7 +121,7 @@ button {
         --bg: #d66e59;
     }
 
-    &.button--skip {
+    &.button--info {
         --bg: white;
         width: auto;
         font-size: .7rem;
@@ -148,4 +148,35 @@ button {
     display: flex;
     justify-content: space-between;
     font-size: .7rem;
+}
+
+dialog > div {
+    height: 80lvh;
+    position: relative;
+    padding-top: 1rem;
+
+    p {
+        margin-bottom: 1rem;
+    }
+
+    div {
+        max-width: 45rem;
+        max-height: 100%;
+        overflow-y: scroll;
+    }
+
+    button {
+        width: auto;
+
+        &.x-button {
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin-top: -1rem;
+        }
+    }
+
+    details p {
+        margin-left: 1rem;
+    }
 }
