@@ -38,6 +38,7 @@ class ReviewableController
                 ->count('file'),
             'reviewableCount' => Reviewable::count(),
             'seenInfobox' => $seenInfobox,
+            'linkedFile' => $reviewable->file->linkedFile(),
         ]);
     }
 

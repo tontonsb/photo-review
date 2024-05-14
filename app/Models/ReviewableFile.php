@@ -28,6 +28,29 @@ class ReviewableFile
         return $this->data ??= $this->loadData();
     }
 
+    public function linkedFile(): ?ReviewableFile
+    {
+        if (!$this->isSonarImage())
+            return null;
+
+        if ($this->isSrc())
+            return new ReviewableFile(
+                str_replace('-src.png', '-original.png', $this->path)
+            );
+
+        return new ReviewableFile(
+            str_replace('-original.png', '-src.png', $this->path)
+        );
+    }
+
+    public function isSrc(): ?bool
+    {
+        if (!$this->isSonarImage())
+            return null;
+
+        return str_ends_with($this->path, '-src.png');
+    }
+
     protected function loadData(): array
     {
         $path = $this->isLocal() ? $this->disk->path($this->path) : $this->disk->url($this->path);
@@ -49,7 +72,7 @@ class ReviewableFile
         $data = [];
 
         // Special handling for sonar images that have an associated .kml
-        if (str_ends_with($this->path, '.png')) {
+        if ($this->isSonarImage()) {
             try {
                 $location = $this->getLocationFromKml();
                 $data['LOCATION'] = $location;
@@ -95,5 +118,11 @@ class ReviewableFile
     protected function isLocal(): bool
     {
         return $this->disk->getAdapter() instanceof \League\Flysystem\Local\LocalFilesystemAdapter;
+    }
+
+    protected function isSonarImage(): bool
+    {
+        return str_ends_with($this->path, '.png')
+            && str_contains($this->path, 'Sonar');
     }
 }

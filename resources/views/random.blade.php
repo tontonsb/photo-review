@@ -41,6 +41,15 @@
                 {{$file->path}}
             </summary>
             <a href="{{$file->url}}" target=_blank>{{$file->path}}</a>
+            @if ($linkedFile)
+                <br><a href="{{$linkedFile->url}}" target=_blank>
+                    @if ($linkedFile->isSrc())
+                        Attēla versija ar ģeometrijas korekciju
+                    @else
+                        Oriģinālo datu attēls (bez korekcijas)
+                    @endif
+                </a>
+            @endif
             <code>
                 @foreach ($exif as $key => $value)
                     @if (is_scalar($value) || is_null($value))
