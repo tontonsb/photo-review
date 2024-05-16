@@ -3,10 +3,6 @@
 @section('head')
 <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/zoomist@2/zoomist.css>
 <style>
-.zoomist-image img {
-    height: 100%;
-}
-
 .zoomist-container {
     --zoomist-slider-bg-color: rgba(255, 255, 255, .3);
     --zoomist-slider-padding-x: 10px;
@@ -18,15 +14,21 @@
     --zoomist-zoomer-button-color-hover: rgba(255, 255, 255, .9);
     --zoomist-zoomer-button-color-disabled: rgba(255, 255, 255, .3);
 }
+
+.zoomist-wrapper {
+    min-height: 60lvh;
+}
 </style>
 @endsection
 
 @section('body')
 <main>
-    <div class=zoomist-container>
-        <div class=zoomist-wrapper>
-            <div class=zoomist-image>
-                <img src="{{$file->url}}" {!! $exif['COMPUTED']['html'] ?? '' !!} >
+    <div class=zoomist-container-container> <!-- zoomist works wrongly in grid -->
+        <div class=zoomist-container>
+            <div class=zoomist-wrapper>
+                <div class=zoomist-image>
+                    <img src="{{$file->url}}" {!! $exif['COMPUTED']['html'] ?? '' !!} >
+                </div>
             </div>
         </div>
     </div>
