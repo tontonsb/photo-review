@@ -167,10 +167,17 @@
 import Zoomist from 'https://cdn.jsdelivr.net/npm/zoomist@2/zoomist.js'
 
 const zoomistOverlay = document.querySelector('.zoomist-wrapper')
+
+// Find the scale that's needed to zoom img to 100%. We'll allow to scale 4 times more.
+const widthScale = {{$exif['COMPUTED']['Width'] ?? 0}} / zoomistOverlay.clientWidth
+const heightScale = {{$exif['COMPUTED']['Height'] ?? 0}} / zoomistOverlay.clientHeight
+const imgScale = Math.max(widthScale, heightScale, 2) // 2 will allow at least 8x zooming
+
 const zoomist = new Zoomist('.zoomist-container', {
     zoomer: true,
     slider: true,
     zoomRatio: 0.28,
+    maxScale: 3 * imgScale,
     on: {
         zoom(zoomist, scale) {
             if (1 == scale)
