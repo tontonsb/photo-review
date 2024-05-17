@@ -83,8 +83,8 @@
 
         <div class=footer>
             @if ($reviewedByCurrentUser > 5)
-                <span class=review-stats title="Pārskatītas jau {{$reviewedByCurrentUser}} no {{$reviewableCount}} bildēm">
-                    {{$reviewedByCurrentUser}}/{{$reviewableCount}}
+                <span class=review-stats title="Pārskatītas jau {{$reviewedByCurrentUser}} bildes!">
+                    {{$reviewedByCurrentUser}} {{-- /{{$reviewableCount}} --}}
                 </span>
             @endif
 
