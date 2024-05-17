@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-Tavs pārskatītāja žetons: {{$currentToken}}
+Tavs pārskatītāja žetons: <a href="{{route('reviewers.show', $currentToken)}}">{{$currentToken}}</a>
 
 <table>
     <thead>
