@@ -7,7 +7,7 @@
     <tbody>
         @foreach ($reviewables as $reviewable)
         <tr>
-            <td><a href="{{$reviewable->url}}">
+            <td><a href="{{$reviewable->file->url}}">
                     {{$reviewable->path}}
                 </a>
             <td><a href="{{route('reviewables.show', $reviewable->path)}}">
