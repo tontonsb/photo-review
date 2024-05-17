@@ -21,7 +21,18 @@ class ReviewableController
         ReviewerService $reviewer,
         Request $request,
     ) {
-        $reviewable = $reviewables->random();
+        return $this->review(
+            $reviewables->random(),
+            $reviewer,
+            $request,
+        );
+    }
+
+    public function review(
+        Reviewable $reviewable,
+        ReviewerService $reviewer,
+        Request $request,
+    ) {
         $reviewable->increment('view_count');
 
         $seenInfobox = $request->cookie('seen_infobox') === static::INFOBOX_VERSION;
