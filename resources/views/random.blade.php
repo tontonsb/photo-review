@@ -106,7 +106,9 @@
             Kopš 2. novembra nav iegūta jauna informācija par to, kas ar Annu noticis vai kurā virzienā viņa devusies.
             Visticamāk, viņai līdzi bija pelēks pusmētelis, melni puszābaki un melnas džinsu bikses. Iespējams, arī mugursoma ar sarkaniem akcentiem un varbūt antifrīza pudele viena litra tilpumā.
 
-            <p><strong>Lūdzu rūpīgi apskatīt bildes un ierakstīt informāciju, ja kādā bildē redzams jebkas, kas varētu liecināt par to, kas ar Annu noticis, kurā virzienā viņa devusies.</strong>
+            <p><strong>Lūdzu rūpīgi apskatīt bildes un ierakstīt informāciju, ja kādā bildē redzams jebkas, kas varētu liecināt par to, kas ar Annu noticis, kurā virzienā viņa devusies.
+                Tas var būt jebkas, kas neiederas ainā redzamajā apkārtnē, piemēram, kurpe, soma vai kādi neierastas formas objekti.
+            </strong>
 
             <details>
                 <summary>
@@ -127,10 +129,7 @@
                 <p>Eholotes ieraksti attēlo ainu ūdenskrātuvēs zem ūdens. Mēroga izpratnei der zināt, ka joslas platums ir 10–50 metri, parasti 20–40.
                 Attēlojumi mēdz būt divu veidu: oriģinālie ar atšķirīgu joslu vidū un SRC (slant range corrected) bez tās.
 
-
-                <p>Oriģinālajos ģeometrija ir deformēta — objektu izmēri joslas virzienā (paralēli laivas braukšanas virzienam) ir korekti, bet prependikulāri
-                tam izmēri ir saspiesti tā, turklāt joslas centram tuvākās attēla daļas ir saspiestas vairāk nekā tālākie.
-                SRC šī ģeometrija ir izlabota, bet bieži tas noved pie attēla kvalitātes zuduma.
+                <p>Ņem vērā, ka ehelotes attēlu ģeometrija var būt deformēta un attēlu kvalitāte — zema, tāpēc šie attēli jāapskata īpaši rūpīgi.
             </details>
 
             <details>
