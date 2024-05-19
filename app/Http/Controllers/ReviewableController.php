@@ -40,7 +40,7 @@ class ReviewableController
             Cookie::forever('seen_infobox', static::INFOBOX_VERSION)
         );
 
-        $imgWithReviews = Reviewable::has('reviews')->count();
+        $imgWithReviews = Reviewable::whereHas('reviews', fn($r) => $r->reviewed())->count();
         $reviewables = Reviewable::count();
 
         return view('random', [
