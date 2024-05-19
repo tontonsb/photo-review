@@ -4,6 +4,8 @@
 <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/zoomist@2/zoomist.css>
 <style>
 .zoomist-container {
+    --zoomist-wrapper-bg-color: #1c1c1c;
+
     --zoomist-slider-bg-color: rgba(255, 255, 255, .3);
     --zoomist-slider-padding-x: 10px;
     --zoomist-slider-padding-y: 14px;
