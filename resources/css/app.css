@@ -26,6 +26,29 @@ form {
     margin: 10px;
 }
 
+.progress {
+    height: 1.5rem;
+    width: 100%;
+    background-color: #d4d4d4;
+    position: relative;
+
+    &:before {
+        content: attr(data-label);
+        font-size: 0.9em;
+        position: absolute;
+        text-align: center;
+        top: .3em;
+        left: 0;
+        right: 0;
+    }
+
+    .value {
+        background-color: #7cf8a1;
+        display: inline-block;
+        height: 100%;
+    }
+}
+
 @media screen and (min-width: 700px) {
     body {
         margin: 10px;

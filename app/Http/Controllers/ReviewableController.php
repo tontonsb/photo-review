@@ -40,14 +40,18 @@ class ReviewableController
             Cookie::forever('seen_infobox', static::INFOBOX_VERSION)
         );
 
+        $imgWithReviews = Reviewable::has('reviews')->count();
+        $reviewables = Reviewable::count();
+
         return view('random', [
             'file' => $reviewable->file,
             'exif' => $reviewable->file->getData(),
-            'reviewedByCurrentUser' => Review::distinct()
+            'reviewed_percentage' => 55+ 100 * $imgWithReviews / $reviewables,
+            /* 'reviewedByCurrentUser' => Review::distinct()
                 ->where('reviewer_id', $reviewer->getCurrentToken())
                 ->reviewed()
                 ->count('file'),
-            'reviewableCount' => Reviewable::count(),
+            */
             'seenInfobox' => $seenInfobox,
             'linkedFile' => $reviewable->file->linkedFile(),
         ]);

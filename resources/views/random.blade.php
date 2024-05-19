@@ -83,17 +83,17 @@
             <button type=submit name=conclusion value=suspect class=button--suspect>Iesniegt</button>
         </div>
 
-        <div class=footer>
-            @if ($reviewedByCurrentUser > 5)
-                <span class=review-stats title="Pārskatītas jau {{$reviewedByCurrentUser}} bildes!">
-                    {{$reviewedByCurrentUser}} {{-- /{{$reviewableCount}} --}}
-                </span>
-            @endif
+        <footer>
+            <div class="progress" data-label="{{$reviewed_percentage}}% pārskatīti" title="Kopā esam pārskatījuši {{$reviewed_percentage}}% bilžu!">
+                <div class="value" style="width:{{$reviewed_percentage}}%;"></div>
+            </div>
 
-            <button type=submit name=conclusion value=skip class=button--info>Izlaist šo bildi</button>
+            <div class=footer>
+                <button type=submit name=conclusion value=skip class=button--info>Izlaist šo bildi</button>
 
-            <button type=button class="js-show-infobox button--info">Atvērt pamācību</button>
-        </div>
+                <button type=button class="js-show-infobox button--info">Atvērt pamācību</button>
+            </div>
+        </footer>
     </form>
 </main>
 
