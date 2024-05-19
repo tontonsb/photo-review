@@ -46,7 +46,7 @@ class ReviewableController
         return view('random', [
             'file' => $reviewable->file,
             'exif' => $reviewable->file->getData(),
-            'reviewed_percentage' => 55+ 100 * $imgWithReviews / $reviewables,
+            'reviewed_percentage' => number_format(100 * $imgWithReviews / $reviewables, 0),
             /* 'reviewedByCurrentUser' => Review::distinct()
                 ->where('reviewer_id', $reviewer->getCurrentToken())
                 ->reviewed()
