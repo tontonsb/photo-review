@@ -6,9 +6,19 @@
 textarea {
     box-sizing: border-box;
     width: 100%;
-    height: calc(15 * var(--font-base));
+    height: calc(4 * var(--font-base));
     font-size: var(--font-base);
     padding: var(--space-sm);
+}
+
+.file {
+    background-color: var(--color-light);
+    padding: var(--space-xs);
+
+    code {
+        white-space: pre-line;
+        font-size: var(--font-sm);
+    }
 }
 
 button {
@@ -20,6 +30,10 @@ button {
 
     &.button--suspect {
         --bg: var(--color-danger);
+    }
+
+    &.button--skip {
+        border: 1px solid var(--color-dim);
     }
 
     &.button--info {

@@ -45,3 +45,9 @@ Un sabūvēt publicējamos failus:
 ```sh
 npm run build
 ```
+
+## TODO
+
+- Varētu reviewerim arī izmantot [Pico](https://picocss.com/s): 
+  `@import '@picocss/pico';`, vienīgi layouts no jauna jātaisa un dialogam
+  markups jālabo. Tad būtu smukāks dizains un natīva darkmode atbalstītos...

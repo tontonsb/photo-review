@@ -1,22 +1,8 @@
 @import '../_base.css';
+@import '@picocss/pico';
 
-h1 {
-    font-size: .8rem;
-    font-weight: normal;
-}
-
-nav {
-    ul {
-        list-style: none;
-        display: flex;
-        gap: 1rem;
-    }
-
-    margin-bottom: 1rem;
-}
-
-th {
-    text-align: left;
+body {
+    padding: var(--space-sm);
 }
 
 th, td {

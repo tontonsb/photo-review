@@ -1,6 +1,4 @@
 details {
-    margin-bottom: var(--space-sm);
-
     summary {
         cursor: pointer;
         margin-bottom: var(--space-xs);

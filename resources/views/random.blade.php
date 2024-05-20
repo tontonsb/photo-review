@@ -41,6 +41,24 @@
         <input type=hidden name=filepath value="{{$file->path}}">
         <input type=hidden name=reviewing_duration_ms value=0>
 
+        <div class=actions>
+            <button type=submit name=conclusion value=ok class=button--ok>Apskatīju, nav nekā ievērības cienīga</button>
+
+            <details open>
+                <summary>Redzi ko aizdomīgu?</summary>
+                <textarea name=review></textarea>
+            </details>
+
+            <details>
+                <summary>Ziņot par sliktu/nekvalitatīvu bildi</summary>
+                <textarea name=problem></textarea>
+            </details>
+
+            <button type=submit name=conclusion value=suspect class=button--suspect>Iesniegt</button>
+
+            <button type=submit name=conclusion value=skip class=button--skip>Izlaist šo bildi</button>
+        </div>
+
         <details class="file">
             <summary>
                 {{$file->path}}
@@ -68,33 +86,13 @@
             </code>
         </details>
 
-        <button type=submit name=conclusion value=ok class=button--ok>Apskatīju, nav nekā ievērības cienīga</button>
-
-        <div>
-            <details open>
-                <summary>Redzi ko aizdomīgu?</summary>
-                <textarea name=review></textarea>
-            </details>
-
-            <details>
-                <summary>Bilde ir nekvalitatīva vai cita problēma?</summary>
-                <textarea name=problem></textarea>
-            </details>
-
-            <button type=submit name=conclusion value=suspect class=button--suspect>Iesniegt</button>
-        </div>
-
-        <footer>
+        <aside>
             <div class="progress" data-label="{{$reviewed_percentage}}% pārskatīti" title="Kopā esam pārskatījuši {{$reviewed_percentage}}% bilžu!">
                 <div class="value" style="width:{{$reviewed_percentage}}%;"></div>
             </div>
 
-            <div class=footer>
-                <button type=submit name=conclusion value=skip class=button--info>Izlaist šo bildi</button>
-
-                <button type=button class="js-show-infobox button--info">Atvērt pamācību</button>
-            </div>
-        </footer>
+            <button type=button class="js-show-infobox button--info">Atvērt pamācību</button>
+        </aside>
     </form>
 </main>
 

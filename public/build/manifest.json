@@ -1,7 +1,12 @@
 {
-  "resources/css/app.css": {
-    "file": "assets/app-CRj-kDdd.css",
-    "src": "resources/css/app.css",
+  "resources/css/internal/main.css": {
+    "file": "assets/main-AK5qecVF.css",
+    "src": "resources/css/internal/main.css",
+    "isEntry": true
+  },
+  "resources/css/reviewer/main.css": {
+    "file": "assets/main-D8W136Xn.css",
+    "src": "resources/css/reviewer/main.css",
     "isEntry": true
   },
   "resources/js/app.js": {

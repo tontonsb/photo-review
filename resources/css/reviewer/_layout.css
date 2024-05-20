@@ -1,31 +1,63 @@
 form {
-    margin: 10px;
+    padding: var(--space-sm);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-base);
 }
 
-
-img {
-    display: block;
-    width: 100%;
-    max-height: 70lvh;
-    margin-bottom: 10px;
-    object-fit: contain;
+aside {
+    display: grid;
+    gap: var(--space-sm);
+    grid-template-columns: 1fr max-content;
 }
 
-.file {
-    font-size: .8rem;
+.actions {
+    display: contents;
+}
 
-    code {
-        white-space: pre-line;
+.button--skip {
+    margin-top: var(--space-lg);
+}
+
+@media screen and (min-width: 700px) {
+    main {
+        padding: var(--space-sm);
+        display: grid;
+        grid-template-columns: 1fr max-content;
+        gap: var(--space-sm);
+    }
+
+    form {
+        padding: 0;
+        gap: var(--space-lg);
+        min-height: calc(100vh - 2 * var(--space-sm));
+        min-height: calc(100dvh - 2 * var(--space-sm));
+    }
+
+    img {
+        max-height: calc(100vh - 2 * var(--space-sm));
+        max-height: calc(100dvh - 2 * var(--space-sm));
+        margin-bottom: 0;
+    }
+
+    aside {
+        order: 1;
+    }
+
+    .file {
+        order: 2;
+    }
+
+    .actions {
+        order: 3;
+        margin-top: auto;
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-base);
     }
 }
 
-.footer {
-    display: flex;
-    justify-content: space-between;
-    font-size: .7rem;
-}
-
-
+/*
 @media screen and (min-width: 700px) {
     body {
         margin: 10px;
@@ -54,3 +86,4 @@ img {
         margin-bottom: 0;
     }
 }
+*/
