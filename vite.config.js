@@ -7,7 +7,7 @@ export default defineConfig({
             input: [
                 'resources/css/reviewer/main.css',
                 'resources/css/internal/main.css',
-                'resources/js/app.js',
+                'resources/js/reviewer.js',
             ],
             refresh: true,
         }),

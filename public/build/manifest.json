@@ -9,10 +9,10 @@
     "src": "resources/css/reviewer/main.css",
     "isEntry": true
   },
-  "resources/js/app.js": {
-    "file": "assets/app-l0sNRNKZ.js",
-    "name": "app",
-    "src": "resources/js/app.js",
+  "resources/js/reviewer.js": {
+    "file": "assets/reviewer-CaMJunjP.js",
+    "name": "reviewer",
+    "src": "resources/js/reviewer.js",
     "isEntry": true
   }
 }
