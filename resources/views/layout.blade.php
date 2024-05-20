@@ -4,7 +4,7 @@
 
 
 @section('head')
-@vite(['resources/css/internal/main.css'])
+@vite(['resources/css/internal.css'])
 @endsection
 
 @section('body')

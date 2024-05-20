@@ -1,7 +1,7 @@
-@import '../_base.css';
-@import '_layout.css';
-@import '_dialog.css';
-@import '_progress.css';
+@import 'base.css';
+@import 'reviewer/layout.css';
+@import 'reviewer/dialog.css';
+@import 'reviewer/progress.css';
 
 textarea {
     box-sizing: border-box;

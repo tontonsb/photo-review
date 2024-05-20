@@ -1,7 +1,7 @@
 @extends('base-layout')
 
 @section('head')
-@vite(['resources/css/reviewer/main.css'])
+@vite(['resources/css/reviewer.css'])
 <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/zoomist@2/zoomist.css>
 <style>
 .zoomist-container {
@@ -163,6 +163,7 @@
     </div>
 </dialog>
 
+@vite(['resources/js/reviewer.js'])
 <script type=module>
 import Zoomist from 'https://cdn.jsdelivr.net/npm/zoomist@2/zoomist.js'
 
@@ -202,18 +203,6 @@ zoomistOverlay.addEventListener('mouseup', () => {
     zoomistOverlay.style.cursor = 'grab'
 })
 
-const infobox = document.querySelector('.js-infobox')
-infobox.querySelectorAll('.js-close').forEach(
-    button => button.addEventListener('click', _ => infobox.close())
-)
-document.querySelector('.js-show-infobox').addEventListener('click', _ => infobox.showModal())
-@unless($seenInfobox)
-infobox.showModal()
-@endunless
-
-const timeStarted = new Date()
-const form = document.querySelector('form')
-const timeInput = document.querySelector('[name=reviewing_duration_ms]')
-form.addEventListener('submit', () => timeInput.value = (new Date()) - timeStarted)
+bootInfobox('.js-infobox', '.js-show-infobox', {{$seenInfobox ? 'false' : 'true'}})
 </script>
 @endsection
