@@ -1,0 +1,56 @@
+form {
+    margin: 10px;
+}
+
+
+img {
+    display: block;
+    width: 100%;
+    max-height: 70lvh;
+    margin-bottom: 10px;
+    object-fit: contain;
+}
+
+.file {
+    font-size: .8rem;
+
+    code {
+        white-space: pre-line;
+    }
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: .7rem;
+}
+
+
+@media screen and (min-width: 700px) {
+    body {
+        margin: 10px;
+    }
+
+    main {
+        display: grid;
+        grid-template-columns: 1fr max-content;
+        gap: 1rem;
+    }
+
+    form {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 2rem;
+
+        > * {
+            margin: 0;
+        }
+    }
+
+    img {
+        max-height: calc(100vh - 20px);
+        margin-bottom: 0;
+    }
+}

@@ -1,6 +1,7 @@
 @extends('base-layout')
 
 @section('head')
+@vite(['resources/css/reviewer/main.css'])
 <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/zoomist@2/zoomist.css>
 <style>
 .zoomist-container {

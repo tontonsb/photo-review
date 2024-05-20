@@ -1,0 +1,30 @@
+dialog > div {
+    height: 80lvh;
+    position: relative;
+    padding-top: var(--space-base);
+
+    p {
+        margin-bottom: var(--space-base);
+    }
+
+    div {
+        max-width: 45rem;
+        max-height: 100%;
+        overflow-y: scroll;
+    }
+
+    button {
+        width: auto;
+
+        &.x-button {
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin-top: calc(-1 * var(--space-base));
+        }
+    }
+
+    details p {
+        margin-left: var(--space-base);
+    }
+}

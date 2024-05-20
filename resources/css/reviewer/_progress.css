@@ -1,0 +1,21 @@
+.progress {
+    height: var(--space-lg);
+    width: 100%;
+    background-color: var(--color-light);
+    position: relative;
+
+    &:before {
+        content: attr(data-label);
+        position: absolute;
+        text-align: center;
+        top: var(--space-xs);
+        left: 0;
+        right: 0;
+    }
+
+    .value {
+        background-color: var(--color-accent);
+        display: inline-block;
+        height: 100%;
+    }
+}

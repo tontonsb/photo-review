@@ -1,0 +1,38 @@
+details {
+    margin-bottom: var(--space-sm);
+
+    summary {
+        cursor: pointer;
+        margin-bottom: var(--space-xs);
+        color: var(--color-dim);
+    }
+}
+
+button {
+    --bg: var(--color-bg);
+
+    width: 100%;
+    padding: var(--space-sm);
+    font-family: var(--font-main);
+    font-size: var(--font-base);
+    cursor: pointer;
+    border: none;
+    transition: .2s background-color cubic-bezier(0, 0, 0.2, 1);
+    background: var(--bg);
+    color: var(--color-main);
+    color: color-mix(in hsl, black 90%, var(--bg));
+    color: color-mix(in oklch, black 70%, var(--bg));
+
+    &:hover {
+        background-color: white;
+        background-color: color-mix(in hsl, var(--bg) 85%, black);
+        background-color: color-mix(in oklch, var(--bg) 93%, black);
+    }
+}
+
+img {
+    display: block;
+    width: 100%;
+    max-height: 70lvh;
+    object-fit: contain;
+}

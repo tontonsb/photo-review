@@ -2,6 +2,11 @@
 
 @extends('base-layout')
 
+
+@section('head')
+@vite(['resources/css/internal/main.css'])
+@endsection
+
 @section('body')
 <nav>
     <ul>

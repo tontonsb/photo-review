@@ -1,0 +1,24 @@
+@import '../_base.css';
+
+h1 {
+    font-size: .8rem;
+    font-weight: normal;
+}
+
+nav {
+    ul {
+        list-style: none;
+        display: flex;
+        gap: 1rem;
+    }
+
+    margin-bottom: 1rem;
+}
+
+th {
+    text-align: left;
+}
+
+th, td {
+    padding: .1rem .4rem;
+}

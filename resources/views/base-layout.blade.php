@@ -2,7 +2,6 @@
 <html lang=lv>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width, initial-scale=1">
-@vite(['resources/css/app.css'])
 
 <title>Attēlu pārskatīšana Annas meklēšanai</title>
 <meta name=title content="Attēlu pārskatīšana Annas meklēšanai">

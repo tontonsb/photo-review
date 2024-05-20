@@ -1,0 +1,31 @@
+@import '../_base.css';
+@import '_layout.css';
+@import '_dialog.css';
+@import '_progress.css';
+
+textarea {
+    box-sizing: border-box;
+    width: 100%;
+    height: calc(15 * var(--font-base));
+    font-size: var(--font-base);
+    padding: var(--space-sm);
+}
+
+button {
+    &.button--ok {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        --bg: var(--color-accent);
+    }
+
+    &.button--suspect {
+        --bg: var(--color-danger);
+    }
+
+    &.button--info {
+        width: auto;
+        font-size: var(--font-sm);
+        padding: var(--space-xs);
+        text-decoration: underline;
+    }
+}
