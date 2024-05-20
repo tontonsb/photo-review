@@ -59,32 +59,35 @@
             <button type=submit name=conclusion value=skip class=button--skip>Izlaist šo bildi</button>
         </div>
 
-        <details class="file">
-            <summary>
-                {{$file->path}}
-            </summary>
-            <a href="{{$file->url}}" target=_blank>{{$file->path}}</a>
-            @if ($linkedFile)
-                <br><a href="{{$linkedFile->url}}" target=_blank>
-                    @if ($linkedFile->isSrc())
-                        Attēla versija ar ģeometrijas korekciju
-                    @else
-                        Oriģinālo datu attēls (bez korekcijas)
-                    @endif
-                </a>
-            @endif
-            <code>
-                @foreach ($exif as $key => $value)
-                    @if (is_scalar($value) || is_null($value))
-                        {{$key}}: {{$value}}
-                    @elseif (is_array($value))
-                        @foreach ($value as $subkey => $subvalue)
-                            {{$key}} {{$subkey}}: {{is_string($subvalue) ? $subvalue : json_encode($subvalue)}}
-                        @endforeach
-                    @endif
-                @endforeach
-            </code>
-        </details>
+        <div class=file>
+            <div id=location-map style="width: 100%; height: 100px;"></div>
+            <details>
+                <summary>
+                    {{$file->path}}
+                </summary>
+                <a href="{{$file->url}}" target=_blank>{{$file->path}}</a>
+                @if ($linkedFile)
+                    <br><a href="{{$linkedFile->url}}" target=_blank>
+                        @if ($linkedFile->isSrc())
+                            Attēla versija ar ģeometrijas korekciju
+                        @else
+                            Oriģinālo datu attēls (bez korekcijas)
+                        @endif
+                    </a>
+                @endif
+                <code>
+                    @foreach ($exif as $key => $value)
+                        @if (is_scalar($value) || is_null($value))
+                            {{$key}}: {{$value}}
+                        @elseif (is_array($value))
+                            @foreach ($value as $subkey => $subvalue)
+                                {{$key}} {{$subkey}}: {{is_string($subvalue) ? $subvalue : json_encode($subvalue)}}
+                            @endforeach
+                        @endif
+                    @endforeach
+                </code>
+            </details>
+        </div>
 
         <aside>
             <div class="progress" data-label="{{$reviewed_percentage}}% pārskatīti" title="Kopā esam pārskatījuši {{$reviewed_percentage}}% bilžu!">
@@ -204,5 +207,13 @@ zoomistOverlay.addEventListener('mouseup', () => {
 })
 
 bootInfobox('.js-infobox', '.js-show-infobox', {{$seenInfobox ? 'false' : 'true'}})
+
+@if ($exif['LOCATION'] ?? false)
+    @if ($file->isSonarImage())
+        makeMapWith.box('location-map', @json($exif['LOCATION']))
+    @else
+        makeMapWith.pin('location-map', @json($exif['LOCATION']))
+    @endif
+@endif
 </script>
 @endsection

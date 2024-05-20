@@ -19,6 +19,11 @@ aside {
     margin-top: var(--space-lg);
 }
 
+.location-map {
+    width: 100%;
+    height: 100px;
+}
+
 @media screen and (min-width: 700px) {
     main {
         padding: var(--space-sm);
@@ -29,7 +34,6 @@ aside {
 
     form {
         padding: 0;
-        gap: var(--space-lg);
         min-height: calc(100vh - 2 * var(--space-sm));
         min-height: calc(100dvh - 2 * var(--space-sm));
     }
@@ -56,34 +60,3 @@ aside {
         gap: var(--space-base);
     }
 }
-
-/*
-@media screen and (min-width: 700px) {
-    body {
-        margin: 10px;
-    }
-
-    main {
-        display: grid;
-        grid-template-columns: 1fr max-content;
-        gap: 1rem;
-    }
-
-    form {
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        gap: 2rem;
-
-        > * {
-            margin: 0;
-        }
-    }
-
-    img {
-        max-height: calc(100vh - 20px);
-        margin-bottom: 0;
-    }
-}
-*/

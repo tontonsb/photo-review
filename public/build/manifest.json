@@ -1,18 +1,21 @@
 {
   "resources/css/internal.css": {
-    "file": "assets/internal-AK5qecVF.css",
+    "file": "assets/internal-qhTer9Jj.css",
     "src": "resources/css/internal.css",
     "isEntry": true
   },
   "resources/css/reviewer.css": {
-    "file": "assets/reviewer-D8W136Xn.css",
+    "file": "assets/reviewer-vORTfxEJ.css",
     "src": "resources/css/reviewer.css",
     "isEntry": true
   },
   "resources/js/reviewer.js": {
-    "file": "assets/reviewer-CaMJunjP.js",
+    "file": "assets/reviewer--Zp6-Q83.js",
     "name": "reviewer",
     "src": "resources/js/reviewer.js",
-    "isEntry": true
+    "isEntry": true,
+    "css": [
+      "assets/reviewer-CSy_vbSQ.css"
+    ]
   }
 }

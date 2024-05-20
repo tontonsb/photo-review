@@ -120,7 +120,7 @@ class ReviewableFile
         return $this->disk->getAdapter() instanceof \League\Flysystem\Local\LocalFilesystemAdapter;
     }
 
-    protected function isSonarImage(): bool
+    public function isSonarImage(): bool
     {
         return str_ends_with($this->path, '.png')
             && str_contains($this->path, 'Sonar');
