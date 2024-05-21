@@ -70,7 +70,7 @@ class ReviewController
     /**
      * Patīrīsim, lai saglabājam tikai jēdzīgus un lietojamus datus.
      */
-    protected function extractCoordinates(string $requestCoordinates): array
+    protected function extractCoordinates(string $requestCoordinates): ?array
     {
         $requestCoordinates = json_decode($requestCoordinates);
         $coordinates = [];
