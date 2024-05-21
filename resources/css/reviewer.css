@@ -3,6 +3,10 @@
 @import 'reviewer/dialog.css';
 @import 'reviewer/progress.css';
 
+#image {
+    background-color: var(--color-dim);
+}
+
 textarea {
     box-sizing: border-box;
     width: 100%;

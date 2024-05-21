@@ -2,39 +2,11 @@
 
 @section('head')
 @vite(['resources/css/reviewer.css'])
-<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/zoomist@2/zoomist.css>
-<style>
-.zoomist-container {
-    --zoomist-wrapper-bg-color: #1c1c1c;
-
-    --zoomist-slider-bg-color: rgba(255, 255, 255, .3);
-    --zoomist-slider-padding-x: 10px;
-    --zoomist-slider-padding-y: 14px;
-    --zoomist-slider-bar-size: 100px;
-
-    --zoomist-zoomer-button-size: 40px;
-    --zoomist-zoomer-button-color: rgba(255, 255, 255, .6);
-    --zoomist-zoomer-button-color-hover: rgba(255, 255, 255, .9);
-    --zoomist-zoomer-button-color-disabled: rgba(255, 255, 255, .3);
-}
-
-.zoomist-wrapper {
-    min-height: 60lvh;
-}
-</style>
 @endsection
 
 @section('body')
 <main>
-    <div class=zoomist-container-container> <!-- zoomist works wrongly in grid -->
-        <div class=zoomist-container>
-            <div class=zoomist-wrapper>
-                <div class=zoomist-image>
-                    <img src="{{$file->url}}" {!! $exif['COMPUTED']['html'] ?? '' !!} >
-                </div>
-            </div>
-        </div>
-    </div>
+    <div id=image></div>
 
     <form method=post action="{{route('reviews.store')}}">
         @csrf
@@ -168,43 +140,11 @@
 
 @vite(['resources/js/reviewer.js'])
 <script type=module>
-import Zoomist from 'https://cdn.jsdelivr.net/npm/zoomist@2/zoomist.js'
-
-const zoomistOverlay = document.querySelector('.zoomist-wrapper')
-
-// Find the scale that's needed to zoom img to 100%. We'll allow to scale 4 times more.
-const widthScale = {{$exif['COMPUTED']['Width'] ?? 0}} / zoomistOverlay.clientWidth
-const heightScale = {{$exif['COMPUTED']['Height'] ?? 0}} / zoomistOverlay.clientHeight
-const imgScale = Math.max(widthScale, heightScale, 2) // 2 will allow at least 8x zooming
-
-const zoomist = new Zoomist('.zoomist-container', {
-    zoomer: true,
-    slider: true,
-    zoomRatio: 0.28,
-    maxScale: 3 * imgScale,
-    on: {
-        zoom(zoomist, scale) {
-            if (1 == scale)
-                zoomistOverlay.style.cursor = 'unset'
-            else
-                zoomistOverlay.style.cursor = 'grab'
-        },
-    },
-})
-
-zoomistOverlay.addEventListener('mousedown', () => {
-    if (zoomist.transform.scale == 1)
-        return
-
-    zoomistOverlay.style.cursor = 'grabbing'
-})
-
-zoomistOverlay.addEventListener('mouseup', () => {
-    if (zoomist.transform.scale == 1)
-        return
-
-    zoomistOverlay.style.cursor = 'grab'
-})
+@if ($file->isSonarImage() && ($exif['LOCATION'] ?? false))
+    displayImageOnMap('image', @json($exif['LOCATION']), '{{$file->url}}')
+@else
+    displayImage('image', {{$exif['COMPUTED']['Width'] ?? 0}}, {{$exif['COMPUTED']['Height'] ?? 0}}, '{{$file->url}}')
+@endif
 
 bootInfobox('.js-infobox', '.js-show-infobox', {{$seenInfobox ? 'false' : 'true'}})
 
