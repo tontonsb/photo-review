@@ -11,7 +11,9 @@
         <tr>
             <td>{{$review->created_at}}
             <td>{{$review->conclusion?->lv()}}
-            <td>{{$review->review}}
+            <td>
+                {{$review->coordinates ? '📌' : ''}}
+                {{$review->review}}
             <td>{{$review->problem}}
             <td><a href="{{route('reviewables.show', $review->file)}}">
                     {{$review->file}}

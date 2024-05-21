@@ -6,6 +6,7 @@
         <li><a href="{{route('reviews.index')}}">Visas</a>
         <li><a href="{{route('reviews.index', 'reviews')}}">Ar aprakstiem</a>
         <li><a href="{{route('reviews.index', 'problems')}}">Ar problēmām</a>
+        <li><a href="{{route('reviews.index', 'pins')}}">Ar marķieriem 📌</a>
     </ul>
 </nav>
 
@@ -17,7 +18,9 @@
         <tr>
             <td>{{$review->created_at}}
             <td>{{$review->conclusion?->lv()}}
-            <td>{{$review->review}}
+            <td>
+                {{$review->coordinates ? '📌' : ''}}
+                {{$review->review}}
             <td>{{$review->problem}}
             <td><a href="{{route('reviewables.show', $review->file)}}">
                     {{$review->file}}
