@@ -1,12 +1,9 @@
-import ImageLayer from 'ol/layer/Image.js'
-import TileLayer from 'ol/layer/Tile.js'
-import Map from 'ol/Map.js'
-import Projection from 'ol/proj/Projection.js'
-import Static from 'ol/source/ImageStatic.js'
-import View from 'ol/View.js'
-import {getCenter} from 'ol/extent.js'
-import { XYZ } from 'ol/source'
-
+import ImageLayer from 'ol/layer/Image'
+import Map from 'ol/Map'
+import Projection from 'ol/proj/Projection'
+import Static from 'ol/source/ImageStatic'
+import View from 'ol/View'
+import {getCenter} from 'ol/extent'
 
 export default function displayImage(target, width, height, url) {
     const extent = [0, 0, width, height]

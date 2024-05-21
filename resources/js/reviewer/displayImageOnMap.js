@@ -1,12 +1,11 @@
-import ImageLayer from 'ol/layer/Image.js'
-import TileLayer from 'ol/layer/Tile.js'
-import Map from 'ol/Map.js'
-import Static from 'ol/source/ImageStatic.js'
-import View from 'ol/View.js'
-import {getCenter} from 'ol/extent.js'
+import ImageLayer from 'ol/layer/Image'
+import TileLayer from 'ol/layer/Tile'
+import Map from 'ol/Map'
+import Static from 'ol/source/ImageStatic'
+import View from 'ol/View'
+import {getCenter} from 'ol/extent'
 import { XYZ } from 'ol/source'
 import { transformExtent } from 'ol/proj'
-
 
 export default function displayImageOnMap(target, bounds, url) {
     const extent = transformExtent([
