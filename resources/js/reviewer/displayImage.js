@@ -16,7 +16,7 @@ export default function displayImage(target, width, height, url) {
         extent: extent,
     })
 
-    return new Map({
+    const map = new Map({
         layers: [
             new ImageLayer({
                 source: new Static({
@@ -30,11 +30,13 @@ export default function displayImage(target, width, height, url) {
         view: new View({
             projection: projection,
             center: getCenter(extent),
-            extent: extent,
-            showFullExtent: true,
             zoom: 1,
         }),
     })
+
+    map.getView().fit(extent)
+
+    return map
 }
 
 
