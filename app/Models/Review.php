@@ -28,6 +28,11 @@ class Review extends Model
         return new ReviewableFile($this->file);
     }
 
+    public function getDurationAttribute()
+    {
+        return number_format($this->reviewing_duration_ms / 1000, 1).' s';
+    }
+
     public function reviewer(): BelongsTo
     {
         return $this->belongsTo(Reviewer::class);

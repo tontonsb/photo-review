@@ -30,6 +30,11 @@ class ReviewController
         return view('reviews', ['reviews' => $reviews]);
     }
 
+    public function show(Review $review)
+    {
+        return view('review', ['review' => $review]);
+    }
+
     public function store(Request $request, ReviewerService $reviewer)
     {
         Review::create([

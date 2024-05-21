@@ -9,7 +9,9 @@
     <tbody>
         @foreach ($reviewer->reviews as $review)
         <tr>
-            <td>{{$review->created_at}}
+            <td><a href="{{route('reviews.show', $review)}}">
+                    {{$review->created_at}}
+                </a>
             <td>{{$review->conclusion?->lv()}}
             <td>
                 {{$review->coordinates ? '📌' : ''}}
@@ -18,7 +20,7 @@
             <td><a href="{{route('reviewables.show', $review->file)}}">
                     {{$review->file}}
                 </a>
-            <td>{{number_format($review->reviewing_duration_ms / 1000, 1)}} s
+            <td>{{$review->duration}}
         @endforeach
 </table>
 @endsection

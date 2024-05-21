@@ -15,6 +15,7 @@ Route::name('reviewables.')->controller(ReviewableController::class)->group(func
 Route::name('reviews.')->controller(ReviewController::class)->group(function() {
     Route::get('reviews', 'index')->name('index');
     Route::post('/', 'store')->name('store');
+    Route::get('reviews/{review}', 'show')->name('show');
 });
 
 Route::name('reviewers.')->controller(ReviewerController::class)->group(function() {

@@ -13,13 +13,15 @@
     <tbody>
         @foreach ($reviews as $review)
         <tr>
-            <td>{{$review->created_at}}
+            <td><a href="{{route('reviews.show', $review)}}">
+                    {{$review->created_at}}
+                </a>
             <td>{{$review->conclusion?->lv()}}
             <td>
                 {{$review->coordinates ? '📌' : ''}}
                 {{$review->review}}
             <td>{{$review->problem}}
-            <td>{{number_format($review->reviewing_duration_ms / 1000, 1)}} s
+            <td>{{$review->duration}}
             <td><a href="{{route('reviewers.show', $review->reviewer_id)}}">
                     {{$review->reviewer_id}}
                 </a>
