@@ -28,6 +28,15 @@
 
             <button type=submit name=conclusion value=suspect class=button--suspect>Iesniegt</button>
 
+            <label>
+                Turpināsim ar
+                <select name=mode class=continue >
+                    <option value=random @selected(Route::is('reviewables.random'))>nejaušu
+                    <option value=next @selected(Route::is('reviewables.review'))>nākošo
+                </select>
+                bildi
+            </label>
+
             <button type=submit name=conclusion value=skip class=button--skip>Izlaist šo bildi</button>
         </div>
 

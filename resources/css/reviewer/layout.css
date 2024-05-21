@@ -2,7 +2,7 @@ form {
     padding: var(--space-sm);
     display: flex;
     flex-direction: column;
-    gap: var(--space-base);
+    gap: var(--space-sm);
 }
 
 aside {
@@ -11,12 +11,13 @@ aside {
     grid-template-columns: 1fr max-content;
 }
 
-.actions {
-    display: contents;
+#image {
+    height: 70vh;
+    width: 100%;
 }
 
-.button--skip {
-    margin-top: var(--space-lg);
+.actions {
+    display: contents;
 }
 
 .location-map {
@@ -38,10 +39,10 @@ aside {
         min-height: calc(100dvh - 2 * var(--space-sm));
     }
 
-    img {
+    #image {
+        height: unset;
         max-height: calc(100vh - 2 * var(--space-sm));
         max-height: calc(100dvh - 2 * var(--space-sm));
-        margin-bottom: 0;
     }
 
     aside {

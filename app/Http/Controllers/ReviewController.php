@@ -39,6 +39,15 @@ class ReviewController
 
         rescue(fn() => Reviewable::find($request->filepath)->increment('review_count'));
 
+        if ('next' === $request->mode) {
+            $next = Reviewable::orderBy('path')
+                ->where('path', '>', $request->filepath)
+                ->first();
+
+            if ($next)
+                return to_route('reviewables.review', $next, 303);
+        }
+
         return to_route('reviewables.random', status: 303);
     }
 }
