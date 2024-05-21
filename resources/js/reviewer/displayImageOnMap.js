@@ -48,13 +48,10 @@ export default function displayImageOnMap(target, bounds, url) {
             userMarkers.layer,
         ],
         target: target,
-        view: new View({
-            center: getCenter(extent),
-            extent: extent,
-            showFullExtent: true,
-            zoom: 1,
-        }),
+        view: new View(),
     })
+
+    map.getView().fit(extent)
 
     map.on('click', userMarkers.clickHandler)
 
