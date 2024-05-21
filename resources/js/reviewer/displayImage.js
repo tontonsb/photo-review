@@ -32,6 +32,7 @@ export default function displayImage(target, width, height, url) {
             center: getCenter(extent),
             extent: extent,
             showFullExtent: true,
+            zoom: 1,
         }),
     })
 }

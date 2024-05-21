@@ -39,6 +39,7 @@ export default function displayImageOnMap(target, bounds, url) {
             center: getCenter(extent),
             extent: extent,
             showFullExtent: true,
+            zoom: 1,
         }),
     })
 }
