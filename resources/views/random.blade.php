@@ -12,6 +12,7 @@
         @csrf
         <input type=hidden name=filepath value="{{$file->path}}">
         <input type=hidden name=reviewing_duration_ms value=0>
+        <input type=hidden name=coordinates>
 
         <div class=actions>
             <button type=submit name=conclusion value=ok class=button--ok>Apskatīju, nav nekā ievērības cienīga</button>
@@ -149,13 +150,17 @@
 
 @vite(['resources/js/reviewer.js'])
 <script type=module>
+bootInfobox('.js-infobox', '.js-show-infobox', {{$seenInfobox ? 'false' : 'true'}})
+
 @if ($file->isSonarImage() && ($exif['LOCATION'] ?? false))
-    displayImageOnMap('image', @json($exif['LOCATION']), '{{$file->url}}')
+    const {map, userMarkers} = displayImageOnMap('image', @json($exif['LOCATION']), '{{$file->url}}')
 @else
-    displayImage('image', {{$exif['COMPUTED']['Width'] ?? 0}}, {{$exif['COMPUTED']['Height'] ?? 0}}, '{{$file->url}}')
+    const {map, userMarkers} = displayImage('image', {{$exif['COMPUTED']['Width'] ?? 0}}, {{$exif['COMPUTED']['Height'] ?? 0}}, '{{$file->url}}')
 @endif
 
-bootInfobox('.js-infobox', '.js-show-infobox', {{$seenInfobox ? 'false' : 'true'}})
+const form = document.querySelector('form')
+const coordinateInput = form.querySelector('[name=coordinates]')
+form.addEventListener('submit', _ => coordinateInput.value = JSON.stringify(userMarkers.getMarkers()))
 
 @if ($exif['LOCATION'] ?? false)
     @if ($file->isSonarImage())

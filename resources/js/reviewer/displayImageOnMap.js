@@ -6,6 +6,7 @@ import View from 'ol/View'
 import {getCenter} from 'ol/extent'
 import { XYZ } from 'ol/source'
 import { transformExtent } from 'ol/proj'
+import initUserMarkers from './userMarkers'
 
 export default function displayImageOnMap(target, bounds, url) {
     const extent = transformExtent([
@@ -15,7 +16,9 @@ export default function displayImageOnMap(target, bounds, url) {
         parseFloat(bounds.north),
     ], 'EPSG:4326', 'EPSG:3857')
 
-    return new Map({
+    const userMarkers = initUserMarkers()
+
+    const map = new Map({
         layers: [
             new TileLayer({
                 source: new XYZ({
@@ -32,6 +35,7 @@ export default function displayImageOnMap(target, bounds, url) {
                     imageExtent: extent,
                 }),
             }),
+            userMarkers.layer,
         ],
         target: target,
         view: new View({
@@ -41,6 +45,10 @@ export default function displayImageOnMap(target, bounds, url) {
             zoom: 1,
         }),
     })
+
+    map.on('click', userMarkers.clickHandler)
+
+    return {map, userMarkers}
 }
 
 

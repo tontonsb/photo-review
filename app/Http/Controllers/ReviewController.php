@@ -35,6 +35,7 @@ class ReviewController
             'review' => $request->review,
             'problem' => $request->problem,
             'reviewing_duration_ms' => $request->reviewing_duration_ms,
+            'coordinates' => is_array($request->coordinates) ? $this->extractCoordinates($request->coordinates) : null,
         ]);
 
         rescue(fn() => Reviewable::find($request->filepath)->increment('review_count'));
@@ -49,5 +50,23 @@ class ReviewController
         }
 
         return to_route('reviewables.random', status: 303);
+    }
+
+    /**
+     * Patīrīsim, lai saglabājam tikai jēdzīgus un lietojamus datus.
+     */
+    protected function extractCoordinates(array $requestCoordinates): array
+    {
+        $coordinates = [];
+
+        foreach ($coordinates as $coords)
+            if (is_array($coords) && 2 == count($coords))
+                $coordinates[] = [
+                    (float) $coords[0],
+                    (float) $coords[1],
+                ];
+
+        // Neglabāsim tukšus masīvus
+        return $coordinates ?: null;
     }
 }

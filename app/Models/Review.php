@@ -10,6 +10,7 @@ class Review extends Model
 {
     protected $casts = [
         'conclusion' => Conclusion::class,
+        'coordinates' => 'array',
     ];
 
     protected $fillable = [
@@ -19,6 +20,7 @@ class Review extends Model
         'reviewing_duration_ms',
         'review',
         'problem',
+        'coordinates',
     ];
 
     public function getReviewableFileAttribute()

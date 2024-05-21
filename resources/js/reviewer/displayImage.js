@@ -4,6 +4,7 @@ import Projection from 'ol/proj/Projection'
 import Static from 'ol/source/ImageStatic'
 import View from 'ol/View'
 import {getCenter} from 'ol/extent'
+import initUserMarkers from './userMarkers'
 
 export default function displayImage(target, width, height, url) {
     const extent = [0, 0, width, height]
@@ -12,6 +13,8 @@ export default function displayImage(target, width, height, url) {
         units: 'pixels',
         extent: extent,
     })
+
+    const userMarkers = initUserMarkers()
 
     const map = new Map({
         layers: [
@@ -22,6 +25,7 @@ export default function displayImage(target, width, height, url) {
                     imageExtent: extent,
                 }),
             }),
+            userMarkers.layer,
         ],
         target: target,
         view: new View({
@@ -35,7 +39,9 @@ export default function displayImage(target, width, height, url) {
 
     map.getView().fit(extent)
 
-    return map
+    map.on('click', userMarkers.clickHandler)
+
+    return {map, userMarkers}
 }
 
 
