@@ -37,6 +37,8 @@ export default function displayImageOnMap(target, bounds, url) {
                         'Source: Esri, DigitalGlobe, GeoEye, Earthstar Geographics, CNES/Airbus DS, USDA, USGS, AeroGRID, IGN, and the GIS User Community'
                     ],
                     url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+                    // It returns gray placeholder tiles for higher zoom levels
+                    maxZoom: 20,
                 }),
             }),
             new ImageLayer({
