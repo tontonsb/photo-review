@@ -97,6 +97,16 @@
             </strong>
 
             <details>
+                <summary>⚠️ <b>Jaunas funkcijas 21.05.2024</b></summary>
+                <ol>
+                    <li>Redzamā vieta parādīta arī minikartē informācijas blokā.
+                    <li>Sonāra attēli redzami uz kartes, lai saprotams objektu mērogs.
+                    <li>Uz attēla var spiest un atzīmēt punktus, kuri tiks saglabāti kopā ar pārējo iesniegto info.
+                    <li>"Turpināsim ar ... bildi" var izvēlēties skatīt attēlus nejaušā secībā vai pēc kārtas no esošās kopas.
+                </ol>
+            </details>
+
+            <details>
                 <summary>
                     Kas tās par bildēm? Kā tās skatīties?
                 </summary>

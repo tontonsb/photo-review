@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\DB;
 
 class ReviewableController
 {
-    protected const INFOBOX_VERSION = 'v1.0.0';
+    protected const INFOBOX_VERSION = 'v1.1.0';
 
     public function random(
         ReviewableService $reviewables,
