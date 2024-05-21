@@ -30,6 +30,8 @@ export default function displayImage(target, width, height, url) {
         view: new View({
             projection: projection,
             center: getCenter(extent),
+            extent: extent,
+            showFullExtent: true,
             zoom: 1,
         }),
     })
