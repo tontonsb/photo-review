@@ -20,6 +20,10 @@ class ReviewController
                 $request->has('reviews'),
                 fn($reviews) => $reviews->whereNotNull('review')
             )
+            ->when(
+                $request->has('pins'),
+                fn($reviews) => $reviews->whereNotNull('coordinates')
+            )
             ->cursorPaginate($request->pagesize ?? 20)
             ->withQueryString();
 
@@ -35,7 +39,7 @@ class ReviewController
             'review' => $request->review,
             'problem' => $request->problem,
             'reviewing_duration_ms' => $request->reviewing_duration_ms,
-            'coordinates' => is_array($request->coordinates) ? $this->extractCoordinates($request->coordinates) : null,
+            'coordinates' => $request->coordinates ? $this->extractCoordinates($request->coordinates) : null,
         ]);
 
         rescue(fn() => Reviewable::find($request->filepath)->increment('review_count'));
@@ -55,11 +59,12 @@ class ReviewController
     /**
      * Patīrīsim, lai saglabājam tikai jēdzīgus un lietojamus datus.
      */
-    protected function extractCoordinates(array $requestCoordinates): array
+    protected function extractCoordinates(string $requestCoordinates): array
     {
+        $requestCoordinates = json_decode($requestCoordinates);
         $coordinates = [];
 
-        foreach ($coordinates as $coords)
+        foreach ($requestCoordinates as $coords)
             if (is_array($coords) && 2 == count($coords))
                 $coordinates[] = [
                     (float) $coords[0],
