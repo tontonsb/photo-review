@@ -6,6 +6,7 @@ import View from 'ol/View'
 import {getCenter} from 'ol/extent'
 import { XYZ } from 'ol/source'
 import { transformExtent } from 'ol/proj'
+import {ScaleLine, defaults as defaultControls} from 'ol/control.js'
 import initUserMarkers from './userMarkers'
 
 export default function displayImageOnMap(target, bounds, url) {
@@ -18,7 +19,16 @@ export default function displayImageOnMap(target, bounds, url) {
 
     const userMarkers = initUserMarkers()
 
+    const scaleLine = new ScaleLine({
+        units: 'metric',
+        bar: true,
+        steps: 4,
+        text: false,
+        minWidth: 140,
+    })
+
     const map = new Map({
+        controls: defaultControls().extend([scaleLine]),
         layers: [
             new TileLayer({
                 source: new XYZ({
