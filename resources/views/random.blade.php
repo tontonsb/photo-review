@@ -72,8 +72,10 @@
         </div>
 
         <aside>
-            <div class="progress" data-label="{{$reviewed_percentage}}% pārskatīti" title="Kopā esam pārskatījuši {{$reviewed_percentage}}% bilžu!">
-                <div class="value" style="width:{{$reviewed_percentage}}%;"></div>
+            <div class=progress data-label="{{$reviewed_percentage}}% pārskatīti" title="Kopā esam pārskatījuši {{$reviewed_percentage}}% no šobrīd ielādētajām vairāk nekā {{$reviewable_count}} bildēm!">
+                <div class=value style="width:{{$reviewed_percentage}}%;"></div>
+                <span class=min>0</span>
+                <span class=max>{{$reviewable_count}}</span>
             </div>
 
             <button type=button class="js-show-infobox button--info">Atvērt pamācību</button>
