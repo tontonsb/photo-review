@@ -27,4 +27,18 @@
     <dt>Pārskatīšanas ilgums
     <dd>{{$review->duration}}
 </dl>
+
+<div id=image style="width: 100%; height: 70lvh;"></div>
+@vite(['resources/js/review.js'])
+<script type=module>
+@if ($file->isSonarImage() && ($exif['LOCATION'] ?? false))
+    const {map, userMarkers} = displayImageOnMap('image', @json($exif['LOCATION']), '{{$file->url}}')
+@else
+    const {map, userMarkers} = displayImage('image', {{$exif['COMPUTED']['Width'] ?? 0}}, {{$exif['COMPUTED']['Height'] ?? 0}}, '{{$file->url}}')
+@endif
+
+@if ($review->coordinates)
+userMarkers.addMarkers(@json($review->coordinates))
+@endif
+</script>
 @endsection

@@ -32,5 +32,11 @@ export default function initUserMarkers() {
         feature => feature.getGeometry().getCoordinates()
     )
 
-    return {layer, clickHandler, getMarkers}
+    const addMarkers = markers => markers.forEach(
+        marker => source.addFeature(
+            new Feature(new Point(marker))
+        )
+    )
+
+    return {layer, clickHandler, getMarkers, addMarkers}
 }

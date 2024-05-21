@@ -1,6 +1,17 @@
 {
+  "_displayImageOnMap-!~{005}~.js": {
+    "file": "assets/displayImageOnMap-CSy_vbSQ.css",
+    "src": "_displayImageOnMap-!~{005}~.js"
+  },
+  "_displayImageOnMap-BDASzd4k.js": {
+    "file": "assets/displayImageOnMap-BDASzd4k.js",
+    "name": "displayImageOnMap",
+    "css": [
+      "assets/displayImageOnMap-CSy_vbSQ.css"
+    ]
+  },
   "resources/css/internal.css": {
-    "file": "assets/internal-qhTer9Jj.css",
+    "file": "assets/internal-DMxXLft8.css",
     "src": "resources/css/internal.css",
     "isEntry": true
   },
@@ -9,13 +20,22 @@
     "src": "resources/css/reviewer.css",
     "isEntry": true
   },
+  "resources/js/review.js": {
+    "file": "assets/review-atUodHEg.js",
+    "name": "review",
+    "src": "resources/js/review.js",
+    "isEntry": true,
+    "imports": [
+      "_displayImageOnMap-BDASzd4k.js"
+    ]
+  },
   "resources/js/reviewer.js": {
-    "file": "assets/reviewer-BAE-xQHH.js",
+    "file": "assets/reviewer-DlHCpz0e.js",
     "name": "reviewer",
     "src": "resources/js/reviewer.js",
     "isEntry": true,
-    "css": [
-      "assets/reviewer-CSy_vbSQ.css"
+    "imports": [
+      "_displayImageOnMap-BDASzd4k.js"
     ]
   }
 }

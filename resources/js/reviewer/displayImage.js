@@ -1,3 +1,4 @@
+import 'ol/ol.css'
 import ImageLayer from 'ol/layer/Image'
 import Map from 'ol/Map'
 import Projection from 'ol/proj/Projection'
@@ -6,7 +7,7 @@ import View from 'ol/View'
 import {getCenter} from 'ol/extent'
 import initUserMarkers from './userMarkers'
 
-export default function displayImage(target, width, height, url) {
+export default function displayImage(target, width, height, url, interactive = true) {
     const extent = [0, 0, width, height]
     const projection = new Projection({
         code: 'this-image',
@@ -39,7 +40,8 @@ export default function displayImage(target, width, height, url) {
 
     map.getView().fit(extent)
 
-    map.on('click', userMarkers.clickHandler)
+    if (interactive)
+        map.on('click', userMarkers.clickHandler)
 
     return {map, userMarkers}
 }

@@ -1,15 +1,15 @@
+import 'ol/ol.css'
 import ImageLayer from 'ol/layer/Image'
 import TileLayer from 'ol/layer/Tile'
 import Map from 'ol/Map'
 import Static from 'ol/source/ImageStatic'
 import View from 'ol/View'
-import {getCenter} from 'ol/extent'
 import { XYZ } from 'ol/source'
 import { transformExtent } from 'ol/proj'
 import {ScaleLine, defaults as defaultControls} from 'ol/control.js'
 import initUserMarkers from './userMarkers'
 
-export default function displayImageOnMap(target, bounds, url) {
+export default function displayImageOnMap(target, bounds, url, interactive = true) {
     const extent = transformExtent([
         parseFloat(bounds.west),
         parseFloat(bounds.south),
@@ -55,7 +55,8 @@ export default function displayImageOnMap(target, bounds, url) {
 
     map.getView().fit(extent)
 
-    map.on('click', userMarkers.clickHandler)
+    if (interactive)
+        map.on('click', userMarkers.clickHandler)
 
     return {map, userMarkers}
 }

@@ -8,3 +8,8 @@ body {
 th, td {
     padding: .1rem .4rem;
 }
+
+dt {
+    margin-top: var(--space-sm);
+    font-weight: bold;
+}

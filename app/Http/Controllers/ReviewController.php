@@ -32,7 +32,13 @@ class ReviewController
 
     public function show(Review $review)
     {
-        return view('review', ['review' => $review]);
+        $file = $review->reviewableFile;
+
+        return view('review', [
+            'review' => $review,
+            'file' => $file,
+            'exif' => $file->getData(),
+        ]);
     }
 
     public function store(Request $request, ReviewerService $reviewer)

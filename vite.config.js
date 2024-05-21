@@ -8,6 +8,7 @@ export default defineConfig({
                 'resources/css/reviewer.css',
                 'resources/css/internal.css',
                 'resources/js/reviewer.js',
+                'resources/js/review.js',
             ],
             refresh: true,
         }),
