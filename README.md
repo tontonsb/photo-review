@@ -51,3 +51,6 @@ npm run build
 - Varētu reviewerim arī izmantot [Pico](https://picocss.com/s): 
   `@import '@picocss/pico';`, vienīgi layouts no jauna jātaisa un dialogam
   markups jālabo. Tad būtu smukāks dizains un natīva darkmode atbalstītos...
+- Vajag iespēju ierakstīt pārbaudes rezultātu.
+- Varētu ieglabāt datubāzē bilžu metadatus nevis ģenerēt atvēršanas brīdī.
+- Rodas vajadzība meklēt bildes pēc vietas, lai apskatītu vietu no cita leņķa.
