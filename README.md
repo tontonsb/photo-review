@@ -56,3 +56,4 @@ npm run build
 - Rodas vajadzība meklēt bildes pēc vietas, lai apskatītu vietu no cita leņķa.
 - Vai varbūt kāds vieglāks piegājiens ar "5 šai tuvākās bildes"? 
 - Kaut kur parādīt indikāciju, ka ir atlikti marķieri, jo viegli ielikt nejauši.
+- Pārskatījumu filtru pārtaisīt — rādīt jebko ar info. Un info vietā mby tikai ikonas 💬⚠️📌
