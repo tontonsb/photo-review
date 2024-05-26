@@ -99,16 +99,6 @@
             </strong>
 
             <details>
-                <summary>⚠️ <b>Jaunas funkcijas 21.05.2024</b></summary>
-                <ol>
-                    <li>Redzamā vieta parādīta arī minikartē informācijas blokā.
-                    <li>Sonāra attēli redzami uz kartes, lai saprotams objektu mērogs.
-                    <li>Uz attēla var spiest un atzīmēt punktus, kuri tiks saglabāti kopā ar pārējo iesniegto info.
-                    <li>"Turpināsim ar ... bildi" var izvēlēties skatīt attēlus nejaušā secībā vai pēc kārtas no esošās kopas.
-                </ol>
-            </details>
-
-            <details>
                 <summary>
                     Kas tās par bildēm? Kā tās skatīties?
                 </summary>
@@ -119,6 +109,9 @@
                 Bildes pietuvināt var ar peles rullīti vai pirkstu atdalīšanas žestu uz skārienekrāniem un skārienpaliktņiem. Pēc pietuvināšanas bildi var bīdīt ar kursoru vai pirkstu (skārienekrānos).
 
                 <p>Informācijas un pogu joslas sākumā ir attēla nosaukums, uz kuru nospiežot var atvērt papildus informāciju par šo bildi — tiešo saiti uz bildi, atrašanās vietu un dažādus tehniskos datus.
+                    Bildes uzņemšanas vieta vai bildei atbilstošais reģions atzīmēts arī minikartē informācijas blokā.
+
+                <p>Ja vieglāk ir koncentrēties uz viena veida bildēm, var "Turpināsim ar ... bildi" izvēlēties skatīt attēlus nevis nejaušā secībā, bet pēc kārtas no esošās kopas.
             </details>
 
             <details>
@@ -138,6 +131,8 @@
                 <p>Ja bildē redzams jebkas, kas sniedz informāciju par to, kas varētu būt noticis ar Annu vai kur viņa varētu būt devusies, to jāieraksta lodziņā
                 "Redzi ko aizdomīgu?" un jāspiež pogu "Iesniegt". Tieši tāpat jārīkojas arī gadījumos, kad nav pārliecības un šķiet, ka attēlā redzamo vajadzētu pārbaudīt klātienē —
                 piemēram, ja bildē redzama ēka, kurā būtu vērts ielūkoties.
+
+                <p>Ievērības cienīgo vietu var atzīmēt, spiežot uz pašas kartes. Uzliktie marķieri tiks saglabāti kopā ar pārējo iesniegto informāciju.
 
                 <p>Gadījumos, kad aplūkojamā vieta nav redzama gana labi un nepieciešams par to vietu gatavot jaunu bildi, lūdzu problēmu norādīt lodziņā, kurš atveras spiežot "Bilde ir nekvalitatīva vai cita problēma?" un iesniegt.
                 Tas varētu būt ne tikai burtiskā izplūdušas bildes gadījumā, bet arī, piemēram, tad, ja eholotes ierakstā josla būtiski nosedz citu joslas daļu. Pie vienas bildes drīkst aizpildīt abus teksta lodziņus.
