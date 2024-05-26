@@ -32,9 +32,9 @@
 @vite(['resources/js/review.js'])
 <script type=module>
 @if ($file->isSonarImage() && ($exif['LOCATION'] ?? false))
-    const {map, userMarkers} = displayImageOnMap('image', @json($exif['LOCATION']), '{{$file->url}}')
+    const {map, userMarkers} = displayImageOnMap('image', @json($exif['LOCATION']), '{{$file->url}}', false)
 @else
-    const {map, userMarkers} = displayImage('image', {{$exif['COMPUTED']['Width'] ?? 0}}, {{$exif['COMPUTED']['Height'] ?? 0}}, '{{$file->url}}')
+    const {map, userMarkers} = displayImage('image', {{$exif['COMPUTED']['Width'] ?? 0}}, {{$exif['COMPUTED']['Height'] ?? 0}}, '{{$file->url}}', false)
 @endif
 
 @if ($review->coordinates)
