@@ -18,6 +18,9 @@ piereģistrē jaunieliktās bildes datubāzē:
 
 ```sh
 php artisan app:register-reviewables
+
+# var pēc tam arī ieglabāt šo bilžu metadatus datubāzē
+php artisan app:load-metadata
 ```
 
 un startē
