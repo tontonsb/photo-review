@@ -11,6 +11,10 @@ class Reviewable extends Model
     public $incrementing = false;
     protected $keyType = 'string';
 
+    protected $casts = [
+        'metadata' => 'array',
+    ];
+
     protected ReviewableFile $file;
 
     public function getFileAttribute(): ReviewableFile
