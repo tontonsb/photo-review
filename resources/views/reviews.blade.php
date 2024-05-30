@@ -19,7 +19,7 @@
     <label>
         Filtrs
         <select name=filter>
-            <option @selected(!request()->filter)>Visas
+            <option value="" @selected(!request()->filter)>Visas
             <option value=info @selected('info' == request()->filter)>Aizdomīgas vai ar saturu
             <option value=suspect @selected('suspect' == request()->filter)>Aizdomīgas UN ar saturu
             <option value=reviews @selected('reviews' == request()->filter)>Ar aprakstiem
