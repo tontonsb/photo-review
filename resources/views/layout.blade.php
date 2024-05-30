@@ -16,6 +16,21 @@
         <li><a href="{{route('reviewers.show', ReviewerService::getCurrentToken())}}">Tavi pārskatījumi</a>
         <li><a href="{{route('reviewables.random')}}">Turpināt pārskatīšanu</a>
     </ul>
+
+    @auth
+        <form method=post action="{{route('logout')}}">
+            @csrf
+            <p>
+                {{auth()->user()->name}}
+                (<a
+                    href="{{route('logout')}}"
+                    onclick="event.preventDefault();this.closest('form').submit();"
+                >Atslēgties</a>)
+</p>
+        </form>
+    @else
+        <a href="{{route('login')}}">Pieslēgties</a>
+    @endauth
 </nav>
 
 @yield('content')
