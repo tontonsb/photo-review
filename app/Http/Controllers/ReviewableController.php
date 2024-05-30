@@ -17,12 +17,12 @@ class ReviewableController
 
     public function random(
         ReviewableService $reviewables,
-        ReviewerService $reviewer,
+        // ReviewerService $reviewer,
         Request $request,
     ) {
         return $this->review(
             $reviewables->random(),
-            $reviewer,
+            // $reviewer,
             $request,
         );
     }
