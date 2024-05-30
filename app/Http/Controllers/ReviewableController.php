@@ -84,8 +84,7 @@ class ReviewableController
                     || case
                         when coordinates <> '' and coordinates is not null then '📌'
                         else ''
-                    end,
-                    ''
+                    end
                 ) as reviews"),
                 'file',
             )
