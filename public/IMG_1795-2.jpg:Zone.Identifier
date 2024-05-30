@@ -1,4 +1,0 @@
-[ZoneTransfer]
-ZoneId=3
-ReferrerUrl=http://192.168.88.222:5000/?launchApp=SYNO.Photo.AppInstance&SynoToken=in73vAg6eK0Ek
-HostUrl=http://192.168.88.222:5000/webapi/entry.cgi?id=%5B1395%5D&type=%22item%22&force_download=true&is_folder=false&download_type=%22original%22&api=%22SYNO.PhotoTeam.Download%22&method=%22download%22&version=1&SynoToken=in73vAg6eK0Ek
