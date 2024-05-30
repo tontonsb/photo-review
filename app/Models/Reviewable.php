@@ -26,4 +26,9 @@ class Reviewable extends Model
     {
         return $this->hasMany(Review::class, 'file', 'path');
     }
+
+    public function getDataAttribute(): array
+    {
+        return $this->metadata ?? $this->file?->getData();
+    }
 }
