@@ -1,6 +1,6 @@
 <table>
     <thead>
-        <tr><th>Iesniegts (UTC) <th>Slēdziens <th>Info <th>Bilde <th>Ilgums <th>Pārskatītājs
+        <tr><th>Iesniegts (UTC) <th>Slēdziens <th>Info <th>Statuss <th>Bilde <th>Ilgums <th>Pārskatītājs
     <tbody>
         @foreach ($reviews as $review)
         <tr>
@@ -23,6 +23,11 @@
                 @if ($review->review)
                     <span title="{{$review->review}}">💬 {{Str::limit($review->review, 20)}}</span>
                 @endif
+
+            <td>
+                <a href="{{route('reviews.show', $review)}}">
+                    {{$review->status?->lv()}}
+                </a>
 
             <td><a href="{{route('reviewables.show', $review->file)}}">
                     {{$review->file}}

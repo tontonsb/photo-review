@@ -27,12 +27,33 @@ class ReviewController
             )
             ->when(
                 'info' === $request->filter,
-                fn($reviews) => $reviews->where(fn($r) => $r = $r
+                fn($reviews) => $reviews->where(fn($r) => $r
                     ->whereNotNull('review')
                     ->orWhereNotNull('problem')
                     ->orWhereNotNull('coordinates')
                     ->orWhere('conclusion', Conclusion::suspect)
                 )
+            )
+            ->when(
+                'suspect' === $request->filter,
+                fn($reviews) => $reviews
+                    ->where('conclusion', Conclusion::suspect)
+                    ->where(fn($r) => $r
+                        ->whereNotNull('review')
+                        ->orWhereNotNull('problem')
+                        ->orWhereNotNull('coordinates')
+                    )
+            )
+            ->when(
+                $request->has('statuses'),
+                fn($reviews) => $reviews->where(fn($r) => $r
+                    ->whereIn('status', $request->statuses)
+                    ->when(
+                        in_array(null, $request->statuses ?? []),
+                        fn($rr) => $rr->orWhereNull('status')
+                    )
+                )
+                    ->whereIn('status', $request->statuses)
             )
             ->cursorPaginate($request->pagesize ?? 20)
             ->withQueryString();

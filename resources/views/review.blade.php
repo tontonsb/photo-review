@@ -53,7 +53,7 @@
 <form method=post action="{{route('reviews.comment', $review)}}">
     @csrf
     <label>
-        Statuss
+        Jaunais statusss
         <select name=status required>
             <option>
             @foreach (App\Models\Status::cases() as $status)
@@ -73,7 +73,7 @@
         @enderror
     </label>
 
-    <button type=submit>Pievienot</button>
+    <button type=submit>Uzstādīt statusu un pievienot komentāru</button>
 </form>
 @endcan
 
