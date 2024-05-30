@@ -55,8 +55,18 @@ export default function displayImageOnMap(target, bounds, url, interactive = tru
 
     map.getView().fit(extent)
 
-    if (interactive)
+    const updateCursor = async event => {
+        const features = await userMarkers.layer.getFeatures(event.pixel)
+
+        map.getTargetElement().style.cursor = features.length ? 'pointer' : ''
+    }
+
+    if (interactive) {
         map.on('click', userMarkers.clickHandler)
+        map.on('pointermove', updateCursor)
+        // Strangely new features aren't yet visible on the very next tick, so 0 timeout works wronq
+        map.on('click', event => setTimeout(_ => updateCursor(event), 10))
+    }
 
     return {map, userMarkers}
 }
