@@ -32,7 +32,7 @@
 </dl>
 
 <h3>Komentāri</h3>
-@foreach($review->comments as $comment)
+@forelse($review->comments as $comment)
 <article>
     <header>
         <h4>
@@ -47,6 +47,8 @@
         <p>{{$comment->created_at}}
     </footer>
 </article>
+@empty
+<p>Komentāru pagaidām nav
 @endforeach
 
 @can('comment')
