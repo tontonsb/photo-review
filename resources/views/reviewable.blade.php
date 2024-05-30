@@ -1,9 +1,16 @@
 @extends('layout')
 
 @section('content')
-<a href="{{route('reviewables.review', $reviewable->path)}}">
-    Atvērt pārskatīšanai
-</a>
+<nav>
+    <ul>
+        <li><a href="{{route('reviewables.review', $reviewable->path)}}">
+            Atvērt pārskatīšanai
+        </a>
+        <li><a href="{{$reviewable->url}}">
+            Atvērt attēlu
+        </a>
+    </ul>
+</nav>
 
 <img src="{{$reviewable->url}}">
 
