@@ -103,7 +103,7 @@ function mapWithFeature(target, feature, center, featureEndpoint, clickFeatures)
         ],
         view: new View({
             center: fromLonLat(center),
-            zoom: 13,
+            zoom: 14,
         }),
     })
 
