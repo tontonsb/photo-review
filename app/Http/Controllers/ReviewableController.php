@@ -85,6 +85,13 @@ class ReviewableController
                         when coordinates <> '' and coordinates is not null then '📌'
                         else ''
                     end
+                    || case status
+                        when 'ok' then '✅'
+                        when 'suspect' then '🆘'
+                        when 'checkable' then '🚶'
+                        when 'redo' then '📷'
+                        else ''
+                    end
                 ) as reviews"),
                 'file',
             )
