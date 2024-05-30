@@ -5,12 +5,14 @@ namespace App\Models;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Review extends Model
 {
     protected $casts = [
         'conclusion' => Conclusion::class,
         'coordinates' => 'array',
+        'status' => Status::class,
     ];
 
     protected $fillable = [
@@ -36,6 +38,11 @@ class Review extends Model
     public function reviewer(): BelongsTo
     {
         return $this->belongsTo(Reviewer::class);
+    }
+
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class);
     }
 
     // Mākslīgais intelekts™ par pārskatītām uzskatīs bildes

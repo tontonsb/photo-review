@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ReviewableController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ReviewerController;
@@ -18,6 +19,8 @@ Route::name('reviews.')->controller(ReviewController::class)->group(function() {
     Route::post('/', 'store')->name('store');
     Route::get('reviews/{review}', 'show')->name('show');
 });
+
+Route::post('reviews/{review}/comment', [CommentController::class, 'store'])->name('reviews.comment')->can('comment');
 
 Route::name('reviewers.')->controller(ReviewerController::class)->group(function() {
     Route::get('reviewers', 'index')->name('index');
