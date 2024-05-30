@@ -75,8 +75,6 @@ function box(target, location, featureEndpoint, clickFeatures) {
 }
 
 function mapWithFeature(target, feature, center, featureEndpoint, clickFeatures) {
-    console.log(featureEndpoint)
-
     const neighbours = new VectorLayer({
         source: new VectorSource({
             format: new GeoJSON(),
@@ -124,7 +122,24 @@ function mapWithFeature(target, feature, center, featureEndpoint, clickFeatures)
         clickFeatures(features)
     })
 
+    map.on('pointermove', function(evt) {
+        if (evt.dragging)
+            return
+
+        map.getTargetElement().style.cursor = ''
+        const pixel = map.getEventPixel(evt.originalEvent)
+
+        map.forEachFeatureAtPixel(pixel, feature => {
+            if (feature.get('path') && feature.get('url')) {
+                map.getTargetElement().style.cursor = 'pointer'
+
+                // stop processing features at the current pixel
+                return true
+            }
+        })
+    })
+
     return map
 }
 
-export default {pin, box    }
+export default {pin, box}
