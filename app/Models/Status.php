@@ -13,7 +13,7 @@ enum Status: string
     {
         return match($this) {
             static::ok => '✅ OK',
-            static::suspect => '‼️ Svarīgi',
+            static::suspect => '🆘 Svarīgi',
             static::checkable => '🚶 Jāpārbauda klātienē',
             static::redo => '📷 Jāpārbildē',
         };

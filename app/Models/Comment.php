@@ -11,6 +11,12 @@ class Comment extends Model
         'status' => Status::class,
     ];
 
+    protected $fillable = [
+        'user_id',
+        'comment',
+        'status',
+    ];
+
     public function review(): BelongsTo
     {
         return $this->belongsTo(Review::class);

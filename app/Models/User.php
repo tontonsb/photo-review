@@ -50,4 +50,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Comment::class);
     }
+
+    public function verify(): void
+    {
+        $this->verified_at = now();
+        $this->save();
+    }
 }
