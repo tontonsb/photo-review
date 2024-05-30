@@ -29,7 +29,8 @@ class ReviewableController
 
     public function review(
         Reviewable $reviewable,
-        ReviewerService $reviewer,
+        // We will use the current reviewer when the inner features are done
+        // ReviewerService $reviewer,
         Request $request,
     ) {
         $reviewable->increment('view_count');
