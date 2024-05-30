@@ -29,6 +29,9 @@ un startē
 php artisan serve
 ```
 
+> [!NOTE]
+> Projekts pārbaudīts un tiek lietots ar MariaDB un SQLite.
+
 ## Izstrāde
 
 Frontend izstrādei vajag uzstādīt arī npm un atvilkt pakas:
