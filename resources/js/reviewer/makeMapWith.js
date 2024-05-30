@@ -1,6 +1,7 @@
 import 'ol/ol.css'
 import Feature from 'ol/Feature.js'
 import Map from 'ol/Map.js'
+import GeoJSON from 'ol/format/GeoJSON.js'
 import Point from 'ol/geom/Point.js'
 import Polygon from 'ol/geom/Polygon.js'
 import TileLayer from 'ol/layer/Tile.js'
@@ -14,7 +15,7 @@ import Style from 'ol/style/Style'
 import Stroke from 'ol/style/Stroke'
 import { XYZ } from 'ol/source'
 
-function pin(target, location) {
+function pin(target, location, featureEndpoint, clickFeatures) {
     const loc = [location.lon, location.lat]
 
     const pin = new Feature({
@@ -26,16 +27,16 @@ function pin(target, location) {
             image: new Circle({
                 radius: 5,
                 fill: new Fill({
-                    color: '#3399cc',
+                    color: '#b833ff',
                 }),
             }),
         })
     )
 
-    return mapWithFeature(target, pin, loc)
+    return mapWithFeature(target, pin, loc, featureEndpoint, clickFeatures)
 }
 
-function box(target, location) {
+function box(target, location, featureEndpoint, clickFeatures) {
     const bounds = {
         north: parseFloat(location.north),
         east: parseFloat(location.east),
@@ -56,11 +57,11 @@ function box(target, location) {
     box.setStyle(
         new Style({
             stroke: new Stroke({
-                color: '#3399cc',
-                width: 1.25,
+                color: '#b833ff',
+                width: 2,
             }),
             fill: new Fill({
-                color: '#3399cc22',
+                color: '#b833ff22',
             }),
         })
     )
@@ -70,12 +71,20 @@ function box(target, location) {
         (bounds.north + bounds.south) / 2,
     ]
 
-    return mapWithFeature(target, box, center)
+    return mapWithFeature(target, box, center, featureEndpoint, clickFeatures)
 }
 
-function mapWithFeature(target, feature, center)
-{
-    return new Map({
+function mapWithFeature(target, feature, center, featureEndpoint, clickFeatures) {
+    console.log(featureEndpoint)
+
+    const neighbours = new VectorLayer({
+        source: new VectorSource({
+            format: new GeoJSON(),
+            url: featureEndpoint,
+        }),
+    })
+
+    const map = new Map({
         target: target,
         layers: [
             new TileLayer({
@@ -87,6 +96,7 @@ function mapWithFeature(target, feature, center)
                     url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
                 }),
             }),
+            neighbours,
             new VectorLayer({
                 source: new VectorSource({
                     features: [feature],
@@ -98,6 +108,23 @@ function mapWithFeature(target, feature, center)
             zoom: 13,
         }),
     })
+
+    map.on('click', function (evt) {
+        const pixel = map.getEventPixel(evt.originalEvent)
+
+        const features = []
+
+        map.forEachFeatureAtPixel(pixel, feature => {
+            features.push({
+                path: feature.get('path'),
+                url: feature.get('url'),
+            })
+        })
+
+        clickFeatures(features)
+    })
+
+    return map
 }
 
-export default {pin, box}
+export default {pin, box    }

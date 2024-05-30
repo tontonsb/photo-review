@@ -57,7 +57,7 @@ npm run build
 - [ ] Vajag iespēju ierakstīt pārbaudes rezultātu.
 - [x] Varētu ieglabāt datubāzē bilžu metadatus nevis ģenerēt atvēršanas brīdī.
 - [ ] Rodas vajadzība meklēt bildes pēc vietas, lai apskatītu vietu no cita leņķa.
-- [ ] Vai varbūt kāds vieglāks piegājiens ar "5 šai tuvākās bildes"? Minikartē atzīmēt ar linkiem? Pie saistītajām pielikt?
+- [x] Vai varbūt kāds vieglāks piegājiens ar "5 šai tuvākās bildes"? Minikartē atzīmēt ar linkiem? Pie saistītajām pielikt?
 - [ ] Kaut kur parādīt indikāciju, ka ir atlikti marķieri, jo viegli ielikt nejauši.
 - [ ] Pārskatījumu filtru pārtaisīt — rādīt jebko ar info. Un info vietā mby tikai ikonas 💬⚠️📌
 - [ ] Marķierus jāpadara redzamākus.

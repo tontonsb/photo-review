@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ReviewableGeoJsonCollection;
 use App\Models\Review;
 use App\Models\Reviewable;
 use App\Models\ReviewableFile;
@@ -73,6 +74,13 @@ class ReviewableController
             'reviewables' => Reviewable::orderBy('path')->get(),
             'reviewCounts' => $reviewCounts,
         ]);
+    }
+
+    public function geojson()
+    {
+        return new ReviewableGeoJsonCollection(
+            Reviewable::all()->filter(fn($reviewable) => $reviewable->metadata)
+        );
     }
 
     public function show(string $path)

@@ -15,6 +15,10 @@ textarea {
     padding: var(--space-sm);
 }
 
+ul {
+    list-style: none;
+}
+
 .file {
     background-color: var(--color-light);
     padding: var(--space-xs);

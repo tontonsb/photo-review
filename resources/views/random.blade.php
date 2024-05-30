@@ -43,6 +43,7 @@
 
         <div class=file>
             <div id=location-map style="width: 100%; height: 100px;"></div>
+            <ul class=js-clicked-features></ul>
             <details>
                 <summary>
                     {{$file->path}}
@@ -169,11 +170,31 @@ const form = document.querySelector('form')
 const coordinateInput = form.querySelector('[name=coordinates]')
 form.addEventListener('submit', _ => coordinateInput.value = JSON.stringify(userMarkers.getMarkers()))
 
+const featureContainer = document.querySelector('.js-clicked-features')
+const clickFeatures = features => {
+    featureContainer.replaceChildren()
+
+    features.forEach(feature => {
+        if (!feature.url || !feature.path)
+            return
+
+        const link = document.createElement('a')
+        link.target = '_blank'
+        link.href = feature.url
+        link.innerText = feature.path
+
+        const item = document.createElement('li')
+        item.append(link)
+
+        featureContainer.append(item)
+    })
+}
+
 @if ($exif['LOCATION'] ?? false)
     @if ($file->isSonarImage())
-        makeMapWith.box('location-map', @json($exif['LOCATION']))
+        makeMapWith.box('location-map', @json($exif['LOCATION']), '{{route('reviewables.geojson')}}', clickFeatures)
     @else
-        makeMapWith.pin('location-map', @json($exif['LOCATION']))
+        makeMapWith.pin('location-map', @json($exif['LOCATION']), '{{route('reviewables.geojson')}}', clickFeatures)
     @endif
 @endif
 </script>
