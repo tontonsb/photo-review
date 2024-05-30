@@ -11,9 +11,9 @@ enum Conclusion: string
     public function lv(): string
     {
         return match($this) {
-            static::ok => 'OK',
-            static::suspect => 'Aizdomīga',
-            static::skip => 'Izlaista',
+            static::ok => '✔️ OK',
+            static::suspect => '⁉️ Aizdomīga',
+            static::skip => '🔄️ Izlaista',
         };
     }
 }

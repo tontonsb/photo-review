@@ -66,9 +66,31 @@ class ReviewableController
         $reviewCounts = Review::groupBy('file')
             ->select(
                 DB::raw('count(*) as review_count'),
+                DB::raw("group_concat(
+                    case conclusion
+                        when 'ok' then '✔️'
+                        when 'suspect' then '⁉️'
+                        when 'skip' then '🔄️'
+                        else ''
+                    end
+                    || case
+                        when review <> '' and review is not null then '💬'
+                        else ''
+                    end
+                    || case
+                        when problem <> '' and problem is not null then '⚠️'
+                        else ''
+                    end
+                    || case
+                        when coordinates <> '' and coordinates is not null then '📌'
+                        else ''
+                    end,
+                    ''
+                ) as reviews"),
                 'file',
             )
-            ->pluck('review_count', 'file');
+            ->get()
+            ->keyBy('file');
 
         return view('reviewables', [
             'reviewables' => Reviewable::orderBy('path')->get(),

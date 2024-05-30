@@ -5,14 +5,15 @@
 
 <table>
     <thead>
-        <tr><th>Bilde <th>Apskatījumi
+        <tr><th>Bilde <th>Apskatījumi <th>Rezultāti
     <tbody class=js-filterable>
         @foreach ($reviewables as $reviewable)
         <tr>
             <td><a href="{{route('reviewables.show', $reviewable->path)}}">
                     {{$reviewable->path}}
                 </a>
-            <td>{{$reviewCounts[$reviewable->path] ?? 0}}
+            <td>{{$reviewCounts[$reviewable->path]->review_count ?? 0}}
+            <td>{{$reviewCounts[$reviewable->path]->reviews ?? ''}}
         @endforeach
 </table>
 
