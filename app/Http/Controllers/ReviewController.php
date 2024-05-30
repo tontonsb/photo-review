@@ -53,7 +53,6 @@ class ReviewController
                         fn($rr) => $rr->orWhereNull('status')
                     )
                 )
-                    ->whereIn('status', $request->statuses)
             )
             ->cursorPaginate($request->pagesize ?? 20)
             ->withQueryString();

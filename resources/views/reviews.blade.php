@@ -31,7 +31,7 @@
     <div>
         Statuss
             <label>
-                <input type=checkbox name=statuses[] value={{null}}>
+                <input type=checkbox name=statuses[] value="{{null}}" @checked(in_array(null, request()->statuses ?? []))>
                 bez statusa
             </label>
             @foreach (App\Models\Status::cases() as $status)
