@@ -49,7 +49,7 @@
 </article>
 @empty
 <p>Komentāru pagaidām nav
-@endforeach
+@endforelse
 
 @can('comment')
 <form method=post action="{{route('reviews.comment', $review)}}">
