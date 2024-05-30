@@ -28,7 +28,7 @@
     <dd>{{$review->duration}}
 
     <dt>Statuss
-    <dd>{{$review->status->lv() ?? '❔ Nepārskatīts'}}
+    <dd>{{$review->status?->lv() ?? '❔ Nepārskatīts'}}
 </dl>
 
 <h3>Komentāri</h3>
