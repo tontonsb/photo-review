@@ -100,6 +100,14 @@
             </strong>
 
             <details>
+                <summary>⚠️ Jaunumi 31.05.2024</summary>
+                <ol>
+                    <li>Minikartē attēlotas pārējās vietas no kurām ir materiāli. Uz tām uzspiežot, zem kartes parādās saite.
+                    <li>Uzlabota marķieru redzamība kartē.
+                </ol>
+            </details>
+
+            <details>
                 <summary>
                     Kas tās par bildēm? Kā tās skatīties?
                 </summary>

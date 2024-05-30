@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Conclusion;
 use App\Models\Review;
 use App\Models\Reviewable;
 use App\Services\ReviewerService;
@@ -13,16 +14,25 @@ class ReviewController
     {
         $reviews = Review::latest()
             ->when(
-                $request->has('problems'),
+                'problems' === $request->filter,
                 fn($reviews) => $reviews->whereNotNull('problem')
             )
             ->when(
-                $request->has('reviews'),
+                'reviews' === $request->filter,
                 fn($reviews) => $reviews->whereNotNull('review')
             )
             ->when(
-                $request->has('pins'),
+                'pins' === $request->filter,
                 fn($reviews) => $reviews->whereNotNull('coordinates')
+            )
+            ->when(
+                'info' === $request->filter,
+                fn($reviews) => $reviews->where(fn($r) => $r = $r
+                    ->whereNotNull('review')
+                    ->orWhereNotNull('problem')
+                    ->orWhereNotNull('coordinates')
+                    ->orWhere('conclusion', Conclusion::suspect)
+                )
             )
             ->cursorPaginate($request->pagesize ?? 20)
             ->withQueryString();
