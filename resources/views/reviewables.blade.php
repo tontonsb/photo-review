@@ -1,7 +1,18 @@
 @extends('layout')
 
 @section('content')
-<input class=js-quick-filter autofocus placeholder="Filtrēt...">
+<input class=js-quick-filter autofocus placeholder="Filtrēt..." value="{{request()->filter}}">
+
+<nav>
+    <ul>
+        <li><a href="{{route('reviewables.directory')}}">
+            Katalogs
+        </a>
+        <li><a href="{{route('reviewables.index')}}">
+            Visi faili
+        </a>
+    </ul>
+</nav>
 
 <table>
     <thead>
@@ -19,14 +30,18 @@
 
 <script>
 const rows = document.querySelectorAll('.js-filterable tr')
-const filter = document.querySelector('.js-quick-filter')
+const input = document.querySelector('.js-quick-filter')
 
-filter.addEventListener('input', _ => {
-    const text = filter.value
+const filter = _ => {
+    const text = input.value
 
     rows.forEach(
         row => row.style.display = row.textContent.includes(text) ? 'table-row' : 'none'
     )
-})
+}
+
+input.addEventListener('input', filter)
+
+filter()
 </script>
 @endsection

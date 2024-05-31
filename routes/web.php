@@ -13,6 +13,7 @@ Route::name('reviewables.')->controller(ReviewableController::class)->group(func
     Route::get('/review/{reviewable}', 'review')->name('review')->where('reviewable', '.*');
     Route::get('reviewables', 'index')->name('index');
     Route::get('reviewables/geojson', 'geojson')->name('geojson');
+    Route::get('reviewables/dir', 'dir')->name('directory');
     Route::get('reviewables/{path}', 'show')->name('show')->where('path', '.*');
 });
 

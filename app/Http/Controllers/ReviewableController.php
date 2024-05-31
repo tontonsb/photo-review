@@ -120,4 +120,13 @@ class ReviewableController
             'reviews' => Review::where('file', $path)->get(),
         ]);
     }
+
+    public function dir()
+    {
+        return view('directory', [
+            'directories' => Reviewable::distinct()
+                ->selectRaw("substr(path, 0, instr(path, '/')) as dir")
+                ->pluck('dir'),
+        ]);
+    }
 }
