@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -30,5 +31,12 @@ class Reviewable extends Model
     public function getDataAttribute(): array
     {
         return $this->metadata ?? $this->file?->getData();
+    }
+
+    public function scopeTutorial(Builder $reviews, bool $isTutorial = true): void
+    {
+        $operator = $isTutorial ? 'like' : 'not like';
+
+        $reviews->where('path', $operator, 'tutorial/%');
     }
 }

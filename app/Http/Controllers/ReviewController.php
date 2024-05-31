@@ -87,6 +87,7 @@ class ReviewController
 
         if ('next' === $request->mode) {
             $next = Reviewable::orderBy('path')
+                ->tutorial(false)
                 ->where('path', '>', $request->filepath)
                 ->first();
 
