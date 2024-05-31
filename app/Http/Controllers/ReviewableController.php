@@ -127,7 +127,7 @@ class ReviewableController
     {
         return view('directory', [
             'directories' => Reviewable::distinct()
-                ->selectRaw("substr(path, 0, instr(path, '/')) as dir")
+                ->selectRaw("substr(path, 1, instr(path, '/')) as dir")
                 ->pluck('dir'),
         ]);
     }
