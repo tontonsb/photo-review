@@ -14,7 +14,7 @@
 
 <ul>
 @foreach ($directories as $dir)
-    <li><a href="{{route('reviewables.index', ['filter' => $dir.'/'])}}">{{$dir}}</a>
+    <li><a href="{{route('reviewables.index', ['filter' => $dir])}}">{{$dir}}</a>
 @endforeach
 </ul>
 @endsection
