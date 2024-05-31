@@ -107,7 +107,9 @@ class ReviewableController
     public function geojson()
     {
         return new ReviewableGeoJsonCollection(
-            Reviewable::all()->filter(fn($reviewable) => $reviewable->metadata)
+            Reviewable::tutorial(false)
+                ->get()
+                ->filter(fn($reviewable) => $reviewable->metadata)
         );
     }
 
