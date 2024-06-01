@@ -5,10 +5,14 @@ import Projection from 'ol/proj/Projection'
 import Static from 'ol/source/ImageStatic'
 import View from 'ol/View'
 import {getCenter} from 'ol/extent'
+import {ScaleLine, defaults as defaultControls} from 'ol/control.js'
 import initUserMarkers from './userMarkers'
 
-export default function displayImage(target, width, height, url, interactive = true) {
-    const extent = [0, 0, width, height]
+/**
+ * Displays image
+ */
+export default function displayImage(target, extent, url, interactive = true) {
+    extent = [0, 0, extent[0], extent[1]]
     const projection = new Projection({
         code: 'this-image',
         units: 'pixels',

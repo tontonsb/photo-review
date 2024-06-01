@@ -4,6 +4,24 @@ namespace App\Services;
 
 class ParseExif
 {
+    public static function getAltitude(array $exif): float|null
+    {
+        $altitude = $exif['GPSAltitude'] ?? $exif['GPS']['GPSAltitude'] ?? null;
+
+        return $altitude ? static::getFloatFromRational($altitude) : null;
+    }
+
+    public static function getFovDegrees(array $exif): float|null
+    {
+        $make = $exif['Make'] ?? null;
+        $model = $exif['Model'] ?? null;
+
+        return match(true) {
+            'DJI' === $make && 'FC3170' === $model => 84,
+            default => null,
+        };
+    }
+
     public static function getLocation(array $exif): array|null
     {
         $lat = $exif['GPSLatitude'] ?? $exif['GPS']['GPSLatitude'] ?? null;

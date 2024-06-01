@@ -59,13 +59,35 @@ class ReviewableFile
             $exif = exif_read_data($path);
 
             if ($exif) {
-                if ($location = ParseExif::getLocation($exif))
-                    return [
-                        'LOCATION' => $location,
-                        ...$exif,
-                    ];
+                $data = [];
 
-                return $exif;
+                $location = ParseExif::getLocation($exif);
+                if ($location)
+                    $data['LOCATION'] = $location;
+
+                $altitude = ParseExif::getAltitude($exif);
+                if ($altitude)
+                    $data['ALTITUDE'] = $altitude;
+
+                // TODO: Correct altitude based on elevation
+
+                $fov = ParseExif::getFovDegrees($exif);
+                $widthPixels = $exif['COMPUTED']['Width'] ?? null;
+                $heightPixels = $exif['COMPUTED']['Height'] ?? null;
+                if ($fov && $widthPixels && $heightPixels) {
+                    $fovMeters = 2 * $altitude * tan(deg2rad($fov) / 2);
+                    $scale = $fovMeters / $widthPixels;
+
+                    $data['EXTENT'] = [
+                        'scale' => $scale,
+                        'width' => $fovMeters,
+                        'height' => $scale * $heightPixels,
+                    ];
+                }
+
+                $data += $exif;
+
+                return $data;
             }
         } catch(\Throwable) {}
 
