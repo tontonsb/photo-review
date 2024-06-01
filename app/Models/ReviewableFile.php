@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Services\ExifTool;
 use App\Services\ParseExif;
 use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Storage;
@@ -56,7 +57,20 @@ class ReviewableFile
         $path = $this->isLocal() ? $this->disk->path($this->path) : $this->disk->url($this->path);
 
         try {
+
             $exif = exif_read_data($path);
+
+            // Needs a locally installed exiftool
+            // e.g. `sudo apt install libimage-exiftool-perl`
+            try {
+                $preciseExif = $this->isLocal()
+                    ? ExifTool::getLocalExif($path)
+                    : ExifTool::getRemoteExif($path);
+            } catch (\Throwable $e) {
+                report($e);
+
+                $preciseExif = null;
+            }
 
             if ($exif) {
                 $data = [];
@@ -69,20 +83,32 @@ class ReviewableFile
                 if ($altitude)
                     $data['ALTITUDE'] = $altitude;
 
-                // TODO: Correct altitude based on elevation
+                if ($preciseExif['Gimbal Yaw Degree'] ?? false)
+                    $data['YAW'] = $preciseExif['Gimbal Yaw Degree'];
 
-                $fov = ParseExif::getFovDegrees($exif);
-                $widthPixels = $exif['COMPUTED']['Width'] ?? null;
-                $heightPixels = $exif['COMPUTED']['Height'] ?? null;
-                if ($fov && $widthPixels && $heightPixels) {
-                    $fovMeters = 2 * $altitude * tan(deg2rad($fov) / 2);
-                    $scale = $fovMeters / $widthPixels;
+                // assume pitch is good unless we know it isn't
+                $pitchIsVertical = true;
+                if ($preciseExif['Gimbal Pitch Degree'] ?? false)
+                    $pitchIsVertical = abs($preciseExif['Gimbal Pitch Degree']) > 80;
 
-                    $data['EXTENT'] = [
-                        'scale' => $scale,
-                        'width' => $fovMeters,
-                        'height' => $scale * $heightPixels,
-                    ];
+                if ($pitchIsVertical) {
+                    $fov = ParseExif::getFovDegrees($exif);
+                    $widthPixels = $exif['COMPUTED']['Width'] ?? null;
+                    $heightPixels = $exif['COMPUTED']['Height'] ?? null;
+                    if ($fov && $widthPixels && $heightPixels) {
+                        // TODO: get more correct elevation data based on position
+                        // For now take something close to median height in the target area
+                        $height = $altitude - 4;
+
+                        $fovMeters = 2 * $height * tan(deg2rad($fov) / 2);
+                        $scale = $fovMeters / $widthPixels;
+
+                        $data['EXTENT'] = [
+                            'scale' => $scale,
+                            'width' => $fovMeters,
+                            'height' => $scale * $heightPixels,
+                        ];
+                    }
                 }
 
                 $data += $exif;
