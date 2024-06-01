@@ -45,6 +45,7 @@ export default function displayImage(target, center, extent, url, interactive = 
         target: target,
         view: new View({
             extent: extent,
+            showFullExtent: true,
         }),
     })
 

@@ -3,8 +3,8 @@
     "file": "assets/displayImageWithScale-CSy_vbSQ.css",
     "src": "_displayImageWithScale-!~{005}~.js"
   },
-  "_displayImageWithScale-CPv0QAYO.js": {
-    "file": "assets/displayImageWithScale-CPv0QAYO.js",
+  "_displayImageWithScale-CG-S_KVf.js": {
+    "file": "assets/displayImageWithScale-CG-S_KVf.js",
     "name": "displayImageWithScale",
     "css": [
       "assets/displayImageWithScale-CSy_vbSQ.css"
@@ -21,21 +21,21 @@
     "isEntry": true
   },
   "resources/js/review.js": {
-    "file": "assets/review-DkQ6tRt_.js",
+    "file": "assets/review-OMlZkLvx.js",
     "name": "review",
     "src": "resources/js/review.js",
     "isEntry": true,
     "imports": [
-      "_displayImageWithScale-CPv0QAYO.js"
+      "_displayImageWithScale-CG-S_KVf.js"
     ]
   },
   "resources/js/reviewer.js": {
-    "file": "assets/reviewer-Cv-pjVHW.js",
+    "file": "assets/reviewer-DN2vqaJh.js",
     "name": "reviewer",
     "src": "resources/js/reviewer.js",
     "isEntry": true,
     "imports": [
-      "_displayImageWithScale-CPv0QAYO.js"
+      "_displayImageWithScale-CG-S_KVf.js"
     ]
   }
 }
