@@ -102,7 +102,7 @@
             <details>
                 <summary>⚠️ Jaunumi 02.06.2024</summary>
                 <ol>
-                    <li>Arī fotogrāfijām pievienota mēroga josla. Jāņem vērā, ka tā ir aptuvena — izmēri no patiesajiem var atšķirties par pusotru reizi.
+                    <li>Arī fotogrāfijām pievienota mēroga josla. Jāņem vērā, ka tā ir aptuvena — izmēri no patiesajiem var atšķirties pat pusotru reizi. Bildēm, kuras nav bildētas no augšas uz leju, izmēri būs pavisam aplami.
                     <li>[30.05.24] Minikartē attēlotas pārējās vietas no kurām ir materiāli. Uz tām uzspiežot, zem kartes parādās saite.
                     <li>[30.05.24] Uzlabota marķieru redzamība kartē.
                 </ol>
