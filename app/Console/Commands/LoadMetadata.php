@@ -8,7 +8,7 @@ use Illuminate\Console\Command;
 class LoadMetadata extends Command
 {
     protected $signature = 'app:load-metadata
-                            {{--all : Reload metadata for all images}}';
+                            {--all : Reload metadata for all images}';
 
     protected $description = 'Load missing metadata';
 
