@@ -49,7 +49,7 @@ class ReviewController
                 fn($reviews) => $reviews->where(fn($r) => $r
                     ->whereIn('status', $request->statuses)
                     ->when(
-                        in_array(null, $request->statuses ?? []),
+                        in_array('no_status', $request->statuses ?? []),
                         fn($rr) => $rr->orWhereNull('status')
                     )
                 )
