@@ -100,10 +100,11 @@
             </strong>
 
             <details>
-                <summary>⚠️ Jaunumi 30.05.2024</summary>
+                <summary>⚠️ Jaunumi 02.06.2024</summary>
                 <ol>
-                    <li>Minikartē attēlotas pārējās vietas no kurām ir materiāli. Uz tām uzspiežot, zem kartes parādās saite.
-                    <li>Uzlabota marķieru redzamība kartē.
+                    <li>Arī attēliem parādīta mēroga josla. Jāņem vērā, ka tā ir aptuvena.
+                    <li>[30.05.24] Minikartē attēlotas pārējās vietas no kurām ir materiāli. Uz tām uzspiežot, zem kartes parādās saite.
+                    <li>[30.05.24] Uzlabota marķieru redzamība kartē.
                 </ol>
             </details>
 
