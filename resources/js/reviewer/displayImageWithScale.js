@@ -43,7 +43,9 @@ export default function displayImage(target, center, extent, url, interactive = 
             userMarkers.layer,
         ],
         target: target,
-        view: new View(),
+        view: new View({
+            extent: extent,
+        }),
     })
 
     map.getView().fit(extent)
