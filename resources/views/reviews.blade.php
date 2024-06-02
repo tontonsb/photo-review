@@ -35,7 +35,7 @@
                     type=checkbox
                     name=statuses[]
                     value=no_status
-                    @checked(in_array('no_status', request()->statuses ?? []) || !request()->statuses)
+                    @checked(in_array('no_status', request()->statuses ?? []))
                     >bez statusa
             </label>
             @foreach (App\Models\Status::cases() as $status)
@@ -44,7 +44,7 @@
                     type=checkbox
                     name=statuses[]
                     value={{$status->value}}
-                    @checked(in_array($status->value, request()->statuses ?? []) || !request()->statuses)
+                    @checked(in_array($status->value, request()->statuses ?? []))
                     >{{$status->lv()}}
             </label>
             @endforeach
