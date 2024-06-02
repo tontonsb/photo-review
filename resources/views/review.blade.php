@@ -42,7 +42,12 @@
             {{$comment->status?->lv()}}
         </h4>
     </header>
-    <p>{{$comment->comment}}
+
+    {!! Str::markdown($comment->comment, [
+        'html_input' => 'strip',
+        'allow_unsafe_links' => false,
+    ]) !!}
+
     <footer>
         <p>{{$comment->created_at}}
     </footer>
