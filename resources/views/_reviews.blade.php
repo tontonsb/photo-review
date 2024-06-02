@@ -7,9 +7,10 @@
             <td>
                     {{$review->created_at}}
                 </a>
+            <td>{{$review->conclusion?->lv()}}
             <td>
                 <a href="{{route('reviews.show', $review)}}">
-                    {{$review->conclusion?->lv()}}
+                    🔍 Apskatīt
                 </a>
             <td>
                 @if ($review->problem)
@@ -24,14 +25,10 @@
                     <span title="{{$review->review}}">💬 {{Str::limit($review->review, 20)}}</span>
                 @endif
 
-            <td>
-                <a href="{{route('reviews.show', $review)}}">
-                    {{$review->status?->lv()}}
-                </a>
+            <td>{{$review->status?->lv()}}
 
-            <td>{{$review->file}}
-                <a href="{{route('reviewables.show', $review->file)}}" title="Atvērt bildes lapu ar visu pārskatījumu sarakstu">
-                    🔍
+            <td><a href="{{route('reviewables.show', $review->file)}}">
+                    {{$review->file}}
                 </a>
             <td>{{$review->duration}}
             <td><a href="{{route('reviewers.show', $review->reviewer_id)}}">
