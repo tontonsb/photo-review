@@ -85,7 +85,7 @@
 <script type=module>
 @if ($file->isSonarImage() && ($exif['LOCATION'] ?? false))
     const {map, userMarkers} = displayImageOnMap('image', @json($exif['LOCATION']), '{{$file->url}}', false)
-@elseif (($exif['EXTENT'] ?? false) && ($exif['LOCATION'] ?? false))
+@elseif (($exif['EXTENT'] ?? false) && ($exif['LOCATION'] ?? false) && $review->created_at > '2024-06-02')
     const {map, userMarkers} = displayImageWithScale(
         'image',
         [{{$exif['LOCATION']['lon'] ?? 0}}, {{$exif['LOCATION']['lat'] ?? 0}}],
