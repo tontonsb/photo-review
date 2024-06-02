@@ -29,8 +29,9 @@
                     {{$review->status?->lv()}}
                 </a>
 
-            <td><a href="{{route('reviewables.show', $review->file)}}">
-                    {{$review->file}}
+            <td>{{$review->file}}
+                <a href="{{route('reviewables.show', $review->file)}}" title="Atvērt bildes lapu ar visu pārskatījumu sarakstu">
+                    🔍
                 </a>
             <td>{{$review->duration}}
             <td><a href="{{route('reviewers.show', $review->reviewer_id)}}">
