@@ -19,7 +19,7 @@
 
             <details open>
                 <summary>Redzi ko aizdomīgu?</summary>
-                <textarea name=review></textarea>
+                <textarea name=review placeholder="Apraksti šeit un atzīmē attēlā"></textarea>
             </details>
 
             <details>
