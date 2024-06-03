@@ -13,3 +13,7 @@ dt {
     margin-top: var(--space-sm);
     font-weight: bold;
 }
+
+.active {
+    font-weight: bold;
+}
