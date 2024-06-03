@@ -115,7 +115,9 @@ class ReviewableFile
 
                 return $data;
             }
-        } catch(\Throwable) {}
+        } catch(\Throwable $e) {
+            report($e);
+        }
 
         $data = [];
 
