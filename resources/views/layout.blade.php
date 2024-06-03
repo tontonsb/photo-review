@@ -10,11 +10,11 @@
 @section('body')
 <nav>
     <ul>
-        <li><a href="{{route('reviews.index')}}">Pārskatījumi</a>
-        <li><a href="{{route('reviewables.index')}}">Bildes</a>
-        <li><a href="{{route('reviewers.index')}}">Pārskatītāji</a>
-        <li><a href="{{route('reviewers.show', ReviewerService::getCurrentToken())}}">Tavi pārskatījumi</a>
-        <li><a href="{{route('reviewables.random')}}">Turpināt pārskatīšanu</a>
+        <li><a href="{{ route('reviews.index') }}" class="{{ request()->routeIs('reviews.index') ? 'active' : '' }}">Visi pārskatījumi</a></li>
+        <li><a href="{{ route('reviewables.index') }}" class="{{ request()->routeIs('reviewables.index') ? 'active' : '' }}">Bildes</a></li>
+        <li><a href="{{ route('reviewers.index') }}" class="{{ request()->routeIs('reviewers.index') ? 'active' : '' }}">Pārskatītāji</a></li>
+        <li><a href="{{ route('reviewers.show', ReviewerService::getCurrentToken()) }}" class="{{ request()->routeIs('reviewers.show') ? 'active' : '' }}">Tavi pārskatījumi</a></li>
+        <li><a href="{{ route('reviewables.random') }}" class="{{ request()->routeIs('reviewables.random') ? 'active' : '' }}">Turpināt pārskatīšanu</a></li>
     </ul>
 
     @auth
