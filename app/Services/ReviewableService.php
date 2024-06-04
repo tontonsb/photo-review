@@ -29,7 +29,7 @@ class ReviewableService
         // Pirmā prioritāte — bildes bez apskatījumiem
         $imgWithNoReviews = Reviewable::inRandomOrder()
             ->doesntHave('reviews')
-            ->tutorial(false)
+            ->nonTutorial()
             ->first();
 
         if ($imgWithNoReviews)
@@ -38,7 +38,7 @@ class ReviewableService
         // Otrā prioritāte — bildes bez labiem apskatījumiem
         $imgWithNoReviews = Reviewable::inRandomOrder()
             ->whereDoesntHave('reviews', fn($r) => $r->reviewed())
-            ->tutorial(false)
+            ->nonTutorial()
             ->first();
 
         if ($imgWithNoReviews)
@@ -47,7 +47,7 @@ class ReviewableService
         // Trešā prioritāte — bildes, kuras tagadējais lietotājs nav redzējis
         $reviewerToken = $this->reviewerService->getCurrentToken();
         $imgNotViewedByCurrentReviewer = Reviewable::inRandomOrder()
-            ->tutorial(false)
+            ->nonTutorial()
             ->whereDoesntHave('reviews', fn($review) => $review
                 ->where('reviewer_id', $reviewerToken)
             )->first();
@@ -57,7 +57,7 @@ class ReviewableService
 
         // Ceturtā prioritāte
         $imgNotReviewedByCurrentReviewer = Reviewable::inRandomOrder()
-            ->tutorial(false)
+            ->nonTutorial()
             // Bildes, kurām nav apskatījuma
             ->whereDoesntHave('reviews', fn($review) => $review
                     // no tagadējā lietotāja
@@ -70,6 +70,6 @@ class ReviewableService
             return $imgNotReviewedByCurrentReviewer;
 
         // Ja viss apskatīts, atgriežam jebkuru pārskatāmo bildi
-        return Reviewable::inRandomOrder()->tutorial(false)->firstOrFail();
+        return Reviewable::inRandomOrder()->nonTutorial()->firstOrFail();
     }
 }

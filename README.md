@@ -32,6 +32,15 @@ php artisan serve
 > [!NOTE]
 > Projekts pārbaudīts un tiek lietots ar MariaDB un SQLite.
 
+### Treniņbildes
+
+Treniņu/mācību bildes ieteicams likt apakšmapē `tutorial`, tad tās neiekļaus
+kopējā plūsmā.
+
+Lai bildes tiktu iekļautas treniņu plūsmā, tām jāaizpilda secības lauku
+(`tutorial_order`) datubāzē. Parādāmos tekstus var norādīt `tutorial_info`
+laukā. Šo lauku aizpildei un labošanai UI neeksistē.
+
 ## Lietošana
 
 "Publiskā fasāde" ir redzama.
@@ -87,3 +96,4 @@ npm run build
 - [x] Marķierus jāpadara redzamākus.
 - [ ] Instrukcija "backend" sadaļām?
 - [ ] Paroles atjaunošana.
+- [ ] Atsevišķa sadaļa — fullscreen karte ar bilžu noseguma attēlojumu un linkiem uz bildēm.

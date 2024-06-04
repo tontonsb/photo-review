@@ -1,7 +1,7 @@
 {
-  "_displayImageWithScale-!~{005}~.js": {
+  "_displayImageWithScale-!~{006}~.js": {
     "file": "assets/displayImageWithScale-CSy_vbSQ.css",
-    "src": "_displayImageWithScale-!~{005}~.js"
+    "src": "_displayImageWithScale-!~{006}~.js"
   },
   "_displayImageWithScale-CG-S_KVf.js": {
     "file": "assets/displayImageWithScale-CG-S_KVf.js",
@@ -11,13 +11,18 @@
     ]
   },
   "resources/css/internal.css": {
-    "file": "assets/internal-C5Sjmwp3.css",
+    "file": "assets/internal-U61cF8RE.css",
     "src": "resources/css/internal.css",
     "isEntry": true
   },
   "resources/css/reviewer.css": {
-    "file": "assets/reviewer-kOW-sH3N.css",
+    "file": "assets/reviewer-DmCdX9ov.css",
     "src": "resources/css/reviewer.css",
+    "isEntry": true
+  },
+  "resources/css/tutorial.css": {
+    "file": "assets/tutorial-DPJe6SO4.css",
+    "src": "resources/css/tutorial.css",
     "isEntry": true
   },
   "resources/js/review.js": {

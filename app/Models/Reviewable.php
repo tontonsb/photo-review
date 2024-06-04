@@ -33,10 +33,13 @@ class Reviewable extends Model
         return $this->metadata ?? $this->file?->getData();
     }
 
-    public function scopeTutorial(Builder $reviews, bool $isTutorial = true): void
+    public function scopeTutorial(Builder $reviews): void
     {
-        $operator = $isTutorial ? 'like' : 'not like';
+        $reviews->whereNotNull('tutorial_order');
+    }
 
-        $reviews->where('path', $operator, 'tutorial/%');
+    public function scopeNonTutorial(Builder $reviews): void
+    {
+        $reviews->where('path', 'not like', 'tutorial/%');
     }
 }

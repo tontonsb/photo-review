@@ -6,6 +6,7 @@ export default defineConfig({
         laravel({
             input: [
                 'resources/css/reviewer.css',
+                'resources/css/tutorial.css',
                 'resources/css/internal.css',
                 'resources/js/reviewer.js',
                 'resources/js/review.js',

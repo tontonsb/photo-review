@@ -6,6 +6,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ReviewableController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ReviewerController;
+use App\Http\Controllers\TutorialController;
 use Illuminate\Support\Facades\Route;
 
 Route::name('reviewables.')->controller(ReviewableController::class)->group(function() {
@@ -15,6 +16,11 @@ Route::name('reviewables.')->controller(ReviewableController::class)->group(func
     Route::get('reviewables/geojson', 'geojson')->name('geojson');
     Route::get('reviewables/dir', 'dir')->name('directory');
     Route::get('reviewables/{path}', 'show')->name('show')->where('path', '.*');
+});
+
+Route::name('tutorial.')->controller(TutorialController::class)->group(function() {
+    Route::get('tutorial', 'index')->name('index');
+    Route::get('tutorial/{reviewable:tutorial_order}', 'show')->name('show');
 });
 
 Route::name('reviews.')->controller(ReviewController::class)->group(function() {

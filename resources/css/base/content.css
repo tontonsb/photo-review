@@ -6,8 +6,9 @@ details {
     }
 }
 
-button {
+button, .button {
     --bg: var(--color-bg);
+    text-decoration: none;
 
     width: 100%;
     padding: var(--space-sm);

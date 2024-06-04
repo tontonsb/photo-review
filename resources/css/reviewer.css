@@ -29,7 +29,7 @@ ul {
     }
 }
 
-button {
+button, .button {
     &.button--ok {
         padding-top: 2rem;
         padding-bottom: 2rem;
