@@ -88,7 +88,7 @@ bootInfobox('.js-infobox', '.js-show-infobox', false)
         makeMapWith.pin(
             'location-map',
             @json($exif['LOCATION']),
-            {{deg2rad($exif['YAW'])}},
+            {{deg2rad($exif['YAW'] ?? 0)}},
             '{{asset('icons/drone_marker.svg')}}',
             '{{route('reviewables.geojson')}}',
             _ => {},
