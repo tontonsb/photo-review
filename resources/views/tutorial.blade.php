@@ -9,9 +9,11 @@
     <div id=image></div>
 
     <form>
-        <div class=actions>
+        <div class=tutorial-info>
             {{$reviewable->tutorial_info}}
+        </div>
 
+        <div class=actions>
             @if ($prev)
             <a class=button href="{{route('tutorial.show', $prev)}}">
                 Atpakaļ uz iepriekšējo

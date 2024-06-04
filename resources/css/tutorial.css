@@ -5,3 +5,16 @@ a.button {
     text-align: center;
     border: 1px solid var(--color-dim);
 }
+
+@media screen and (min-width: 700px) {
+    .tutorial-info {
+        order: 3;
+        margin-top: auto;
+        margin-bottom: auto;
+        font-size: var(--font-lg);
+    }
+
+    .actions {
+        order: 4;
+    }
+}
