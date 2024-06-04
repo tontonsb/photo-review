@@ -15,10 +15,12 @@ class ReviewableGeoJson extends JsonResource
     public function toArray(Request $request): array
     {
         $location = $this->metadata['LOCATION'];
+        $isSonar = $this->file->isSonarImage();
 
-        if ($this->file->isSonarImage()) {
+        if ($isSonar) {
             extract(array_map(floatval(...), $location));
 
+            // TODO: get more precise areas from https://sonar.glaive.pro/kml/Areas.kml
             $geometry = [
                 'type' => 'Polygon',
                 'coordinates' => [[
@@ -43,9 +45,13 @@ class ReviewableGeoJson extends JsonResource
             'type' => 'Feature',
             'geometry' => $geometry,
             'properties' => [
-                'is_sonar' => $this->file->isSonarImage(),
+                'is_sonar' => $isSonar,
                 'path' => $this->path,
                 'url' => route('reviewables.review', $this->path),
+                'altitude_meters' => $this->when(!$isSonar, $this->metadata['ALTITUDE'] ?? null),
+                'bearing_degrees' => $this->when(!$isSonar, isset($this->metadata['YAW']) ? (float) $this->metadata['YAW'] : null),
+                'width_guess_meters' => $this->when(!$isSonar, $this->metadata['EXTENT']['width'] ?? null),
+                'height_guess_meters' => $this->when(!$isSonar, $this->metadata['EXTENT']['height'] ?? null),
             ],
         ];
     }
