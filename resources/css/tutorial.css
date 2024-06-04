@@ -12,6 +12,7 @@ a.button {
         margin-top: auto;
         margin-bottom: auto;
         font-size: var(--font-lg);
+        max-width: 20rem;
     }
 
     .actions {
