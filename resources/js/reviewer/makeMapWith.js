@@ -14,8 +14,9 @@ import Fill from 'ol/style/Fill'
 import Style from 'ol/style/Style'
 import Stroke from 'ol/style/Stroke'
 import { XYZ } from 'ol/source'
+import Icon from 'ol/style/Icon'
 
-function pin(target, location, featureEndpoint, clickFeatures) {
+function pin(target, location, rotation, icon, featureEndpoint, clickFeatures) {
     const loc = [location.lon, location.lat]
 
     const pin = new Feature({
@@ -24,11 +25,10 @@ function pin(target, location, featureEndpoint, clickFeatures) {
 
     pin.setStyle(
         new Style({
-            image: new Circle({
-                radius: 5,
-                fill: new Fill({
-                    color: '#b833ff',
-                }),
+            image: new Icon({
+                src: icon,
+                scale: 0.125,
+                rotation: rotation,
             }),
         })
     )

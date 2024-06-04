@@ -135,9 +135,21 @@ const clickFeatures = features => {
 
 @if ($exif['LOCATION'] ?? false)
     @if ($file->isSonarImage())
-        makeMapWith.box('location-map', @json($exif['LOCATION']), '{{route('reviewables.geojson')}}', clickFeatures)
+        makeMapWith.box(
+            'location-map',
+            @json($exif['LOCATION']),
+            '{{route('reviewables.geojson')}}',
+            clickFeatures,
+        )
     @else
-        makeMapWith.pin('location-map', @json($exif['LOCATION']), '{{route('reviewables.geojson')}}', clickFeatures)
+        makeMapWith.pin(
+            'location-map',
+            @json($exif['LOCATION']),
+            {{deg2rad($exif['YAW'])}},
+            '{{asset('icons/drone_marker.svg')}}',
+            '{{route('reviewables.geojson')}}',
+            clickFeatures,
+        )
     @endif
 @endif
 </script>
