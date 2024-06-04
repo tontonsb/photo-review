@@ -5,11 +5,13 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
+                'resources/css/internal.css',
+                'resources/css/map.css',
                 'resources/css/reviewer.css',
                 'resources/css/tutorial.css',
-                'resources/css/internal.css',
-                'resources/js/reviewer.js',
+                'resources/js/map.js',
                 'resources/js/review.js',
+                'resources/js/reviewer.js',
             ],
             refresh: true,
         }),

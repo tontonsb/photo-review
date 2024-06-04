@@ -1,18 +1,37 @@
 {
-  "_displayImageWithScale-!~{006}~.js": {
-    "file": "assets/displayImageWithScale-CSy_vbSQ.css",
-    "src": "_displayImageWithScale-!~{006}~.js"
+  "_GeoJSON-TBXCKDd0.js": {
+    "file": "assets/GeoJSON-TBXCKDd0.js",
+    "name": "GeoJSON",
+    "imports": [
+      "_XYZ-BJAijdX9.js"
+    ]
   },
-  "_displayImageWithScale-BXyqeM2W.js": {
-    "file": "assets/displayImageWithScale-BXyqeM2W.js",
-    "name": "displayImageWithScale",
+  "_XYZ-!~{008}~.js": {
+    "file": "assets/XYZ-CSy_vbSQ.css",
+    "src": "_XYZ-!~{008}~.js"
+  },
+  "_XYZ-BJAijdX9.js": {
+    "file": "assets/XYZ-BJAijdX9.js",
+    "name": "XYZ",
     "css": [
-      "assets/displayImageWithScale-CSy_vbSQ.css"
+      "assets/XYZ-CSy_vbSQ.css"
+    ]
+  },
+  "_displayImageWithScale-BMBw1_P3.js": {
+    "file": "assets/displayImageWithScale-BMBw1_P3.js",
+    "name": "displayImageWithScale",
+    "imports": [
+      "_XYZ-BJAijdX9.js"
     ]
   },
   "resources/css/internal.css": {
     "file": "assets/internal-BWITF_D_.css",
     "src": "resources/css/internal.css",
+    "isEntry": true
+  },
+  "resources/css/map.css": {
+    "file": "assets/map-DXX0YzwG.css",
+    "src": "resources/css/map.css",
     "isEntry": true
   },
   "resources/css/reviewer.css": {
@@ -25,22 +44,35 @@
     "src": "resources/css/tutorial.css",
     "isEntry": true
   },
+  "resources/js/map.js": {
+    "file": "assets/map--PEkw3C9.js",
+    "name": "map",
+    "src": "resources/js/map.js",
+    "isEntry": true,
+    "imports": [
+      "_XYZ-BJAijdX9.js",
+      "_GeoJSON-TBXCKDd0.js"
+    ]
+  },
   "resources/js/review.js": {
-    "file": "assets/review-CgNEzOcT.js",
+    "file": "assets/review-DB_PijeB.js",
     "name": "review",
     "src": "resources/js/review.js",
     "isEntry": true,
     "imports": [
-      "_displayImageWithScale-BXyqeM2W.js"
+      "_displayImageWithScale-BMBw1_P3.js",
+      "_XYZ-BJAijdX9.js"
     ]
   },
   "resources/js/reviewer.js": {
-    "file": "assets/reviewer-Dmpov7_t.js",
+    "file": "assets/reviewer-Cb3_a_rf.js",
     "name": "reviewer",
     "src": "resources/js/reviewer.js",
     "isEntry": true,
     "imports": [
-      "_displayImageWithScale-BXyqeM2W.js"
+      "_XYZ-BJAijdX9.js",
+      "_GeoJSON-TBXCKDd0.js",
+      "_displayImageWithScale-BMBw1_P3.js"
     ]
   }
 }

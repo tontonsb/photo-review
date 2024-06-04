@@ -36,6 +36,8 @@ Route::name('reviewers.')->controller(ReviewerController::class)->group(function
     Route::get('reviewers/{reviewer}', 'show')->name('show');
 });
 
+Route::view('map', 'map')->name('map');
+
 Route::middleware('guest')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])->name('register');
     Route::post('register', [RegisteredUserController::class, 'store']);
