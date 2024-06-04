@@ -108,6 +108,7 @@ class ReviewableController
     {
         return new ReviewableGeoJsonCollection(
             Reviewable::nonTutorial()
+                ->whereNotNull('metadata->LOCATION')
                 ->get()
                 ->filter(fn($reviewable) => $reviewable->metadata)
         );
