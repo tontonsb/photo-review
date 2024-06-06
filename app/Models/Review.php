@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Contracts\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -24,6 +25,13 @@ class Review extends Model
         'problem',
         'coordinates',
     ];
+
+    protected static function booted(): void
+    {
+        static::addGlobalScope('ancient', function (EloquentBuilder $reviews) {
+            $reviews->latest();
+        });
+    }
 
     public function getReviewableFileAttribute()
     {
