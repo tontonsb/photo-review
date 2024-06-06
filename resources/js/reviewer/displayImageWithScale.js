@@ -1,13 +1,50 @@
 import 'ol/ol.css'
 import ImageLayer from 'ol/layer/Image'
-import TileLayer from 'ol/layer/Tile'
 import Map from 'ol/Map'
 import Static from 'ol/source/ImageStatic'
 import View from 'ol/View'
-import { XYZ } from 'ol/source'
-import {ScaleLine, defaults as defaultControls} from 'ol/control.js'
+import {ScaleLine, Control, defaults as defaultControls} from 'ol/control.js'
 import initUserMarkers from './userMarkers'
 import { fromLonLat, getPointResolution } from 'ol/proj'
+
+class SwapViewControl extends Control {
+    constructor(view1, view2) {
+        const button = document.createElement('button')
+        button.innerHTML = '🔲'
+
+        const element = document.createElement('div')
+        element.className = 'ol-unselectable ol-control'
+        element.style.right = '.5em'
+        element.style.top = '.5em'
+        element.appendChild(button)
+
+        super({element: element})
+
+        this.button = button
+
+        this.view1 = view1
+        this.view2 = view2
+
+        button.addEventListener('click', this.swapView.bind(this), false)
+    }
+
+    swapView() {
+        if (this.getMap().getView() === this.view1) {
+            this.button.innerHTML = '🔳'
+            this.setView(this.view2)
+        } else {
+            this.button.innerHTML = '🔲'
+            this.setView(this.view1)
+        }
+    }
+
+    setView(view) {
+        this.getMap().setView(view)
+
+        if (view.getProperties().extent)
+            this.getMap().getView().fit(view.getProperties().extent)
+    }
+  }
 
 /**
  * Displays image with known WGS84 center, guessed size and unknown orientation.
@@ -16,7 +53,7 @@ export default function displayImage(target, center, extent, url, interactive = 
     center = fromLonLat(center)
 
     const view = new View({
-        showFullExtent: true,
+        center: center,
     })
 
     // map units might be meters at the equator, but not everywhere!
@@ -29,6 +66,11 @@ export default function displayImage(target, center, extent, url, interactive = 
         center[1] + (extent[1] / 2 / scale),
     ]
 
+    const viewWithExtent = new View({
+        extent: extent,
+        showFullExtent: true,
+    })
+
     const userMarkers = initUserMarkers()
 
     const scaleLine = new ScaleLine({
@@ -40,7 +82,10 @@ export default function displayImage(target, center, extent, url, interactive = 
     })
 
     const map = new Map({
-        controls: defaultControls().extend([scaleLine]),
+        controls: defaultControls().extend([
+            scaleLine,
+            new SwapViewControl(view, viewWithExtent),
+        ]),
         layers: [
             new ImageLayer({
                 source: new Static({
