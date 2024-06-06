@@ -19,6 +19,7 @@
                 <ol>
                     <li>Pievienota treniņbilžu sērija, kurā mēģināt ieraudzīt zināmus objektus zināmās vietās.
                         Spied <a href="{{route('tutorial.index')}}">šeit</a>!
+                    <li>Ar pogu attēla labajā augšējā stūrī daļai attēlu var ieslēgt/izslēgt brīvu kustību bez attēla ierobežošanas rāmī — lai ērti vajadzīgo vietu pievilkt pie mērlentes.
                 </ol>
             </details>
 
