@@ -6,7 +6,7 @@ import Point from 'ol/geom/Point.js'
 import Polygon from 'ol/geom/Polygon.js'
 import TileLayer from 'ol/layer/Tile.js'
 import View from 'ol/View.js'
-import {fromLonLat} from 'ol/proj.js'
+import {fromLonLat, getPointResolution} from 'ol/proj.js'
 import VectorLayer from 'ol/layer/Vector'
 import VectorSource from 'ol/source/Vector'
 import Circle from 'ol/style/Circle'
@@ -21,6 +21,14 @@ function showFeaturesOnMap(target, featureEndpoint, clickFeatures) {
         format: new GeoJSON(),
         url: featureEndpoint,
     })
+
+    const center = fromLonLat([23.54238, 56.87841])
+    const view = new View({
+        center: center,
+        zoom: 12,
+    })
+    // map units might be meters at the equator, but not everywhere!
+    const scale = getPointResolution(view.getProjection(), 1, center)
 
     // Redraw points into boxes covered by the image
     source.on('featuresloadend', () =>
@@ -42,10 +50,10 @@ function showFeaturesOnMap(target, featureEndpoint, clickFeatures) {
             }
 
             const center = geometry.getCoordinates()
-            const left = center[0] - width / 2
-            const top = center[1] + height / 2
-            const right = center[0] + width / 2
-            const bottom = center[1] - height / 2
+            const left = center[0] - (width / 2 / scale)
+            const top = center[1] + (height / 2 / scale)
+            const right = center[0] + (width / 2 / scale)
+            const bottom = center[1] - (height / 2 / scale)
 
             const polygon = new Polygon([[
                 [left, top],
