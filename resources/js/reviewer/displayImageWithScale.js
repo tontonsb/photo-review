@@ -29,8 +29,6 @@ export default function displayImage(target, center, extent, url, interactive = 
         center[1] + (extent[1] / 2 / scale),
     ]
 
-    view.setProperties({extent: extent})
-
     const userMarkers = initUserMarkers()
 
     const scaleLine = new ScaleLine({
