@@ -12,6 +12,7 @@
             <p><strong>Lūdzu rūpīgi apskatīt bildes un ierakstīt informāciju, ja kādā bildē redzams jebkas, kas varētu liecināt par to, kas ar Annu noticis, kurā virzienā viņa devusies.
                 Tas var būt jebkas, kas neiederas ainā redzamajā apkārtnē, piemēram, kurpe, soma vai kādi neierastas formas objekti.
             </strong>
+            Kā ieraudzīt objektus vari patrenēties <a href="{{route('tutorial.index')}}">šeit</a>.
 
             <details>
                 <summary>⚠️ Jaunumi 06.06.2024</summary>
