@@ -7,18 +7,27 @@ import View from 'ol/View'
 import { XYZ } from 'ol/source'
 import {ScaleLine, defaults as defaultControls} from 'ol/control.js'
 import initUserMarkers from './userMarkers'
-import { fromLonLat } from 'ol/proj'
+import { fromLonLat, getPointResolution } from 'ol/proj'
 
 /**
  * Displays image with known WGS84 center, guessed size and unknown orientation.
  */
 export default function displayImage(target, center, extent, url, interactive = true) {
     center = fromLonLat(center)
+
+    const view = new View({
+        // extent: extent,
+        showFullExtent: true,
+    })
+
+    // map units might be meters at the equator, but not everywhere!
+    const scale = getPointResolution(view.getProjection(), 1, center)
+
     extent = [ // minX, minY, maxX, maxY
-        center[0] - (extent[0] / 2),
-        center[1] - (extent[1] / 2),
-        center[0] + (extent[0] / 2),
-        center[1] + (extent[1] / 2),
+        center[0] - (extent[0] / 2 / scale),
+        center[1] - (extent[1] / 2 / scale),
+        center[0] + (extent[0] / 2 / scale),
+        center[1] + (extent[1] / 2 / scale),
     ]
 
     const userMarkers = initUserMarkers()
@@ -28,7 +37,7 @@ export default function displayImage(target, center, extent, url, interactive = 
         bar: true,
         steps: 4,
         text: false,
-        minWidth: 140,
+        minWidth: 290,
     })
 
     const map = new Map({
@@ -43,10 +52,7 @@ export default function displayImage(target, center, extent, url, interactive = 
             userMarkers.layer,
         ],
         target: target,
-        view: new View({
-            extent: extent,
-            showFullExtent: true,
-        }),
+        view: view,
     })
 
     map.getView().fit(extent)
@@ -59,6 +65,7 @@ export default function displayImage(target, center, extent, url, interactive = 
 
     if (interactive) {
         map.on('click', userMarkers.clickHandler)
+        map.on('click', e => console.log(e.coordinate))
         map.on('pointermove', updateCursor)
         // Strangely new features aren't yet visible on the very next tick, so 0 timeout works wronq
         map.on('click', event => setTimeout(_ => updateCursor(event), 10))
