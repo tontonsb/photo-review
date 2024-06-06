@@ -17,8 +17,8 @@
       "assets/XYZ-CSy_vbSQ.css"
     ]
   },
-  "_displayImageWithScale-CRINt1_1.js": {
-    "file": "assets/displayImageWithScale-CRINt1_1.js",
+  "_displayImageWithScale-v-RcFFV7.js": {
+    "file": "assets/displayImageWithScale-v-RcFFV7.js",
     "name": "displayImageWithScale",
     "imports": [
       "_XYZ-DCrBMTqa.js"
@@ -55,24 +55,24 @@
     ]
   },
   "resources/js/review.js": {
-    "file": "assets/review-lGUD-lOE.js",
+    "file": "assets/review-CSfIVzFV.js",
     "name": "review",
     "src": "resources/js/review.js",
     "isEntry": true,
     "imports": [
-      "_displayImageWithScale-CRINt1_1.js",
+      "_displayImageWithScale-v-RcFFV7.js",
       "_XYZ-DCrBMTqa.js"
     ]
   },
   "resources/js/reviewer.js": {
-    "file": "assets/reviewer-BDWwN3um.js",
+    "file": "assets/reviewer-B-bruE77.js",
     "name": "reviewer",
     "src": "resources/js/reviewer.js",
     "isEntry": true,
     "imports": [
       "_XYZ-DCrBMTqa.js",
       "_GeoJSON-Bzl9OLMf.js",
-      "_displayImageWithScale-CRINt1_1.js"
+      "_displayImageWithScale-v-RcFFV7.js"
     ]
   }
 }
