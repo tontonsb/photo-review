@@ -47,6 +47,9 @@ class ExifReader
         if (isset($exif['GPSAltitude']))
             $exif['ALTITUDE'] = $exif['GPSAltitude'];
 
+        if (isset($exif['GimbalYawDegree']))
+            $exif['YAW'] = $exif['GimbalYawDegree'];
+
         return $exif;
     }
 
