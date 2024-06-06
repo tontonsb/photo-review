@@ -17,8 +17,8 @@
       "assets/XYZ-CSy_vbSQ.css"
     ]
   },
-  "_displayImageWithScale-DcTTUW_m.js": {
-    "file": "assets/displayImageWithScale-DcTTUW_m.js",
+  "_displayImageWithScale-BrBHmIUF.js": {
+    "file": "assets/displayImageWithScale-BrBHmIUF.js",
     "name": "displayImageWithScale",
     "imports": [
       "_XYZ-DW-6z1kv.js"
@@ -55,24 +55,24 @@
     ]
   },
   "resources/js/review.js": {
-    "file": "assets/review-DFFy7qa0.js",
+    "file": "assets/review-b3_cjfhi.js",
     "name": "review",
     "src": "resources/js/review.js",
     "isEntry": true,
     "imports": [
-      "_displayImageWithScale-DcTTUW_m.js",
+      "_displayImageWithScale-BrBHmIUF.js",
       "_XYZ-DW-6z1kv.js"
     ]
   },
   "resources/js/reviewer.js": {
-    "file": "assets/reviewer-BuCT9E9v.js",
+    "file": "assets/reviewer-DttsmyPR.js",
     "name": "reviewer",
     "src": "resources/js/reviewer.js",
     "isEntry": true,
     "imports": [
       "_XYZ-DW-6z1kv.js",
       "_GeoJSON-DSA3QepV.js",
-      "_displayImageWithScale-DcTTUW_m.js"
+      "_displayImageWithScale-BrBHmIUF.js"
     ]
   }
 }

@@ -24,7 +24,7 @@ function createSwapViewControl() {
 /**
  * Displays image with known WGS84 center, guessed size and unknown orientation.
  */
-export default function displayImage(target, center, extent, url, interactive = true, fixScale = true) {
+export default function displayImage(target, center, extent, url, interactive = true) {
     center = fromLonLat(center)
 
     const viewWithoutExtent = new View({
@@ -32,7 +32,7 @@ export default function displayImage(target, center, extent, url, interactive = 
     })
 
     // map units might be meters at the equator, but not everywhere!
-    const scale = fixScale ? getPointResolution(viewWithoutExtent.getProjection(), 1, center) : 1
+    const scale = getPointResolution(viewWithoutExtent.getProjection(), 1, center)
 
     extent = [ // minX, minY, maxX, maxY
         center[0] - (extent[0] / 2 / scale),
