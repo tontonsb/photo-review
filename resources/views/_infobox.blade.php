@@ -14,11 +14,10 @@
             </strong>
 
             <details>
-                <summary>⚠️ Jaunumi 02.06.2024</summary>
+                <summary>⚠️ Jaunumi 06.06.2024</summary>
                 <ol>
-                    <li>Arī fotogrāfijām pievienota mēroga josla. Jāņem vērā, ka tā ir aptuvena — izmēri no patiesajiem var atšķirties pat pusotru reizi. Bildēm, kuras nav bildētas no augšas uz leju, izmēri būs pavisam aplami.
-                    <li>[30.05.24] Minikartē attēlotas pārējās vietas no kurām ir materiāli. Uz tām uzspiežot, zem kartes parādās saite.
-                    <li>[30.05.24] Uzlabota marķieru redzamība kartē.
+                    <li>Pievienota treniņbilžu sērija, kurā mēģināt ieraudzīt zināmus objektus zināmās vietās.
+                        Spied <a href="{{route('tutorial.index')}}">šeit</a>!
                 </ol>
             </details>
 
@@ -60,6 +59,8 @@
 
                 <p>Gadījumos, kad aplūkojamā vieta nav redzama gana labi un nepieciešams par to vietu gatavot jaunu bildi, lūdzu problēmu norādīt lodziņā, kurš atveras spiežot "Bilde ir nekvalitatīva vai cita problēma?" un iesniegt.
                 Tas varētu būt ne tikai burtiskā izplūdušas bildes gadījumā, bet arī, piemēram, tad, ja eholotes ierakstā josla būtiski nosedz citu joslas daļu. Pie vienas bildes drīkst aizpildīt abus teksta lodziņus.
+
+                <p>Minikartē redzama ne tikai attēla uzņemšanas vieta, bet arī citu uzņemto bilžu vietas. Ja liekas aktuāli apskatīt kādu blakus bildi, spied kartē uz punkta un zem kartes parādīsies saite uz attiecīgo bildi.
 
                 <p>Gadījumā, ja redzams, ka bildē nav nekā, kas varētu sniegt šādu informāciju, jāspiež zaļo pogu "Apskatīju, nav nekā ievērības cienīga".
 
