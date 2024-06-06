@@ -38,7 +38,7 @@ export default function displayImage(target, center, extent, url, interactive = 
         bar: true,
         steps: 4,
         text: false,
-        minWidth: 290,
+        minWidth: 160,
     })
 
     const map = new Map({
