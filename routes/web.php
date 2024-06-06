@@ -33,6 +33,7 @@ Route::post('reviews/{review}/comment', [CommentController::class, 'store'])->na
 
 Route::name('reviewers.')->controller(ReviewerController::class)->group(function() {
     Route::get('reviewers', 'index')->name('index');
+    Route::get('reviewers/me', 'me')->name('me');
     Route::get('reviewers/{reviewer}', 'show')->name('show');
 });
 

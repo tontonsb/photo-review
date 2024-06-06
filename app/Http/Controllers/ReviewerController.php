@@ -21,4 +21,11 @@ class ReviewerController
             'reviewer' => $reviewer,
         ]);
     }
+
+    public function me(ReviewerService $reviewerService)
+    {
+        $reviewer = Reviewer::find($reviewerService->getCurrentToken());
+
+        return $this->show($reviewer);
+    }
 }

@@ -13,7 +13,7 @@
         <li><a href="{{ route('reviews.index') }}" class="{{ request()->routeIs('reviews.index') ? 'active' : '' }}">Visi pārskatījumi</a></li>
         <li><a href="{{ route('reviewables.index') }}" class="{{ request()->routeIs('reviewables.index') ? 'active' : '' }}">Bildes</a></li>
         <li><a href="{{ route('reviewers.index') }}" class="{{ request()->routeIs('reviewers.index') ? 'active' : '' }}">Pārskatītāji</a></li>
-        <li><a href="{{ route('reviewers.show', ReviewerService::getCurrentToken()) }}" class="{{ url()->current() == route('reviewers.show', ReviewerService::getCurrentToken()) ? 'active' : '' }}">Tavi pārskatījumi</a></li>
+        <li><a href="{{ route('reviewers.me') }}" class="{{ request()->routeIs('reviewers.me') ? 'active' : '' }}">Tavi pārskatījumi</a></li>
         <li><a href="{{ route('reviewables.random') }}" class="{{ request()->routeIs('reviewables.random') ? 'active' : '' }}">Turpināt pārskatīšanu</a></li>
     </ul>
 
