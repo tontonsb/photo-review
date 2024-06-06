@@ -7,44 +7,19 @@ import {ScaleLine, Control, defaults as defaultControls} from 'ol/control.js'
 import initUserMarkers from './userMarkers'
 import { fromLonLat, getPointResolution } from 'ol/proj'
 
-class SwapViewControl extends Control {
-    constructor(view1, view2) {
-        const button = document.createElement('button')
-        button.innerHTML = '🔲'
+function createSwapViewControl() {
+    const button = document.createElement('button')
 
-        const element = document.createElement('div')
-        element.className = 'ol-unselectable ol-control'
-        element.style.right = '.5em'
-        element.style.top = '.5em'
-        element.appendChild(button)
+    const element = document.createElement('div')
+    element.className = 'ol-unselectable ol-control'
+    element.style.right = '.5em'
+    element.style.top = '.5em'
+    element.appendChild(button)
 
-        super({element: element})
+    const control = new Control({element})
 
-        this.button = button
-
-        this.view1 = view1
-        this.view2 = view2
-
-        button.addEventListener('click', this.swapView.bind(this), false)
-    }
-
-    swapView() {
-        if (this.getMap().getView() === this.view1) {
-            this.button.innerHTML = '🔳'
-            this.setView(this.view2)
-        } else {
-            this.button.innerHTML = '🔲'
-            this.setView(this.view1)
-        }
-    }
-
-    setView(view) {
-        this.getMap().setView(view)
-
-        if (view.getProperties().extent)
-            this.getMap().getView().fit(view.getProperties().extent)
-    }
-  }
+    return {button, control}
+}
 
 /**
  * Displays image with known WGS84 center, guessed size and unknown orientation.
@@ -52,12 +27,12 @@ class SwapViewControl extends Control {
 export default function displayImage(target, center, extent, url, interactive = true) {
     center = fromLonLat(center)
 
-    const view = new View({
+    const viewWithoutExtent = new View({
         center: center,
     })
 
     // map units might be meters at the equator, but not everywhere!
-    const scale = getPointResolution(view.getProjection(), 1, center)
+    const scale = getPointResolution(viewWithoutExtent.getProjection(), 1, center)
 
     extent = [ // minX, minY, maxX, maxY
         center[0] - (extent[0] / 2 / scale),
@@ -81,10 +56,14 @@ export default function displayImage(target, center, extent, url, interactive = 
         minWidth: 160,
     })
 
+    const swapView = createSwapViewControl()
+    let currentView = 'extent' === window.sessionStorage.getItem('view-type') ? viewWithExtent : viewWithoutExtent
+    swapView.button.innerHTML = 'extent' === window.sessionStorage.getItem('view-type') ? '🔳' : '🔲'
+
     const map = new Map({
         controls: defaultControls().extend([
             scaleLine,
-            new SwapViewControl(view, viewWithExtent),
+            swapView.control,
         ]),
         layers: [
             new ImageLayer({
@@ -96,10 +75,25 @@ export default function displayImage(target, center, extent, url, interactive = 
             userMarkers.layer,
         ],
         target: target,
-        view: view,
+        view: currentView,
     })
 
     map.getView().fit(extent)
+
+    swapView.button.addEventListener('click', _ => {
+        if (currentView === viewWithoutExtent) {
+            swapView.button.innerHTML = '🔳'
+            window.sessionStorage.setItem('view-type', 'extent')
+            currentView = viewWithExtent
+        } else {
+            swapView.button.innerHTML = '🔲'
+            window.sessionStorage.setItem('view-type', 'free')
+            currentView = viewWithoutExtent
+        }
+
+        map.setView(currentView)
+        currentView.fit(extent)
+    })
 
     const updateCursor = async event => {
         const features = await userMarkers.layer.getFeatures(event.pixel)
