@@ -1,20 +1,13 @@
 import 'ol/ol.css'
-import Feature from 'ol/Feature.js'
 import Map from 'ol/Map.js'
 import GeoJSON from 'ol/format/GeoJSON.js'
-import Point from 'ol/geom/Point.js'
 import Polygon from 'ol/geom/Polygon.js'
 import TileLayer from 'ol/layer/Tile.js'
 import View from 'ol/View.js'
 import {fromLonLat, getPointResolution} from 'ol/proj.js'
 import VectorLayer from 'ol/layer/Vector'
 import VectorSource from 'ol/source/Vector'
-import Circle from 'ol/style/Circle'
-import Fill from 'ol/style/Fill'
-import Style from 'ol/style/Style'
-import Stroke from 'ol/style/Stroke'
 import { XYZ } from 'ol/source'
-import Icon from 'ol/style/Icon'
 
 function showFeaturesOnMap(target, featureEndpoint, clickFeatures) {
     const source = new VectorSource({
