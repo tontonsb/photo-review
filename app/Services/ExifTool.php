@@ -2,14 +2,21 @@
 
 namespace App\Services;
 
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Process;
 
 class ExifTool
 {
-    public static function getLocalExif($path): Collection
+    /**
+     * Exiftool options
+     * -fast only reads the file start without loading the whole file
+     * -j formats output as json
+     * -n skips formatting numbers, e.g. we get GPSLongitude: 23.5216960833333 instead of 23 deg 31' 18.11" E
+     */
+    protected static string $options = '-fast -j -n';
+
+    public static function getLocalExif($path): array
     {
-        $result = Process::run('exiftool '.$path);
+        $result = Process::run('exiftool '.static::$options.' '.$path);
 
         if (!$result->successful())
             throw new \RuntimeException(
@@ -20,9 +27,9 @@ class ExifTool
         return static::parse($result->output());
     }
 
-    public static function getRemoteExif($path): Collection
+    public static function getRemoteExif($path): array
     {
-        $result = Process::run('curl -s '.$path.' | exiftool -fast -');
+        $result = Process::run('curl -s '.$path.' | exiftool '.static::$options.' -');
 
         if (!$result->successful())
             throw new \RuntimeException(
@@ -33,14 +40,8 @@ class ExifTool
         return static::parse($result->output());
     }
 
-    protected static function parse(string $exif): Collection
+    protected static function parse(string $exif): array
     {
-        return collect(explode("\n", $exif))
-            ->filter(fn($row) => str_contains($row, ':'))
-            ->mapWithKeys(function($row) {
-                [$key, $value] = explode(':', $row, 2);
-
-                return [trim($key) => trim($value)];
-            });
+        return json_decode($exif, true)[0] ?? [];
     }
 }

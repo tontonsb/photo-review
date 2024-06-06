@@ -17,7 +17,7 @@ class LoadMetadata extends Command
     {
         $reviewables = $this->option('all') || $this->option('missing-loc')
             ? Reviewable::all()
-            : Reviewable::whereNull('metadata')->get();
+            : Reviewable::whereNull('metadata')->where('path', 'not like', 'master_%')->get();
 
         if ($this->option('missing-loc'))
             $reviewables = $reviewables->filter(fn($r) => !isset($r->metadata['LOCATION']));

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Services\ExifReader;
 use App\Services\ExifTool;
 use App\Services\ParseExif;
 use Illuminate\Contracts\Filesystem\Filesystem;
@@ -56,102 +57,43 @@ class ReviewableFile
     {
         $path = $this->isLocal() ? $this->disk->path($this->path) : $this->disk->url($this->path);
 
-        try {
+        $exif = ExifReader::getExif($path, $this->isLocal());
 
-            $exif = exif_read_data($path);
+        if ($exif)
+            $exif = $this->addExtent($exif);
 
-            // Needs a locally installed exiftool
-            // e.g. `sudo apt install libimage-exiftool-perl`
+        if (!$exif) {
+            $exif = array_merge($exif, [
+                'FileName' => basename($path),
+                'FileDateTime' => $this->disk->lastModified($this->path),
+                'FileSize' => $this->disk->size($this->path),
+                'MimeType' => $this->disk->mimeType($this->path),
+            ]);
+
             try {
-                $preciseExif = $this->isLocal()
-                    ? ExifTool::getLocalExif($path)
-                    : ExifTool::getRemoteExif($path);
-            } catch (\Throwable $e) {
-                report($e);
-
-                $preciseExif = null;
-            }
-
-            if ($exif) {
-                $data = [];
-
-                $location = ParseExif::getLocation($exif);
-                if ($location)
-                    $data['LOCATION'] = $location;
-
-                $altitude = ParseExif::getAltitude($exif);
-                if ($altitude)
-                    $data['ALTITUDE'] = $altitude;
-
-                if ($preciseExif['Gimbal Yaw Degree'] ?? false)
-                    $data['YAW'] = $preciseExif['Gimbal Yaw Degree'];
-
-                // assume pitch is good unless we know it isn't
-                $pitchIsVertical = true;
-                if ($preciseExif['Gimbal Pitch Degree'] ?? false)
-                    $pitchIsVertical = abs($preciseExif['Gimbal Pitch Degree']) > 80;
-
-                if ($pitchIsVertical) {
-                    $fov = ParseExif::getFovDegrees($exif);
-                    $widthPixels = $exif['COMPUTED']['Width'] ?? null;
-                    $heightPixels = $exif['COMPUTED']['Height'] ?? null;
-                    if ($fov && $widthPixels && $heightPixels) {
-                        // TODO: get more correct elevation data based on position
-                        // For now take something close to median height in the target area
-                        $height = $altitude - 4;
-
-                        $fovMeters = 2 * $height * tan(deg2rad($fov) / 2);
-                        $scale = $fovMeters / $widthPixels;
-
-                        $data['EXTENT'] = [
-                            'scale' => $scale,
-                            'width' => $fovMeters,
-                            'height' => $scale * $heightPixels,
-                        ];
-                    }
-                }
-
-                $data += $exif;
-
-                return $data;
-            }
-        } catch(\Throwable $e) {
-            report($e);
+                foreach (getimagesize($path) ?? [] as $key => $value)
+                    match($key) {
+                        0 => $exif['COMPUTED']['Width'] = $value,
+                        1 => $exif['COMPUTED']['Height'] = $value,
+                        2 => ($exif['FileType'] = $value) && $exif['COMPUTED']['ByteOrderMotorola'] = (int) (IMAGETYPE_TIFF_MM === $value),
+                        3 => $exif['COMPUTED']['html'] = $value,
+                        'mime' => $exif['MimeType'] = $value,
+                        'bits' => $exif['Bits'] = $value,
+                        // 'channels' => 3 -> rgb, 4 -> cmyk
+                        default => $exif[$key] = $value,
+                    };
+            } catch(\Throwable) {}
         }
-
-        $data = [];
 
         // Special handling for sonar images that have an associated .kml
         if ($this->isSonarImage()) {
             try {
                 $location = $this->getLocationFromKml();
-                $data['LOCATION'] = $location;
+                $exif['LOCATION'] = $location;
             } catch(\Throwable) {}
         }
 
-        $data = [
-            ...$data,
-            'FileName' => basename($path),
-            'FileDateTime' => $this->disk->lastModified($this->path),
-            'FileSize' => $this->disk->size($this->path),
-            'MimeType' => $this->disk->mimeType($this->path),
-        ];
-
-        try {
-            foreach (getimagesize($path) ?? [] as $key => $value)
-                match($key) {
-                    0 => $data['COMPUTED']['Width'] = $value,
-                    1 => $data['COMPUTED']['Height'] = $value,
-                    2 => ($data['FileType'] = $value) && $data['COMPUTED']['ByteOrderMotorola'] = (int) (IMAGETYPE_TIFF_MM === $value),
-                    3 => $data['COMPUTED']['html'] = $value,
-                    'mime' => $data['MimeType'] = $value,
-                    'bits' => $data['Bits'] = $value,
-                    // 'channels' => 3 -> rgb, 4 -> cmyk
-                    default => $data[$key] = $value,
-                };
-        } catch(\Throwable) {}
-
-        return $data;
+        return $exif;
     }
 
     protected function getLocationFromKml(): array
@@ -163,6 +105,41 @@ class ReviewableFile
         $kml = new SimpleXMLElement($kmlString);
 
         return (array) $kml->Folder->GroundOverlay->LatLonBox;
+    }
+
+    protected function addExtent(array $exif): array
+    {
+        if (!isset(
+            $exif['FOV'],
+            $exif['ALTITUDE'],
+            $exif['COMPUTED']['Width'],
+            $exif['COMPUTED']['Height'],
+        ))
+            return $exif;
+
+        // assume pitch is good unless we know it isn't
+        $pitchIsVertical = true;
+        if ($exif['GimbalPitchDegree'] ?? false)
+            $pitchIsVertical = abs($exif['GimbalPitchDegree']) > 80
+                && abs($exif['GimbalPitchDegree']) < 100;
+
+        if (!$pitchIsVertical)
+            return $exif;
+
+        // TODO: get more correct elevation data based on position
+        // For now take something close to median height in the target area
+        $height = $exif['ALTITUDE'] - 4;
+
+        $fovMeters = 2 * $height * tan(deg2rad($exif['FOV']) / 2);
+        $scale = $fovMeters / $exif['COMPUTED']['Width'];
+
+        $exif['EXTENT'] = [
+            'scale' => $scale,
+            'width' => $fovMeters,
+            'height' => $scale * $exif['COMPUTED']['Height'],
+        ];
+
+        return $exif;
     }
 
     protected function isLocal(): bool
