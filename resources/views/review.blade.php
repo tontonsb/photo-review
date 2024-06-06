@@ -97,6 +97,7 @@
         [{{$exif['EXTENT']['width'] ?? 0}}, {{$exif['EXTENT']['height'] ?? 0}}],
         '{{$file->url}}',
         false,
+        @if($review->created_at < '2024-06-06 18:29:00') true, @endif
     )
 @else
     const {map, userMarkers} = displayImage(
