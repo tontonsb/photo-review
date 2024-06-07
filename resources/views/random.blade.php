@@ -84,7 +84,7 @@
                     Atvērt pamācību
                 </button>
                 <a class="button button--info" href="{{route('reviewers.me')}}">
-                    Mani pārskatījumi
+                    Pārskatītās bildes
                 </a>
             </div>
         </aside>
