@@ -11,9 +11,16 @@ class ReviewerController
 {
     public function index(ReviewerService $reviewerService)
     {
+        $reviewers = Reviewer::all();
+        $reviewers->loadCount([
+            'reviews',
+            'reviewsWithInfo',
+            'reviewsWithComments',
+        ]);
+
         return view('reviewers', [
             'currentToken' => $reviewerService->getCurrentToken(),
-            'reviewers' => Reviewer::all(),
+            'reviewers' => $reviewers,
         ]);
     }
 

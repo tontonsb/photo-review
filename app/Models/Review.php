@@ -61,4 +61,11 @@ class Review extends Model
             // un kuras ir skatītas ilgāk par 6 sekundēm
             ->where('reviewing_duration_ms', '>', 6000);
     }
+
+    public function scopeWithInfo(Builder $reviews): void
+    {
+        $reviews->whereNotNull('review')
+            ->orWhereNotNull('problem')
+            ->orWhereNotNull('coordinates');
+    }
 }

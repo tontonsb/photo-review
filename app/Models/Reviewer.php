@@ -17,12 +17,21 @@ class Reviewer extends Model
         static::addGlobalScope('reviewers', fn(Builder $builder) =>
             $builder->groupBy('reviewer_id')
                 ->select('reviewer_id')
-                ->selectRaw('count(*) as review_count')
         );
     }
 
     public function reviews(): HasMany
     {
         return $this->hasMany(Review::class, foreignKey: 'reviewer_id');
+    }
+
+    public function reviewsWithInfo(): HasMany
+    {
+        return $this->reviews()->withInfo();
+    }
+
+    public function reviewsWithComments(): HasMany
+    {
+        return $this->reviews()->has('comments');
     }
 }
