@@ -2,7 +2,7 @@
 
 @section('content')
 <p>Tavs pārskatītāja žetons: <a href="{{route('reviewers.show', $currentToken)}}">{{$currentToken}}</a>
-@dd($reviewers->first())
+
 <table>
     <thead>
         <tr><th>Pārskatītājs <th>Pārskatījumi <th>Pārskatījumi ar info <th>Pārskatījumi ar atsauksmi
