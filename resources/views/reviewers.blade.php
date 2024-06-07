@@ -14,7 +14,7 @@
                 </a>
             <td>{{$reviewer->reviews_count}}
             <td>{{$reviewer->reviews_with_info_count}}
-            <td>{{$reviewer->reviews_with_comments_count}}
+            <td>{{$reviewer->reviews_with_feedback_count}}
         @endforeach
 </table>
 @endsection

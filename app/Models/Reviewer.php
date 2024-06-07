@@ -30,8 +30,8 @@ class Reviewer extends Model
         return $this->reviews()->withInfo();
     }
 
-    public function reviewsWithComments(): HasMany
+    public function reviewsWithFeedback(): HasMany
     {
-        return $this->reviews()->has('comments');
+        return $this->reviews()->whereNotNull('status');
     }
 }

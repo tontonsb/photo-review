@@ -15,7 +15,7 @@ class ReviewerController
         $reviewers->loadCount([
             'reviews',
             'reviewsWithInfo',
-            'reviewsWithComments',
+            'reviewsWithFeedback',
         ]);
 
         return view('reviewers', [
