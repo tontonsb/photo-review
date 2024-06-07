@@ -1,5 +1,4 @@
 .progress {
-    height: var(--space-lg);
     width: 100%;
     background-color: var(--color-light);
     position: relative;
@@ -8,7 +7,7 @@
         content: attr(data-label);
         position: absolute;
         text-align: center;
-        top: var(--space-xs);
+        top: var(--space-sm);
         left: 0;
         right: 0;
     }
@@ -22,14 +21,14 @@
     .min {
         position: absolute;
         font-size: var(--font-sm);
-        left: 0;
+        left: var(--space-xs);
         bottom: 0;
     }
 
     .max {
         position: absolute;
         font-size: var(--font-sm);
-        right: 0;
+        right: var(--space-xs);
         bottom: 0;
     }
 }

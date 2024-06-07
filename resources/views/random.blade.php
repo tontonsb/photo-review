@@ -79,7 +79,14 @@
                 <span class=max>{{$reviewable_count}}</span>
             </div>
 
-            <button type=button class="js-show-infobox button--info">Atvērt pamācību</button>
+            <div class=buttons>
+                <button type=button class="js-show-infobox button--info">
+                    Atvērt pamācību
+                </button>
+                <a class="button button--info" href="{{route('reviewers.me')}}">
+                    Mani pārskatījumi
+                </a>
+            </div>
         </aside>
     </form>
 </main>
