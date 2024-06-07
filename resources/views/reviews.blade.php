@@ -71,4 +71,5 @@
 
 @include('_reviews')
 {{$reviews->links()}}
+<p>Izvēlētajam filtram pavisam atbilst {{$count}} ieraksti.
 @endsection

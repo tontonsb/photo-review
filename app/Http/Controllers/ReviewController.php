@@ -12,7 +12,7 @@ class ReviewController
 {
     public function index(Request $request)
     {
-        $reviews = Review::latest()
+        $reviewQuery = Review::latest()
             ->when(
                 'problems' === $request->filter,
                 fn($reviews) => $reviews->whereNotNull('problem')
@@ -55,11 +55,13 @@ class ReviewController
             ->when(
                 $request->has('conclusions'),
                 fn ($reviews) => $reviews->whereIn('conclusion', $request->conclusions ?? []),
-            )
-            ->cursorPaginate($request->pagesize ?? 20)
-            ->withQueryString();
+            );
 
-        return view('reviews', ['reviews' => $reviews]);
+        return view('reviews', [
+            'count' => $reviewQuery->toBase()->getCountForPagination(),
+            'reviews' => $reviewQuery->cursorPaginate($request->pagesize ?? 20)
+                ->withQueryString(),
+        ]);
     }
 
     public function show(Review $review)
