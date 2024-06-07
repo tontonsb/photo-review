@@ -1,6 +1,6 @@
 <table>
     <thead>
-        <tr><th>Iesniegts (UTC) <th colspan=2>Slēdziens <th>Info <th>Statuss <th>Bilde <th>Ilgums <th>Pārskatītājs
+        <tr><th>Iesniegts (UTC) <th colspan=2>Slēdziens <th>Saturs <th>Statuss <th>Bilde <th>Ilgums <th>Pārskatītājs
     <tbody>
         @foreach ($reviews as $review)
         <tr>
