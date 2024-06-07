@@ -15,11 +15,12 @@
             Kā ieraudzīt objektus vari patrenēties <a href="{{route('tutorial.index')}}">šeit</a>.
 
             <details>
-                <summary>⚠️ Jaunumi 06.06.2024</summary>
+                <summary>⚠️ Jaunumi 07.06.2024</summary>
                 <ol>
-                    <li>Pievienota treniņbilžu sērija, kurā mēģināt ieraudzīt zināmus objektus zināmās vietās.
+                    <li>Pievienota iespēja apskatīt savus pārskatījumus un mūsu atbildes uz tiem. Spied <a href="{{route('reviewers.me')}}">šeit</a> vai izmanto pogu informācijas blokā.
+                    <li>[06.06.2024] Pievienota treniņbilžu sērija, kurā mēģināt ieraudzīt zināmus objektus zināmās vietās.
                         Spied <a href="{{route('tutorial.index')}}">šeit</a>!
-                    <li>Ar pogu attēla labajā augšējā stūrī daļai attēlu var ieslēgt/izslēgt brīvu kustību bez attēla ierobežošanas rāmī — lai ērti vajadzīgo vietu pievilkt pie mērlentes.
+                    <li>[06.06.2024] Ar pogu attēla labajā augšējā stūrī daļai attēlu var ieslēgt/izslēgt brīvu kustību bez attēla ierobežošanas rāmī — lai ērti vajadzīgo vietu pievilkt pie mērlentes.
                 </ol>
             </details>
 
