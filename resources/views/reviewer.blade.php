@@ -3,8 +3,6 @@
 @section('content')
 <h3>Pārskatītājs {{$reviewer->reviewer_id}}</h3>
 
-<p>{{$timeSpent}}
-
 @if ($reviewedCount > 25)
 <p>Apskatījis {{$reviewCount}} bildes un pārskatījis (neizlaidis) {{$reviewedCount}} bildes, tam kopā veltot {{$timeSpent}}
 @elseif ($reviewCount > 10)

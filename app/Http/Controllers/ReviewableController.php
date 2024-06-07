@@ -7,7 +7,6 @@ use App\Models\Review;
 use App\Models\Reviewable;
 use App\Models\ReviewableFile;
 use App\Services\ReviewableService;
-use App\Services\ReviewerService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
@@ -18,20 +17,16 @@ class ReviewableController
 
     public function random(
         ReviewableService $reviewables,
-        // ReviewerService $reviewer,
         Request $request,
     ) {
         return $this->review(
             $reviewables->random(),
-            // $reviewer,
             $request,
         );
     }
 
     public function review(
         Reviewable $reviewable,
-        // We will use the current reviewer when the inner features are done
-        // ReviewerService $reviewer,
         Request $request,
     ) {
         $reviewable->increment('view_count');
@@ -50,11 +45,6 @@ class ReviewableController
             'reviewed_percentage' => number_format(100 * $imgWithReviews / $reviewables, 0),
             // floor to nearest hundred
             'reviewable_count' => round($reviewables - 50, -2, PHP_ROUND_HALF_DOWN),
-            /* 'reviewedByCurrentUser' => Review::distinct()
-                ->where('reviewer_id', $reviewer->getCurrentToken())
-                ->reviewed()
-                ->count('file'),
-            */
             'seenInfobox' => $seenInfobox,
             'linkedFile' => $reviewable->file->linkedFile(),
         ]);
@@ -62,7 +52,6 @@ class ReviewableController
 
     public function index()
     {
-        // TODO: paginate, ja vajadzēs. un vrb filtrēt pēc kkā
         $reviewCounts = Review::groupBy('file')
             ->select(
                 DB::raw('count(*) as review_count'),
