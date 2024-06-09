@@ -12,11 +12,16 @@
     </ul>
 </nav>
 
-<img src="{{$reviewable->url}}">
-
 <h2>Pārskatījumi</h2>
 @include('_reviews')
 
+<div id=image style="width: 100%; height: 70lvh;"></div>
+
 <h2>Metadati</h2>
 @include('_exif', ['exif' => $reviewable->getData()])
+
+@vite(['resources/js/review.js'])
+<script type=module>
+@include('_displayimagejs', ['exif' => $reviewable->getData(), 'element' => 'image', 'file' => $reviewable, 'intercative' => false])
+</script>
 @endsection
