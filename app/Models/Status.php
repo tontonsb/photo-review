@@ -8,6 +8,7 @@ enum Status: string
     case suspect = 'suspect';
     case checkable = 'checkable';
     case redo = 'redo';
+    case unclear = 'unclear';
 
     public function lv(): string
     {
@@ -16,6 +17,7 @@ enum Status: string
             static::suspect => '🆘 Svarīgi',
             static::checkable => '🚶 Jāpārbauda klātienē',
             static::redo => '📷 Jāpārbildē',
+            static::unclear => '❔ Neskaidrs',
         };
     }
 }

@@ -79,6 +79,7 @@ class ReviewableController
                         when 'suspect' then '🆘'
                         when 'checkable' then '🚶'
                         when 'redo' then '📷'
+                        when 'unclear' then '❔'
                         else ''
                     end
                 ) as reviews"),
