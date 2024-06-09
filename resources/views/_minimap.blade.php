@@ -4,7 +4,7 @@
             '{{$element}}',
             @json($exif['LOCATION']),
             '{{route('reviewables.geojson')}}',
-            {{$listener}},
+            @if($listener ?? false) {{$listener}} @else _ => {} @endif,
         )
     @else
         makeMapWith.pin(
@@ -13,7 +13,7 @@
             {{deg2rad($exif['YAW'] ?? 0)}},
             '{{asset('icons/drone_marker.svg')}}',
             '{{route('reviewables.geojson')}}',
-            {{$listener}},
+            @if($listener ?? false) {{$listener}} @else _ => {} @endif,
         )
     @endif
 @endif

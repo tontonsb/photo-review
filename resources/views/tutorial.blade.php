@@ -63,6 +63,6 @@ bootInfobox('.js-infobox', '.js-show-infobox', false)
 
 @include('_displayimagejs', ['exif' => $exif, 'element' => 'image', 'file' => $file, 'intercative' => true])
 
-@include('_minimap', ['exif' => $exif, 'element' => 'location-map', 'file' => $file, 'listener' => '_ => {}'])
+@include('_minimap', ['exif' => $exif, 'element' => 'location-map', 'file' => $file])
 </script>
 @endsection
