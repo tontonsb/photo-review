@@ -22,11 +22,6 @@ ul {
 .file {
     background-color: var(--color-light);
     padding: var(--space-xs);
-
-    code {
-        white-space: pre-line;
-        font-size: var(--font-sm);
-    }
 }
 
 button, .button {
