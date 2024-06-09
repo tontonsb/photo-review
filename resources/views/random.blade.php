@@ -87,24 +87,7 @@
 <script type=module>
 bootInfobox('.js-infobox', '.js-show-infobox', {{$seenInfobox ? 'false' : 'true'}})
 
-@if ($file->isSonarImage() && ($exif['LOCATION'] ?? false))
-    const {map, userMarkers} = displayImageOnMap('image', @json($exif['LOCATION']), '{{$file->url}}', true)
-@elseif (($exif['EXTENT'] ?? false) && ($exif['LOCATION'] ?? false))
-    const {map, userMarkers} = displayImageWithScale(
-        'image',
-        [{{$exif['LOCATION']['lon'] ?? 0}}, {{$exif['LOCATION']['lat'] ?? 0}}],
-        [{{$exif['EXTENT']['width'] ?? 0}}, {{$exif['EXTENT']['height'] ?? 0}}],
-        '{{$file->url}}',
-        true,
-    )
-@else
-    const {map, userMarkers} = displayImage(
-        'image',
-        [{{$exif['COMPUTED']['Width'] ?? 0}}, {{$exif['COMPUTED']['Height'] ?? 0}}],
-        '{{$file->url}}',
-        true,
-    )
-@endif
+@include('_displayimagejs', ['exif' => $exif, 'element' => 'image', 'file' => $file, 'intercative' => true])
 
 const form = document.querySelector('form')
 const coordinateInput = form.querySelector('[name=coordinates]')

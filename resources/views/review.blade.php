@@ -88,6 +88,7 @@
 
 @vite(['resources/js/review.js'])
 <script type=module>
+{{-- won't extract this to _displayimagejs because of custom handling for legacy reviews that's only need on this view --}}
 @if ($file->isSonarImage() && ($exif['LOCATION'] ?? false))
     const {map, userMarkers} = displayImageOnMap('image', @json($exif['LOCATION']), '{{$file->url}}', false)
 @elseif (($exif['EXTENT'] ?? false) && ($exif['LOCATION'] ?? false) && $review->created_at > '2024-06-02')
