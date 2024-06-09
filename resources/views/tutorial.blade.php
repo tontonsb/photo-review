@@ -63,19 +63,6 @@ bootInfobox('.js-infobox', '.js-show-infobox', false)
 
 @include('_displayimagejs', ['exif' => $exif, 'element' => 'image', 'file' => $file, 'intercative' => true])
 
-@if ($exif['LOCATION'] ?? false)
-    @if ($file->isSonarImage())
-        makeMapWith.box('location-map', @json($exif['LOCATION']), '{{route('reviewables.geojson')}}', _ => {})
-    @else
-        makeMapWith.pin(
-            'location-map',
-            @json($exif['LOCATION']),
-            {{deg2rad($exif['YAW'] ?? 0)}},
-            '{{asset('icons/drone_marker.svg')}}',
-            '{{route('reviewables.geojson')}}',
-            _ => {},
-        )
-    @endif
-@endif
+@include('_minimap', ['exif' => $exif, 'element' => 'location-map', 'file' => $file, 'listener' => '_ => {}'])
 </script>
 @endsection

@@ -1,27 +1,20 @@
 {
-  "_GeoJSON-DSA3QepV.js": {
-    "file": "assets/GeoJSON-DSA3QepV.js",
-    "name": "GeoJSON",
-    "imports": [
-      "_XYZ-DW-6z1kv.js"
-    ]
-  },
   "_XYZ-!~{008}~.js": {
     "file": "assets/XYZ-CSy_vbSQ.css",
     "src": "_XYZ-!~{008}~.js"
   },
-  "_XYZ-DW-6z1kv.js": {
-    "file": "assets/XYZ-DW-6z1kv.js",
+  "_XYZ-Dpa1tCDS.js": {
+    "file": "assets/XYZ-Dpa1tCDS.js",
     "name": "XYZ",
     "css": [
       "assets/XYZ-CSy_vbSQ.css"
     ]
   },
-  "_displayImageWithScale-BYuOAFdG.js": {
-    "file": "assets/displayImageWithScale-BYuOAFdG.js",
+  "_displayImageWithScale-DDf3am0k.js": {
+    "file": "assets/displayImageWithScale-DDf3am0k.js",
     "name": "displayImageWithScale",
     "imports": [
-      "_XYZ-DW-6z1kv.js"
+      "_XYZ-Dpa1tCDS.js"
     ]
   },
   "resources/css/internal.css": {
@@ -45,34 +38,32 @@
     "isEntry": true
   },
   "resources/js/map.js": {
-    "file": "assets/map-CHyra_1t.js",
+    "file": "assets/map-CIpSjz25.js",
     "name": "map",
     "src": "resources/js/map.js",
     "isEntry": true,
     "imports": [
-      "_XYZ-DW-6z1kv.js",
-      "_GeoJSON-DSA3QepV.js"
+      "_XYZ-Dpa1tCDS.js"
     ]
   },
   "resources/js/review.js": {
-    "file": "assets/review-CozcMaZ2.js",
+    "file": "assets/review-Mf9bntnF.js",
     "name": "review",
     "src": "resources/js/review.js",
     "isEntry": true,
     "imports": [
-      "_displayImageWithScale-BYuOAFdG.js",
-      "_XYZ-DW-6z1kv.js"
+      "_displayImageWithScale-DDf3am0k.js",
+      "_XYZ-Dpa1tCDS.js"
     ]
   },
   "resources/js/reviewer.js": {
-    "file": "assets/reviewer-L6ZdVNVj.js",
+    "file": "assets/reviewer-DdBv64tv.js",
     "name": "reviewer",
     "src": "resources/js/reviewer.js",
     "isEntry": true,
     "imports": [
-      "_XYZ-DW-6z1kv.js",
-      "_GeoJSON-DSA3QepV.js",
-      "_displayImageWithScale-BYuOAFdG.js"
+      "_displayImageWithScale-DDf3am0k.js",
+      "_XYZ-Dpa1tCDS.js"
     ]
   }
 }
