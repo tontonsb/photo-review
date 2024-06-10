@@ -57,8 +57,8 @@ export default function displayImage(target, center, extent, url, interactive = 
     })
 
     const swapView = createSwapViewControl()
-    let currentView = 'extent' === window.sessionStorage.getItem('view-type') ? viewWithExtent : viewWithoutExtent
-    swapView.button.innerHTML = 'extent' === window.sessionStorage.getItem('view-type') ? '🔳' : '🔲'
+    let currentView = 'extent' === window.sessionStorage.getItem('view-type') ? viewWithoutExtent : viewWithExtent
+    swapView.button.innerHTML = 'extent' === window.sessionStorage.getItem('view-type') ? '🔲' :  '🔳'
 
     const map = new Map({
         controls: defaultControls().extend([
@@ -78,7 +78,7 @@ export default function displayImage(target, center, extent, url, interactive = 
         view: currentView,
     })
 
-    map.getView().fit(extent)
+    currentView.fit(extent)
 
     swapView.button.addEventListener('click', _ => {
         if (currentView === viewWithoutExtent) {

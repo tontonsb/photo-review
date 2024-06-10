@@ -10,8 +10,8 @@
       "assets/XYZ-CSy_vbSQ.css"
     ]
   },
-  "_displayImageWithScale-DDf3am0k.js": {
-    "file": "assets/displayImageWithScale-DDf3am0k.js",
+  "_displayImageWithScale-DokdtwEu.js": {
+    "file": "assets/displayImageWithScale-DokdtwEu.js",
     "name": "displayImageWithScale",
     "imports": [
       "_XYZ-Dpa1tCDS.js"
@@ -47,22 +47,22 @@
     ]
   },
   "resources/js/review.js": {
-    "file": "assets/review-Mf9bntnF.js",
+    "file": "assets/review-DOmaeU26.js",
     "name": "review",
     "src": "resources/js/review.js",
     "isEntry": true,
     "imports": [
-      "_displayImageWithScale-DDf3am0k.js",
+      "_displayImageWithScale-DokdtwEu.js",
       "_XYZ-Dpa1tCDS.js"
     ]
   },
   "resources/js/reviewer.js": {
-    "file": "assets/reviewer-DdBv64tv.js",
+    "file": "assets/reviewer-CV2swgM1.js",
     "name": "reviewer",
     "src": "resources/js/reviewer.js",
     "isEntry": true,
     "imports": [
-      "_displayImageWithScale-DDf3am0k.js",
+      "_displayImageWithScale-DokdtwEu.js",
       "_XYZ-Dpa1tCDS.js"
     ]
   }
