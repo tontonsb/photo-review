@@ -17,7 +17,7 @@ enum Status: string
             static::suspect => '🆘 Svarīgi',
             static::checkable => '🚶 Jāpārbauda klātienē',
             static::redo => '📷 Jāpārbildē',
-            static::unclear => '❔ Neskaidrs',
+            static::unclear => '❓ Neskaidrs',
         };
     }
 }
