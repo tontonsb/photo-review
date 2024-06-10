@@ -64,6 +64,7 @@ export default function displayImage(target, center, extent, url, interactive = 
         controls: defaultControls().extend([
             scaleLine,
             swapView.control,
+            ...(interactive ? [userMarkers.clearControl] : []),
         ]),
         layers: [
             new ImageLayer({

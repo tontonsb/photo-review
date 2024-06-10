@@ -31,7 +31,10 @@ export default function displayImageOnMap(target, bounds, url, interactive = tru
     })
 
     const map = new Map({
-        controls: defaultControls().extend([scaleLine]),
+        controls: defaultControls().extend([
+            scaleLine,
+            ...(interactive ? [userMarkers.clearControl] : []),
+        ]),
         layers: [
             new TileLayer({
                 source: new XYZ({

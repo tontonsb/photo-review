@@ -5,7 +5,7 @@ import Projection from 'ol/proj/Projection'
 import Static from 'ol/source/ImageStatic'
 import View from 'ol/View'
 import {getCenter} from 'ol/extent'
-import {ScaleLine, defaults as defaultControls} from 'ol/control.js'
+import {defaults as defaultControls} from 'ol/control.js'
 import initUserMarkers from './userMarkers'
 
 /**
@@ -22,6 +22,9 @@ export default function displayImage(target, extent, url, interactive = true) {
     const userMarkers = initUserMarkers()
 
     const map = new Map({
+        controls: defaultControls().extend([
+            ...(interactive ? [userMarkers.clearControl] : []),
+        ]),
         layers: [
             new ImageLayer({
                 source: new Static({
