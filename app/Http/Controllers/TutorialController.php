@@ -17,6 +17,8 @@ class TutorialController
 
     public function show(Reviewable $reviewable)
     {
+        $reviewable->increment('view_count');
+
         return view('tutorial', [
             'reviewable' => $reviewable,
             'file' => $reviewable->file,
