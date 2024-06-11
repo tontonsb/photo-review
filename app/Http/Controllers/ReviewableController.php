@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\ReviewableGeoJsonCollection;
+use App\Models\Conclusion;
 use App\Models\Review;
 use App\Models\Reviewable;
 use App\Models\ReviewableFile;
@@ -116,10 +117,19 @@ class ReviewableController
 
     public function dir()
     {
+        $dirColumn = "substr(path, 1, instr(path, '/'))";
+
         return view('directory', [
-            'directories' => Reviewable::distinct()
-                ->selectRaw("substr(path, 1, instr(path, '/')) as dir")
-                ->pluck('dir'),
+            'directories' => Reviewable::leftJoinSub(
+                    Review::reviewed()->groupBy('file'),
+                    'reviewed_files',
+                    fn($join) => $join->on('reviewed_files.file', '=', 'reviewables.path'),
+                )
+                ->selectRaw("$dirColumn as dir")
+                ->selectRaw('count(*) as files')
+                ->selectRaw('count(reviewed_files.file) as reviewed_files')
+                ->groupBy($dirColumn)
+                ->get(),
         ]);
     }
 }
