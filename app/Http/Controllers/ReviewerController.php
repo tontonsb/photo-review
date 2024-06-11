@@ -39,7 +39,7 @@ class ReviewerController
 
     public function me(ReviewerService $reviewerService)
     {
-        $reviewer = Reviewer::find($reviewerService->getCurrentToken());
+        $reviewer = Reviewer::findOrFail($reviewerService->getCurrentToken());
 
         return $this->show($reviewer);
     }
