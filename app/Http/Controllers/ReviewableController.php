@@ -128,7 +128,7 @@ class ReviewableController
                 ->selectRaw("$dirColumn as dir")
                 ->selectRaw('count(*) as files')
                 ->selectRaw('count(reviewed_files.file) as reviewed_files')
-                ->groupBy($dirColumn)
+                ->groupByRaw($dirColumn)
                 ->get(),
         ]);
     }
