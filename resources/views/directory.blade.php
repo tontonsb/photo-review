@@ -20,7 +20,7 @@
         <tr>
             <td><a href="{{route('reviewables.index', ['filter' => $dir->dir])}}">{{$dir->dir}}</a>
             <td>{{$dir->files}}
-            <td>{{$dir->reviewed_files}}
+            <td>{{$dir->reviewed_files}} ({{round(100 * $dir->reviewed_files / $dir->files)}})
             <td>{{$dir->files - $dir->reviewed_files}}
     @endforeach
 </table>
