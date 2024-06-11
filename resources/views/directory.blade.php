@@ -13,13 +13,15 @@
 </nav>
 
 <table>
-    <tr><th>Mape <th>Bildes <th>Pārskatītas <th>Jāpārskata
+    <thead>
+        <tr><th>Mape <th>Bildes <th>Pārskatītas <th>Jāpārskata
+    <tbody>
     @foreach ($directories as $dir)
-    <tr>
-        <td><a href="{{route('reviewables.index', ['filter' => $dir->dir])}}">{{$dir->dir}}</a>
-        <td>{{$dir->files}}
-        <td>{{$dir->reviewed_files}}
-        <td>{{$dir->files - $dir->reviewed_files}}
+        <tr>
+            <td><a href="{{route('reviewables.index', ['filter' => $dir->dir])}}">{{$dir->dir}}</a>
+            <td>{{$dir->files}}
+            <td>{{$dir->reviewed_files}}
+            <td>{{$dir->files - $dir->reviewed_files}}
     @endforeach
 </table>
 @endsection
