@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.75 10.75">
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.75 10.75" width="10.75px" height="10.75px">
   <circle cx="5.38" cy="5.38" r="5" style="fill: #b833ff; stroke: #39c; stroke-miterlimit: 10; stroke-width: .75px;"/>
   <polygon points="5.38 6.54 2.34 8.28 5.38 1.52 8.41 8.28 5.38 6.54" style="fill: #fff; stroke-width: 0px;"/>
 </svg>
