@@ -4,7 +4,7 @@ import GeoJSON from 'ol/format/GeoJSON.js'
 import Polygon from 'ol/geom/Polygon.js'
 import TileLayer from 'ol/layer/Tile.js'
 import View from 'ol/View.js'
-import {fromLonLat, getPointResolution} from 'ol/proj.js'
+import {fromLonLat, getPointResolution, toLonLat} from 'ol/proj.js'
 import VectorLayer from 'ol/layer/Vector'
 import VectorSource from 'ol/source/Vector'
 import { XYZ } from 'ol/source'
@@ -56,7 +56,9 @@ function showFeaturesOnMap(target, featureEndpoint, clickFeatures) {
                 [left, top],
             ]])
 
-            polygon.rotate(-bearing * Math.PI / 180, center)
+            polygon.transform('EPSG:3857', 'EPSG:4326')
+            polygon.rotate(-bearing * Math.PI / 180, toLonLat(center))
+            polygon.transform('EPSG:4326', 'EPSG:3857')
 
             feature.setGeometry(polygon)
         })

@@ -3,18 +3,18 @@
     "file": "assets/XYZ-CSy_vbSQ.css",
     "src": "_XYZ-!~{008}~.js"
   },
-  "_XYZ-Cu8nJpgV.js": {
-    "file": "assets/XYZ-Cu8nJpgV.js",
+  "_XYZ-BFnzgKZ7.js": {
+    "file": "assets/XYZ-BFnzgKZ7.js",
     "name": "XYZ",
     "css": [
       "assets/XYZ-CSy_vbSQ.css"
     ]
   },
-  "_displayImageWithScale-BCdR-ZG_.js": {
-    "file": "assets/displayImageWithScale-BCdR-ZG_.js",
+  "_displayImageWithScale-C4bHINp0.js": {
+    "file": "assets/displayImageWithScale-C4bHINp0.js",
     "name": "displayImageWithScale",
     "imports": [
-      "_XYZ-Cu8nJpgV.js"
+      "_XYZ-BFnzgKZ7.js"
     ]
   },
   "resources/css/internal.css": {
@@ -38,32 +38,32 @@
     "isEntry": true
   },
   "resources/js/map.js": {
-    "file": "assets/map-msLg4Ryw.js",
+    "file": "assets/map-CKaWiZ6w.js",
     "name": "map",
     "src": "resources/js/map.js",
     "isEntry": true,
     "imports": [
-      "_XYZ-Cu8nJpgV.js"
+      "_XYZ-BFnzgKZ7.js"
     ]
   },
   "resources/js/review.js": {
-    "file": "assets/review-9QscQcyS.js",
+    "file": "assets/review-Y9LZLFSC.js",
     "name": "review",
     "src": "resources/js/review.js",
     "isEntry": true,
     "imports": [
-      "_displayImageWithScale-BCdR-ZG_.js",
-      "_XYZ-Cu8nJpgV.js"
+      "_displayImageWithScale-C4bHINp0.js",
+      "_XYZ-BFnzgKZ7.js"
     ]
   },
   "resources/js/reviewer.js": {
-    "file": "assets/reviewer-ELoLdQJg.js",
+    "file": "assets/reviewer-pgaA62EQ.js",
     "name": "reviewer",
     "src": "resources/js/reviewer.js",
     "isEntry": true,
     "imports": [
-      "_displayImageWithScale-BCdR-ZG_.js",
-      "_XYZ-Cu8nJpgV.js"
+      "_displayImageWithScale-C4bHINp0.js",
+      "_XYZ-BFnzgKZ7.js"
     ]
   }
 }
