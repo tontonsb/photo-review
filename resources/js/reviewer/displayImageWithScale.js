@@ -5,7 +5,8 @@ import Static from 'ol/source/ImageStatic'
 import View from 'ol/View'
 import {ScaleLine, Control, defaults as defaultControls} from 'ol/control.js'
 import initUserMarkers from './userMarkers'
-import { fromLonLat, getPointResolution } from 'ol/proj'
+import { fromLonLat, getPointResolution, toLonLat } from 'ol/proj'
+import BaseEvent from 'ol/events/Event'
 
 function createSwapViewControl() {
     const button = document.createElement('button')
@@ -24,7 +25,7 @@ function createSwapViewControl() {
 /**
  * Displays image with known WGS84 center, guessed size and unknown orientation.
  */
-export default function displayImage(target, center, extent, url, interactive = true, legacyScale = false) {
+export default function displayImage(target, center, bearing, extent, url, interactive = true, legacyScale = false) {
     center = fromLonLat(center)
 
     const viewWithoutExtent = new View({
@@ -103,10 +104,30 @@ export default function displayImage(target, center, extent, url, interactive = 
     }
 
     if (interactive) {
-        map.on('click', userMarkers.clickHandler)
+        map.on('click', userMarkers.removeClicked)
         map.on('pointermove', updateCursor)
         // Strangely new features aren't yet visible on the very next tick, so 0 timeout works wronq
         map.on('click', event => setTimeout(_ => updateCursor(event), 10))
+    } else {
+        map.on('click', async event => {
+            const features = await userMarkers.getClickedFeatures(event)
+
+            if (!features.length)
+                return
+
+            const output = []
+            features.forEach(feature => {
+                const point = feature.getGeometry().clone()
+
+                point.rotate(-bearing * Math.PI / 180, center)
+
+                output.push(toLonLat(point.getCoordinates()))
+            })
+
+            const ev = new BaseEvent('gotcoords')
+            ev.payload = 'Koordinātas:<br>' + output.map(c => c[1] + ',' + c[0]).join('<br>')
+            map.dispatchEvent(ev)
+        })
     }
 
     return {map, userMarkers}

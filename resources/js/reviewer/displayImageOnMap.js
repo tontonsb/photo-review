@@ -5,7 +5,7 @@ import Map from 'ol/Map'
 import Static from 'ol/source/ImageStatic'
 import View from 'ol/View'
 import { XYZ } from 'ol/source'
-import { transformExtent } from 'ol/proj'
+import { toLonLat, transformExtent } from 'ol/proj'
 import {ScaleLine, defaults as defaultControls} from 'ol/control.js'
 import initUserMarkers from './userMarkers'
 
@@ -68,10 +68,23 @@ export default function displayImageOnMap(target, bounds, url, interactive = tru
     }
 
     if (interactive) {
-        map.on('click', userMarkers.clickHandler)
+        map.on('click', userMarkers.removeClicked)
         map.on('pointermove', updateCursor)
         // Strangely new features aren't yet visible on the very next tick, so 0 timeout works wronq
         map.on('click', event => setTimeout(_ => updateCursor(event), 10))
+    } else {
+        map.on('click', async event => {
+            const features = await userMarkers.getClickedFeatures(event)
+
+            const output = []
+            features.forEach(feature => {
+                output.push(toLonLat(feature.getGeometry().getCoordinates()))
+            })
+
+            const ev = new BaseEvent('gotcoords')
+            ev.payload = 'Koordinātas:<br>' + output.map(c => c[1] + ',' + c[0]).join('<br>')
+            map.dispatchEvent(ev)
+        })
     }
 
     return {map, userMarkers}

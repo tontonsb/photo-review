@@ -84,6 +84,7 @@
 </form>
 @endcan
 
+<p class=coords></p>
 <div id=image style="width: 100%; height: 70lvh;"></div>
 
 @vite(['resources/js/review.js'])
@@ -95,6 +96,7 @@
     const {map, userMarkers} = displayImageWithScale(
         'image',
         [{{$exif['LOCATION']['lon'] ?? 0}}, {{$exif['LOCATION']['lat'] ?? 0}}],
+        {{$exif['YAW'] ?? 0}},
         [{{$exif['EXTENT']['width'] ?? 0}}, {{$exif['EXTENT']['height'] ?? 0}}],
         '{{$file->url}}',
         false,
@@ -108,6 +110,9 @@
         false,
     )
 @endif
+
+const coords = document.querySelector('p.coords')
+map.on('gotcoords', e => coords.innerHTML = e.payload)
 
 @if ($review->coordinates)
 userMarkers.addMarkers(@json($review->coordinates))

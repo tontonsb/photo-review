@@ -54,10 +54,23 @@ export default function displayImage(target, extent, url, interactive = true) {
     }
 
     if (interactive) {
-        map.on('click', userMarkers.clickHandler)
+        map.on('click', userMarkers.removeClicked)
         map.on('pointermove', updateCursor)
         // Strangely new features aren't yet visible on the very next tick, so 0 timeout works wronq
         map.on('click', event => setTimeout(_ => updateCursor(event), 10))
+    } else {
+        map.on('click', async event => {
+            const features = await userMarkers.getClickedFeatures(event)
+
+            const output = []
+            features.forEach(feature => {
+                output.push(feature.getGeometry().getCoordinates())
+            })
+
+            const ev = new BaseEvent('gotcoords')
+            ev.payload = 'Koordinātas (pikseļos nevis īstās):<br>' + output.map(c => c[1] + ',' + c[0]).join('<br>')
+            map.dispatchEvent(ev)
+        })
     }
 
     return {map, userMarkers}

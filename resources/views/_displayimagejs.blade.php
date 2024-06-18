@@ -9,6 +9,7 @@
     const {map, userMarkers} = displayImageWithScale(
         '{{$element}}',
         [{{$exif['LOCATION']['lon'] ?? 0}}, {{$exif['LOCATION']['lat'] ?? 0}}],
+        {{$exif['YAW'] ?? 0}},
         [{{$exif['EXTENT']['width'] ?? 0}}, {{$exif['EXTENT']['height'] ?? 0}}],
         '{{$file->url}}',
         {{$intercative ? 'true' : 'false'}},

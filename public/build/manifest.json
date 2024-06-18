@@ -3,18 +3,18 @@
     "file": "assets/XYZ-CSy_vbSQ.css",
     "src": "_XYZ-!~{008}~.js"
   },
-  "_XYZ-Cu8nJpgV.js": {
-    "file": "assets/XYZ-Cu8nJpgV.js",
+  "_XYZ-DsNBlP0r.js": {
+    "file": "assets/XYZ-DsNBlP0r.js",
     "name": "XYZ",
     "css": [
       "assets/XYZ-CSy_vbSQ.css"
     ]
   },
-  "_displayImageWithScale-DpXkwLyW.js": {
-    "file": "assets/displayImageWithScale-DpXkwLyW.js",
+  "_displayImageWithScale-CgljF80I.js": {
+    "file": "assets/displayImageWithScale-CgljF80I.js",
     "name": "displayImageWithScale",
     "imports": [
-      "_XYZ-Cu8nJpgV.js"
+      "_XYZ-DsNBlP0r.js"
     ]
   },
   "resources/css/internal.css": {
@@ -38,32 +38,32 @@
     "isEntry": true
   },
   "resources/js/map.js": {
-    "file": "assets/map-oNk1Nrb-.js",
+    "file": "assets/map-ByH-CGuN.js",
     "name": "map",
     "src": "resources/js/map.js",
     "isEntry": true,
     "imports": [
-      "_XYZ-Cu8nJpgV.js"
+      "_XYZ-DsNBlP0r.js"
     ]
   },
   "resources/js/review.js": {
-    "file": "assets/review-KU6t6iQi.js",
+    "file": "assets/review-D5S5pMYd.js",
     "name": "review",
     "src": "resources/js/review.js",
     "isEntry": true,
     "imports": [
-      "_displayImageWithScale-DpXkwLyW.js",
-      "_XYZ-Cu8nJpgV.js"
+      "_displayImageWithScale-CgljF80I.js",
+      "_XYZ-DsNBlP0r.js"
     ]
   },
   "resources/js/reviewer.js": {
-    "file": "assets/reviewer-6jlqJ56u.js",
+    "file": "assets/reviewer-tjuobYq8.js",
     "name": "reviewer",
     "src": "resources/js/reviewer.js",
     "isEntry": true,
     "imports": [
-      "_displayImageWithScale-DpXkwLyW.js",
-      "_XYZ-Cu8nJpgV.js"
+      "_displayImageWithScale-CgljF80I.js",
+      "_XYZ-DsNBlP0r.js"
     ]
   }
 }

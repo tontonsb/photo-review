@@ -48,7 +48,7 @@ export default function initUserMarkers() {
         }),
     })
 
-    const clickHandler = async event => {
+    const removeClicked = async event => {
         const features = await layer.getFeatures(event.pixel)
 
         // If a feature was clicked, we remove it
@@ -67,6 +67,12 @@ export default function initUserMarkers() {
         clearControl.element.style.display = 'block'
     }
 
+    const getClickedFeatures = async event => {
+        const features = await layer.getFeatures(event.pixel)
+
+        return features
+    }
+
     const getMarkers = () => source.getFeatures().map(
         feature => feature.getGeometry().getCoordinates()
     )
@@ -82,5 +88,5 @@ export default function initUserMarkers() {
         clearControl.element.style.display = 'none'
     })
 
-    return {layer, clickHandler, getMarkers, addMarkers, clearControl: clearControl.control}
+    return {layer, removeClicked, getClickedFeatures, getMarkers, addMarkers, clearControl: clearControl.control}
 }

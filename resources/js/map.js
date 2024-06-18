@@ -92,8 +92,6 @@ function showFeaturesOnMap(target, featureEndpoint, clickFeatures) {
         const features = []
 
         map.forEachFeatureAtPixel(pixel, feature => {
-            console.log({šķībums: feature.get('bearing_degrees')})
-
             features.push({
                 path: feature.get('path'),
                 url: feature.get('url'),
