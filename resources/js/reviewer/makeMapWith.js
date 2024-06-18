@@ -27,7 +27,6 @@ function pin(target, location, rotation, icon, featureEndpoint, clickFeatures) {
         new Style({
             image: new Icon({
                 src: icon,
-                scale: 0.125,
                 rotation: rotation,
             }),
         })
