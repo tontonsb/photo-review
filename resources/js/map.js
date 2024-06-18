@@ -98,6 +98,8 @@ function showFeaturesOnMap(target, featureEndpoint, clickFeatures) {
             })
         })
 
+        console.log({šķībums: feature.get('bearing_degrees')})
+
         clickFeatures(features)
     })
 
