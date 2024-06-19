@@ -11,7 +11,6 @@ class ReviewerToken extends Model
 {
     protected $primaryKey = 'reviewer_id';
     protected $keyType = 'string';
-    protected $fillable = ['*'];
 
     public static function getOrRegister(string $reviewerToken): static
     {
@@ -23,7 +22,7 @@ class ReviewerToken extends Model
 
     protected static function register(string $reviewerToken): static
     {
-        return static::create([
+        return static::forceCreate([
             'reviewer_id' => $reviewerToken,
             'transfer_token' => (string) Str::ulid(),
         ]);
