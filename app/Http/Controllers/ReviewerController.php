@@ -24,7 +24,7 @@ class ReviewerController
         ]);
     }
 
-    public function show(Reviewer $reviewer)
+    public function show(Reviewer $reviewer, ReviewerService $reviewerService)
     {
         $reviews = $reviewer->reviews;
 
@@ -34,6 +34,7 @@ class ReviewerController
             'reviewCount' => $reviews->count(),
             'reviewedCount' => $reviews->where('conclusion', '!=', Conclusion::skip)->count(),
             'timeSpent' => CarbonInterval::milliseconds($reviews->sum('reviewing_duration_ms'))->cascade()->forHumans(['short' => true]),
+            'reviewerService' => $reviewerService,
         ]);
     }
 
@@ -41,6 +42,6 @@ class ReviewerController
     {
         $reviewer = Reviewer::findOrFail($reviewerService->getCurrentToken());
 
-        return $this->show($reviewer);
+        return $this->show($reviewer, $reviewerService);
     }
 }
