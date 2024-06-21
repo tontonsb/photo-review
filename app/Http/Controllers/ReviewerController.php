@@ -40,7 +40,11 @@ class ReviewerController
 
     public function me(ReviewerService $reviewerService)
     {
-        $reviewer = Reviewer::findOrFail($reviewerService->getCurrentToken());
+        $reviewer = Reviewer::find($reviewerService->getCurrentToken());
+
+        if (!$reviewer) {
+            abort(404, 'Šajā ierīcē tev pārskatījumu vēl nav');
+        }
 
         return $this->show($reviewer, $reviewerService);
     }
