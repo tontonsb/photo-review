@@ -28,7 +28,7 @@ class AuthenticatedSessionController
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('reviews.index', absolute: false));
+        return redirect()->intended(route('me', absolute: false));
     }
 
     /**
