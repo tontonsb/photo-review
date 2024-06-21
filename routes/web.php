@@ -56,6 +56,7 @@ Route::middleware('auth')->group(function () {
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
     Route::get('me', [ProfileController::class, 'me'])->name('me');
+    Route::post('bind-reviewer', [ProfileController::class, 'bind'])->name('bind-reviewer');
 });
 
 // TODO: varbūt stati grupējot pēc reviewer_id un reviewu filtri pēc tā. Lai identificētu spamerus utml

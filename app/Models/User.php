@@ -56,4 +56,9 @@ class User extends Authenticatable
         $this->verified_at = now();
         $this->save();
     }
+
+    public function tokens(): HasMany
+    {
+        return $this->hasMany(ReviewerToken::class);
+    }
 }
