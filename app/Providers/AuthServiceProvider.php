@@ -12,5 +12,6 @@ class AuthServiceProvider extends ServiceProvider
     {
         Gate::define('comment', fn(User $user) => $user->verified_at);
         Gate::define('view-comment-authors', fn(User $user) => $user->verified_at);
+        Gate::define('view-user-names', fn(User $user) => $user->verified_at);
     }
 }

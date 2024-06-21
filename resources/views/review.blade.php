@@ -1,3 +1,4 @@
+@use('App\Models\ReviewerToken')
 @extends('layout')
 
 @section('content')
@@ -9,8 +10,13 @@
 
     <dt>Pārskatītājs
     <dd><a href="{{route('reviewers.show', $review->reviewer_id)}}">
-            {{$review->reviewer_id}}
-        </a>
+            {{$review->reviewer_id}}</a>
+
+        @can('view-user-names')
+            @if ($user = ReviewerToken::find($review->reviewer_id)->user)
+                ({{$user->name}})
+            @endif
+        @endcan
 
     <dt>Laiks
     <dd>{{$review->created_at}}
