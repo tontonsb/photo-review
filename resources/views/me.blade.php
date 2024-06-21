@@ -10,7 +10,7 @@ article ul {
 @section('content')
 @if ($reviewerIdentities->count())
 <article>
-    <header><h3>Tava statistika:</h3></header>
+    <h3>Tava statistika</h3>
     <ul>
         <li>Apskatītas {{$reviewCount}} bildes
         <li>Pārskatītas (neizlaistas) {{$reviewedCount}} bildes
@@ -19,29 +19,30 @@ article ul {
 </article>
 @endif
 
-<form method=post action="{{route('bind-reviewer')}}" >
-    @csrf
-    <h3>Piesaistīt lietotāja kontam pārskatīšanas progresu</h3>
+<article>
+    <form method=post action="{{route('bind-reviewer')}}" >
+        @csrf
+        <h3>Piesaistīt lietotāja kontam pārskatīšanas progresu</h3>
 
-    @session('status')
-    <article>
-        <p>{{$value}}
-    </article>
-    @endsession
+        @session('status')
+        <article>
+            <p>{{$value}}
+        </article>
+        @endsession
 
-    <label>
-        Piesaistīšanas kods
-        <input required type=text name=code>
-    </label>
+        <label>
+            Piesaistīšanas kods
+            <input required type=text name=code>
+        </label>
 
-    <button>Saglabāt</button>
-</form>
+        <button>Saglabāt</button>
+    </form>
+</article>
 
 @if ($reviewerIdentities->count())
-    <hr>
+    <h3>Tavi pārskatītāja žetoni</h3>
 
     <table>
-        <caption>Tavi pārskatītāja žetoni:</caption>
         <thead>
             <tr><th>Pārskatītājs <th>Pārskatījumi <th>Pārskatījumi ar info <th>Pārskatījumi ar atsauksmi
         <tbody>
@@ -58,6 +59,7 @@ article ul {
 
     <hr>
 
+    <h3>Tavi pārskatījumi</h3>
     @include('_reviews')
 @endif
 
