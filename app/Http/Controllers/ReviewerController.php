@@ -30,7 +30,7 @@ class ReviewerController
 
         return view('reviewer', [
             'reviewer' => $reviewer,
-            'reviews' => $reviewer->reviews,
+            'reviews' => $reviews,
             'reviewCount' => $reviews->count(),
             'reviewedCount' => $reviews->where('conclusion', '!=', Conclusion::skip)->count(),
             'timeSpent' => CarbonInterval::milliseconds($reviews->sum('reviewing_duration_ms'))->cascade()->forHumans(['short' => true]),

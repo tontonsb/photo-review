@@ -1,6 +1,23 @@
 @extends('layout')
 
+@section('head')
+<style>
+article ul {
+    padding-inline-start: var(--space-lg);
+}
+</style>
+
 @section('content')
+@if ($reviewerIdentities->count())
+<article>
+    <header><h3>Tava statistika:</h3></header>
+    <ul>
+        <li>Apskatītas {{$reviewCount}} bildes
+        <li>Pārskatītas (neizlaistas) {{$reviewedCount}} bildes
+        <li>Veltītas {{$timeSpent}}
+    </ul>
+</article>
+@endif
 
 <form method=post action="{{route('bind-reviewer')}}" >
     @csrf
@@ -41,6 +58,7 @@
 
     <hr>
 
+    @include('_reviews')
 @endif
 
 @endsection
