@@ -21,7 +21,7 @@
         <form method=post action="{{route('logout')}}">
             @csrf
             <p>
-                {{auth()->user()->name}}
+                <a href="{{route('me')}}">{{auth()->user()->name}}</a>
                 (<a
                     href="{{route('logout')}}"
                     onclick="event.preventDefault();this.closest('form').submit();"

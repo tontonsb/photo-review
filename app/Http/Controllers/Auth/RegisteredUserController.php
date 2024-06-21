@@ -45,6 +45,6 @@ class RegisteredUserController
 
         Auth::login($user);
 
-        return redirect(route('reviews.index', absolute: false));
+        return redirect(route('me', absolute: false));
     }
 }
