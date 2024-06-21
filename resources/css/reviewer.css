@@ -3,6 +3,10 @@
 @import 'reviewer/dialog.css';
 @import 'reviewer/progress.css';
 
+html {
+    color: var(--color-main);
+}
+
 #image {
     background-color: var(--color-dim);
 }
