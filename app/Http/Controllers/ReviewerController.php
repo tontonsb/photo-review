@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Conclusion;
 use App\Models\Reviewer;
+use App\Models\ReviewerToken;
 use App\Services\ReviewerService;
 use Carbon\CarbonInterval;
 
@@ -35,6 +36,7 @@ class ReviewerController
             'reviewedCount' => $reviews->where('conclusion', '!=', Conclusion::skip)->count(),
             'timeSpent' => CarbonInterval::milliseconds($reviews->sum('reviewing_duration_ms'))->cascade()->forHumans(['short' => true]),
             'reviewerService' => $reviewerService,
+            'reviewerToken' => ReviewerToken::getOrRegister($reviewerService->getCurrentToken()),
         ]);
     }
 
