@@ -8,6 +8,7 @@ import { XYZ } from 'ol/source'
 import { toLonLat, transformExtent } from 'ol/proj'
 import {ScaleLine, defaults as defaultControls} from 'ol/control.js'
 import initUserMarkers from './userMarkers'
+import BaseEvent from 'ol/events/Event'
 
 /**
  * Places image with known WGS84 bounds on the map.

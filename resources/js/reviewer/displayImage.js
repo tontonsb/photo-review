@@ -7,6 +7,7 @@ import View from 'ol/View'
 import {getCenter} from 'ol/extent'
 import {defaults as defaultControls} from 'ol/control.js'
 import initUserMarkers from './userMarkers'
+import BaseEvent from 'ol/events/Event'
 
 /**
  * Displays image
