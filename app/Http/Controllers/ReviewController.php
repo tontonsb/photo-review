@@ -6,56 +6,14 @@ use App\Models\Conclusion;
 use App\Models\Review;
 use App\Models\Reviewable;
 use App\Services\ReviewerService;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class ReviewController
 {
     public function index(Request $request)
     {
-        $reviewQuery = Review::latest()
-            ->when(
-                'problems' === $request->filter,
-                fn($reviews) => $reviews->whereNotNull('problem')
-            )
-            ->when(
-                'reviews' === $request->filter,
-                fn($reviews) => $reviews->whereNotNull('review')
-            )
-            ->when(
-                'pins' === $request->filter,
-                fn($reviews) => $reviews->whereNotNull('coordinates')
-            )
-            ->when(
-                'info' === $request->filter,
-                fn($reviews) => $reviews->where(fn($r) => $r
-                    ->whereNotNull('review')
-                    ->orWhereNotNull('problem')
-                    ->orWhereNotNull('coordinates')
-                    ->orWhere('conclusion', Conclusion::suspect)
-                )
-            )
-            ->when(
-                'any' === $request->filter,
-                fn($reviews) => $reviews->where(fn($r) => $r
-                    ->whereNotNull('review')
-                    ->orWhereNotNull('problem')
-                    ->orWhereNotNull('coordinates')
-                )
-            )
-            ->when(
-                $request->has('statuses'),
-                fn($reviews) => $reviews->where(fn($r) => $r
-                    ->whereIn('status', $request->statuses)
-                    ->when(
-                        in_array('no_status', $request->statuses ?? []),
-                        fn($rr) => $rr->orWhereNull('status')
-                    )
-                )
-            )
-            ->when(
-                $request->has('conclusions'),
-                fn ($reviews) => $reviews->whereIn('conclusion', $request->conclusions ?? []),
-            );
+        $reviewQuery = $this->reviewQuery($request);
 
         return view('reviews', [
             'count' => $reviewQuery->toBase()->getCountForPagination(),
@@ -119,5 +77,53 @@ class ReviewController
 
         // Neglabāsim tukšus masīvus
         return $coordinates ?: null;
+    }
+
+    protected function reviewQuery(Request $request): Builder
+    {
+        return Review::latest()
+            ->when(
+                'problems' === $request->filter,
+                fn($reviews) => $reviews->whereNotNull('problem')
+            )
+            ->when(
+                'reviews' === $request->filter,
+                fn($reviews) => $reviews->whereNotNull('review')
+            )
+            ->when(
+                'pins' === $request->filter,
+                fn($reviews) => $reviews->whereNotNull('coordinates')
+            )
+            ->when(
+                'info' === $request->filter,
+                fn($reviews) => $reviews->where(fn($r) => $r
+                    ->whereNotNull('review')
+                    ->orWhereNotNull('problem')
+                    ->orWhereNotNull('coordinates')
+                    ->orWhere('conclusion', Conclusion::suspect)
+                )
+            )
+            ->when(
+                'any' === $request->filter,
+                fn($reviews) => $reviews->where(fn($r) => $r
+                    ->whereNotNull('review')
+                    ->orWhereNotNull('problem')
+                    ->orWhereNotNull('coordinates')
+                )
+            )
+            ->when(
+                $request->has('statuses'),
+                fn($reviews) => $reviews->where(fn($r) => $r
+                    ->whereIn('status', $request->statuses)
+                    ->when(
+                        in_array('no_status', $request->statuses ?? []),
+                        fn($rr) => $rr->orWhereNull('status')
+                    )
+                )
+            )
+            ->when(
+                $request->has('conclusions'),
+                fn ($reviews) => $reviews->whereIn('conclusion', $request->conclusions ?? []),
+            );
     }
 }
