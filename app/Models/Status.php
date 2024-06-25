@@ -20,4 +20,15 @@ enum Status: string
             static::unclear => '❓ Neskaidrs',
         };
     }
+
+    public function icon(): string
+    {
+        return match($this) {
+            static::ok => '✅',
+            static::suspect => '🆘',
+            static::checkable => '🚶',
+            static::redo => '📷',
+            static::unclear => '❓',
+        };
+    }
 }

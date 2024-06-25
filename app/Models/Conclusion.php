@@ -16,4 +16,13 @@ enum Conclusion: string
             static::skip => '🔄️ Izlaista',
         };
     }
+
+    public function icon(): string
+    {
+        return match($this) {
+            static::ok => '✔️',
+            static::suspect => '⁉️',
+            static::skip => '🔄️',
+        };
+    }
 }
