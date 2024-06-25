@@ -3,9 +3,9 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-class GeoJsonCollection extends ResourceCollection
+class GeoJsonCollection extends AnonymousResourceCollection
 {
     public static $wrap = 'features';
 
