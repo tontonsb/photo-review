@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\ReviewableGeoJsonCollection;
-use App\Models\Conclusion;
+use App\Http\Resources\ReviewableGeoJson;
 use App\Models\Review;
 use App\Models\Reviewable;
 use App\Models\ReviewableFile;
@@ -97,7 +96,7 @@ class ReviewableController
 
     public function geojson()
     {
-        return new ReviewableGeoJsonCollection(
+        return ReviewableGeoJson::collection(
             Reviewable::nonTutorial()
                 ->whereNotNull('metadata->LOCATION')
                 ->get()
