@@ -53,6 +53,11 @@ class Review extends Model
         return $this->hasMany(Comment::class);
     }
 
+    public function reviewable(): BelongsTo
+    {
+        return $this->belongsTo(Reviewable::class, 'file');
+    }
+
     // Mākslīgais intelekts™ par pārskatītām uzskatīs bildes
     public function scopeReviewed(Builder $reviews): void
     {

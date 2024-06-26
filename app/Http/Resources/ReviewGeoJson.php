@@ -12,7 +12,7 @@ class ReviewGeoJson extends JsonResource
     protected function geometry(): array
     {
         $file = $this->reviewableFile;
-        $location = $file->getData()['LOCATION'];
+        $location = $this->reviewable->data['LOCATION'];
 
         if ($file->isSonarImage()) {
             extract(array_map(floatval(...), $location));
