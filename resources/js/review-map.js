@@ -17,7 +17,7 @@ const labelStyle = feature => new Style({
         font: '15px sans-serif',
         text: feature.get('conclusion') + (feature.get('status') ?? ''),
         backgroundFill: new Fill({
-            color: '#0009',
+            color: '#fff9',
         }),
         padding: [3,0,1,2],
     }),
