@@ -72,5 +72,5 @@
 @include('_reviews')
 {{$reviews->links()}}
 <p>Izvēlētajam filtram pavisam atbilst {{$count}} ieraksti.
-<a href="{{route('reviews.map').'?'.request()->getQueryString()}}">Atvērt visus kartē.</a>
+<a href="{{route('reviews.map').'?'.request()->getQueryString()}}">Parādīt atlasītos kartē.</a>
 @endsection
