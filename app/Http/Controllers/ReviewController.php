@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ReviewGeoJson;
 use App\Models\Conclusion;
 use App\Models\Review;
 use App\Models\Reviewable;
@@ -19,6 +20,17 @@ class ReviewController
             'count' => $reviewQuery->toBase()->getCountForPagination(),
             'reviews' => $reviewQuery->cursorPaginate($request->pagesize ?? 20)
                 ->withQueryString(),
+        ]);
+    }
+
+    public function map(Request $request)
+    {
+        return view('review-map', [
+            'reviews' => ReviewGeoJson::collection(
+                $this->reviewQuery($request)->get()->filter(
+                    fn($review) => isset($review->reviewableFile->getData()['LOCATION'])
+                )
+            )->toResponse($request)->getContent(),
         ]);
     }
 

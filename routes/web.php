@@ -26,6 +26,7 @@ Route::name('tutorial.')->controller(TutorialController::class)->group(function(
 
 Route::name('reviews.')->controller(ReviewController::class)->group(function() {
     Route::get('reviews', 'index')->name('index');
+    Route::get('reviews/map', 'map')->name('map');
     Route::post('/', 'store')->name('store');
     Route::get('reviews/{review}', 'show')->name('show');
 });

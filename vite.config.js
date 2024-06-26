@@ -12,6 +12,7 @@ export default defineConfig({
                 'resources/js/map.js',
                 'resources/js/review.js',
                 'resources/js/reviewer.js',
+                'resources/js/review-map.js',
             ],
             refresh: true,
         }),
