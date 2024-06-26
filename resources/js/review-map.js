@@ -9,11 +9,17 @@ import VectorSource from 'ol/source/Vector'
 import { XYZ } from 'ol/source'
 import Style from 'ol/style/Style'
 import Text from 'ol/style/Text'
+import Fill from 'ol/style/Fill'
+import Stroke from 'ol/style/Stroke'
 
 const labelStyle = feature => new Style({
     text: new Text({
-        font: '14px sans-serif',
+        font: '15px sans-serif',
         text: feature.get('conclusion') + (feature.get('status') ?? ''),
+        backgroundFill: new Fill({
+            color: '#0009',
+        }),
+        padding: [3,0,1,2],
     }),
 })
 
