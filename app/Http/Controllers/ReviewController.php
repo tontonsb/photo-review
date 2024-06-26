@@ -27,7 +27,7 @@ class ReviewController
     {
         return view('review-map', [
             'reviews' => ReviewGeoJson::collection(
-                $this->reviewQuery($request)->get()->filter(
+                $this->reviewQuery($request)->with('reviewable')->get()->filter(
                     fn($review) => isset($review->reviewableFile->getData()['LOCATION'])
                 )
             )->toResponse($request)->getContent(),
