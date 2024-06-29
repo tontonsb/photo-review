@@ -15,16 +15,6 @@
             Kā ieraudzīt objektus vari patrenēties <a href="{{route('tutorial.index')}}">šeit</a>.
 
             <details>
-                <summary>⚠️ Jaunumi 07.06.2024</summary>
-                <ol>
-                    <li>Pievienota iespēja apskatīt savus pārskatījumus un mūsu atbildes uz tiem. Spied <a href="{{route('reviewers.me')}}">šeit</a> vai izmanto pogu informācijas blokā.
-                    <li>[06.06.2024] Pievienota treniņbilžu sērija, kurā mēģināt ieraudzīt zināmus objektus zināmās vietās.
-                        Spied <a href="{{route('tutorial.index')}}">šeit</a>!
-                    <li>[06.06.2024] Ar pogu attēla labajā augšējā stūrī daļai attēlu var ieslēgt/izslēgt brīvu kustību bez attēla ierobežošanas rāmī — lai ērti vajadzīgo vietu pievilkt pie mērlentes.
-                </ol>
-            </details>
-
-            <details>
                 <summary>
                     Kas tās par bildēm? Kā tās skatīties?
                 </summary>
@@ -38,6 +28,8 @@
                     Bildes uzņemšanas vieta vai bildei atbilstošais reģions atzīmēts arī minikartē informācijas blokā.
 
                 <p>Ja vieglāk ir koncentrēties uz viena veida bildēm, var "Turpināsim ar ... bildi" izvēlēties skatīt attēlus nevis nejaušā secībā, bet pēc kārtas no esošās kopas.
+
+                <p>Ar pogu attēla labajā augšējā stūrī daļai attēlu var ieslēgt/izslēgt brīvu kustību bez attēla ierobežošanas rāmī — lai ērti vajadzīgo vietu pievilkt pie mērlentes.
             </details>
 
             <details>
