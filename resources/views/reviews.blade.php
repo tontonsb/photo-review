@@ -37,7 +37,7 @@
                 name=conclusions[]
                 value={{$conclusion->value}}
                 @checked(in_array($conclusion->value, request()->conclusions ?? []))
-                >{{$conclusion->lv()}}
+                >{{$conclusion->title()}}
         </label>
         @endforeach
     </div>
@@ -59,7 +59,7 @@
                 name=statuses[]
                 value={{$status->value}}
                 @checked(in_array($status->value, request()->statuses ?? []))
-                >{{$status->lv()}}
+                >{{$status->title()}}
         </label>
         @endforeach
     </div>

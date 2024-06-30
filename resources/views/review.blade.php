@@ -22,7 +22,7 @@
     <dd>{{$review->created_at}}
 
     <dt>Slēdziens
-    <dd>{{$review->conclusion?->lv()}}
+    <dd>{{$review->conclusion?->title()}}
 
     <dt>Info
     <dd>{{$review->review}}
@@ -34,7 +34,7 @@
     <dd>{{$review->duration}}
 
     <dt>Statuss
-    <dd>{{$review->status?->lv() ?? '❔ Nepārskatīts'}}
+    <dd>{{$review->status?->title() ?? '❔ Nepārskatīts'}}
 </dl>
 
 <h3>Komentāri</h3>
@@ -45,7 +45,7 @@
             @can('view-comment-authors')
                 {{$comment->user->name}}
             @endcan
-            {{$comment->status?->lv()}}
+            {{$comment->status?->title()}}
         </h4>
     </header>
 
@@ -70,7 +70,7 @@
         <select name=status required>
             <option>
             @foreach (App\Models\Status::cases() as $status)
-            <option value="{{$status->value}}" @selected($status->value === old('status', $review->status?->value))>{{$status->lv()}}
+            <option value="{{$status->value}}" @selected($status->value === old('status', $review->status?->value))>{{$status->title()}}
             @endforeach
         </select>
         @error('status')

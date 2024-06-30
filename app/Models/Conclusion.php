@@ -8,13 +8,9 @@ enum Conclusion: string
     case suspect = 'suspect';
     case skip = 'skip';
 
-    public function lv(): string
+    public function title(): string
     {
-        return match($this) {
-            static::ok => '✔️ OK',
-            static::suspect => '⁉️ Aizdomīga',
-            static::skip => '🔄️ Izlaista',
-        };
+        return $this->icon().' '.__('enums.'.static::class.'.'.$this->name);
     }
 
     public function icon(): string

@@ -7,7 +7,7 @@
             <td>
                     {{$review->created_at}}
                 </a>
-            <td>{{$review->conclusion?->lv()}}
+            <td>{{$review->conclusion?->title()}}
             <td>
                 <a href="{{route('reviews.show', $review)}}">
                     🔍 Apskatīt
@@ -25,7 +25,7 @@
                     <span title="{{$review->review}}">💬 {{Str::limit($review->review, 20)}}</span>
                 @endif
 
-            <td>{{$review->status?->lv()}}
+            <td>{{$review->status?->title()}}
 
             <td><a href="{{route('reviewables.show', $review->file)}}">
                     {{$review->file}}

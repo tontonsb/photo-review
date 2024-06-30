@@ -10,15 +10,9 @@ enum Status: string
     case redo = 'redo';
     case unclear = 'unclear';
 
-    public function lv(): string
+    public function title(): string
     {
-        return match($this) {
-            static::ok => '✅ OK',
-            static::suspect => '🆘 Svarīgi',
-            static::checkable => '🚶 Jāpārbauda klātienē',
-            static::redo => '📷 Jāpārbildē',
-            static::unclear => '❓ Neskaidrs',
-        };
+        return $this->icon().' '.__('enums.'.static::class.'.'.$this->name);
     }
 
     public function icon(): string
