@@ -13,7 +13,7 @@
             {{$review->reviewer_id}}</a>
 
         @can('view-user-names')
-            @if ($user = ReviewerToken::find($review->reviewer_id)->user)
+            @if ($user = ReviewerToken::find($review->reviewer_id)?->user)
                 ({{$user->name}})
             @endif
         @endcan
