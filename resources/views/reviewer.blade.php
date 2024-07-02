@@ -1,25 +1,25 @@
 @extends('layout')
 
 @section('content')
-<h3>Pārskatītājs {{$reviewer->reviewer_id}}</h3>
+<h3>@lang('reviewers.reviewer') {{$reviewer->reviewer_id}}</h3>
 
 @if ($reviewedCount > 25)
-<p>Apskatījis {{$reviewCount}} bildes un pārskatījis (neizlaidis) {{$reviewedCount}} bildes, tam kopā veltot {{$timeSpent}}
+<p>@lang('reviewers.fullstats', ['reviews' => $reviewCount, 'reviewed' => $reviewedCount, 'time' => $timeSpent])
 @elseif ($reviewCount > 10)
-<p>Apskatījis {{$reviewCount}} bildes.
+<p>@lang('reviewers.shortstats', ['reviews' => $reviewCount])
 @endif
 
 @if(request()->routeIs('reviewers.me'))
     @if($reviewerToken->user_id === auth()->id())
-        <p>Šis pārskatīšanas progress ir piesaistīts <a href="{{route('me')}}">tavam kontam</a>.
+        <p>{!! __('reviewers.linked to your acc', ['href' => route('me')]) !!}
     @elseif(!$reviewerToken->user_id)
-        <p>Vai pārskati bildes vairākās ierīcēs? Ja vēlies apvienot pārlūkotos datus vai vienkārši baidies pazaudēt savu progresu,
+        <p>@lang('reviewers.linking offer')
             @auth
-                dodies uz <a href="{{route('me')}}">savu kontu</a>
+                {!! __('reviewers.go to acc', ['href' => route('me')]) !!}
             @else
-                <a href="{{route('register')}}">izveido kontu</a>
+                {!! __('reviewers.create acc', ['href' => route('register')]) !!}
             @endauth
-            un piesaisti kontam savu pārskatīšanas progresu, izmantojot kodu
+            @lang('reviewers.use code')
             <input
                 type=text
                 readonly

@@ -1,11 +1,11 @@
 @extends('layout')
 
 @section('content')
-<p>Tavs pārskatītāja žetons: <a href="{{route('reviewers.show', $currentToken)}}">{{$currentToken}}</a>
+<p>@lang('reviewers.current token'): <a href="{{route('reviewers.show', $currentToken)}}">{{$currentToken}}</a>
 
 <table>
     <thead>
-        <tr><th>Pārskatītājs <th>Pārskatījumi <th>Pārskatījumi ar info <th>Pārskatījumi ar atsauksmi
+        <tr><th>@lang('reviewers.reviewer') <th>@lang('reviewers.reviews') <th>@lang('reviewers.with info') <th>@lang('reviewers.with feedback')
     <tbody>
         @foreach ($reviewers as $reviewer)
         <tr>

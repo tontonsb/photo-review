@@ -10,11 +10,11 @@ article ul {
 @section('content')
 @if ($reviewerIdentities->count())
 <article>
-    <h3>Tava statistika</h3>
+    <h3>@lang('account.stats.title')</h3>
     <ul>
-        <li>Apskatītas {{$reviewCount}} bildes
-        <li>Pārskatītas (neizlaistas) {{$reviewedCount}} bildes
-        <li>Veltītas {{$timeSpent}}
+        <li>@lang('account.stats.viewed', ['count' => $reviewCount])
+        <li>@lang('account.stats.reviewed', ['count' => $reviewedCount])
+        <li>@lang('account.stats.time', ['time' => $timeSpent])
     </ul>
 </article>
 @endif
@@ -22,7 +22,7 @@ article ul {
 <article>
     <form method=post action="{{route('bind-reviewer')}}" >
         @csrf
-        <h3>Piesaistīt lietotāja kontam pārskatīšanas progresu</h3>
+        <h3>@lang('account.link.title')</h3>
 
         @session('status')
         <article>
@@ -31,20 +31,20 @@ article ul {
         @endsession
 
         <label>
-            Piesaistīšanas kods
+            @lang('account.link.code')
             <input required type=text name=code>
         </label>
 
-        <button>Saglabāt</button>
+        <button>@lang('account.link.store')</button>
     </form>
 </article>
 
 @if ($reviewerIdentities->count())
-    <h3>Tavi pārskatītāja žetoni</h3>
+    <h3>@lang('account.tokens')</h3>
 
     <table>
         <thead>
-            <tr><th>Pārskatītājs <th>Pārskatījumi <th>Pārskatījumi ar info <th>Pārskatījumi ar atsauksmi
+            <tr><th>@lang('reviewers.reviewer') <th>@lang('reviewers.reviews') <th>@lang('reviewers.with info') <th>@lang('reviewers.with feedback')
         <tbody>
             @foreach ($reviewerIdentities as $identity)
             <tr>
@@ -59,7 +59,7 @@ article ul {
 
     <hr>
 
-    <h3>Tavi pārskatījumi</h3>
+    <h3>@lang('account.reviews')</h3>
     @include('_reviews')
 @endif
 

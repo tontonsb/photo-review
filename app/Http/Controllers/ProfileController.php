@@ -41,19 +41,19 @@ class ProfileController
         $token = ReviewerToken::where('transfer_token', $request->code)->first();
 
         if (!$token) {
-            return back()->with('status', 'Norādītais kods neatbilst nevienam pārskatītājam.');
+            return back()->with('status', __('account.link.unused'));
         }
 
         if ($token->user_id) {
             return back()->with(
                 'status',
-                'Šis progress jau ir piesaistīts '.($token->user_id === auth()->id() ? 'tavam' : 'cita lietotāja').' kontam.',
+                $token->user_id === auth()->id() ? __('account.link.linked to you') : __('account.link.linked to other'),
             );
         }
 
         $token->user_id = auth()->id();
         $token->save();
 
-        return back()->with('status', 'Pārskatīšanas progress piesaistīts kontam!');
+        return back()->with('status', __('account.link.success'));
     }
 }
