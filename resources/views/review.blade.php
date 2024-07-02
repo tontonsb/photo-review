@@ -87,7 +87,6 @@
     </label>
 
     <button type=submit>@lang('reviews.add comment')</button>
-    <button type=submit>Uzstādīt statusu un pievienot komentāru</button>
 </form>
 @endcan
 
