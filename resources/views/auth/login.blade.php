@@ -5,7 +5,7 @@
     @csrf
 
     <label>
-        Epasts
+        @lang('auth.email')
         <input type=email name=email value="{{old('email')}}" required autofocus autocomplete=username >
         @error('email')
             <small>{{$message}}</small>
@@ -13,7 +13,7 @@
     </label>
 
     <label>
-        Parole
+        @lang('auth.password')
         <input type=password name=password required autocomplete=current-password >
         @error('password')
             <small>{{$message}}</small>
@@ -22,14 +22,14 @@
 
     <label>
         <input type=checkbox name=remember>
-        Atcerēties mani
+        @lang('auth.remember')
     </label>
 
-    <button type=submit>Pieslēgties</button>
+    <button type=submit>@lang('auth.login')</button>
 
     @if (Route::has('password.request'))
         <a href="{{route('password.request')}}">
-            Aizmirsi paroli?
+            @lang('auth.forgot')
         </a>
     @endif
 </form>
