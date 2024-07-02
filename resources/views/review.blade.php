@@ -3,12 +3,12 @@
 
 @section('content')
 <dl>
-    <dt>Bilde
+    <dt>@lang('reviews.reviewable')
     <dd><a href="{{route('reviewables.show', $review->file)}}">
             {{$review->file}}
         </a>
 
-    <dt>Pārskatītājs
+    <dt>@lang('reviews.reviewer')
     <dd><a href="{{route('reviewers.show', $review->reviewer_id)}}">
             {{$review->reviewer_id}}</a>
 
@@ -18,26 +18,26 @@
             @endif
         @endcan
 
-    <dt>Laiks
+    <dt>@lang('reviews.submitted')
     <dd>{{$review->created_at}}
 
-    <dt>Slēdziens
+    <dt>@lang('reviews.conclusion')
     <dd>{{$review->conclusion?->title()}}
 
-    <dt>Info
+    <dt>@lang('reviews.description')
     <dd>{{$review->review}}
 
-    <dt>Problēmas
+    <dt>@lang('reviews.problems')
     <dd>{{$review->problem}}
 
-    <dt>Pārskatīšanas ilgums
+    <dt>@lang('reviews.duration')
     <dd>{{$review->duration}}
 
-    <dt>Statuss
-    <dd>{{$review->status?->title() ?? '❔ Nepārskatīts'}}
+    <dt>@lang('reviews.status')
+    <dd>{{$review->status?->title() ?? '❔ '.__('reviews.unreviewed')}}
 </dl>
 
-<h3>Komentāri</h3>
+<h3>@lang('reviews.comments')</h3>
 @forelse($review->comments as $comment)
 <article>
     <header>
@@ -59,14 +59,14 @@
     </footer>
 </article>
 @empty
-<p>Komentāru pagaidām nav
+<p>@lang('reviews.no comments')
 @endforelse
 
 @can('comment')
 <form method=post action="{{route('reviews.comment', $review)}}">
     @csrf
     <label>
-        Jaunais statusss
+        @lang('reviews.new status')
         <select name=status required>
             <option>
             @foreach (App\Models\Status::cases() as $status)
@@ -79,13 +79,14 @@
     </label>
 
     <label>
-        Komentārs
+        @lang('reviews.comment')
         <textarea name=comment>{{old('comment')}}</textarea>
         @error('comment')
             <small>{{$message}}</small>
         @enderror
     </label>
 
+    <button type=submit>@lang('reviews.add comment')</button>
     <button type=submit>Uzstādīt statusu un pievienot komentāru</button>
 </form>
 @endcan

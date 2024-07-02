@@ -1,6 +1,6 @@
 <table>
     <thead>
-        <tr><th>Iesniegts (UTC) <th colspan=2>Slēdziens <th>Saturs <th>Statuss <th>Bilde <th>Ilgums <th>Pārskatītājs
+        <tr><th>@lang('reviews.submitted') <th colspan=2>@lang('reviews.conclusion') <th>@lang('reviews.contents') <th>@lang('reviews.status') <th>@lang('reviews.reviewable') <th>@lang('reviews.duration') <th>@lang('reviews.reviewer')
     <tbody>
         @foreach ($reviews as $review)
         <tr>
@@ -10,7 +10,7 @@
             <td>{{$review->conclusion?->title()}}
             <td>
                 <a href="{{route('reviews.show', $review)}}">
-                    🔍 Apskatīt
+                    🔍 @lang('reviews.view')
                 </a>
             <td>
                 @if ($review->problem)
@@ -18,7 +18,7 @@
                 @endif
 
                 @if ($review->coordinates)
-                    <span title="Ir pievienoti marķieri">📌</span>
+                    <span title="@lang('reviews.with markers')">📌</span>
                 @endif
 
                 @if ($review->review)

@@ -17,19 +17,19 @@
 
 <form>
     <label>
-        <h5>Satura filtrs</h5>
+        <h5>@lang('reviews.filter.title')</h5>
         <select name=filter>
-            <option value="" @selected(!request()->filter)>Visas
-            <option value=reviews @selected('reviews' == request()->filter)>Ar aprakstiem
-            <option value=problems @selected('problems' == request()->filter)>Ar problēmām
-            <option value=pins @selected('pins' == request()->filter)>Ar marķieriem
-            <option value=any @selected('any' == request()->filter)>Jebkāds saturs
-            <option value=info @selected('info' == request()->filter)>Jebkāds saturs + visas aizdomīgās
+            <option value="" @selected(!request()->filter)>@lang('reviews.filter.all')
+            <option value=reviews @selected('reviews' == request()->filter)>@lang('reviews.filter.reviews')
+            <option value=problems @selected('problems' == request()->filter)>@lang('reviews.filter.problems')
+            <option value=pins @selected('pins' == request()->filter)>@lang('reviews.filter.pins')
+            <option value=any @selected('any' == request()->filter)>@lang('reviews.filter.any')
+            <option value=info @selected('info' == request()->filter)>@lang('reviews.filter.info')
         </select>
     </label>
 
     <div>
-        <h5>Slēdziens</h5>
+        <h5>@lang('reviews.conclusion')</h5>
         @foreach (App\Models\Conclusion::cases() as $conclusion)
         <label>
             <input
@@ -43,14 +43,14 @@
     </div>
 
     <div>
-        <h5>Statuss</h5>
+        <h5>@lang('reviews.status')</h5>
         <label>
             <input
                 type=checkbox
                 name=statuses[]
                 value=no_status
                 @checked(in_array('no_status', request()->statuses ?? []))
-                >bez statusa
+                >@lang('reviews.no status')
         </label>
         @foreach (App\Models\Status::cases() as $status)
         <label>
@@ -65,12 +65,12 @@
     </div>
 
     <button type=submit>
-        Atlasīt
+        @lang('reviews.select')
     </button>
 </form>
 
 @include('_reviews')
 {{$reviews->links()}}
-<p>Izvēlētajam filtram pavisam atbilst {{$count}} ieraksti.
-<a href="{{route('reviews.map').'?'.request()->getQueryString()}}">Parādīt atlasītos kartē.</a>
+<p>@lang('reviews.matches', ['count' => $count])
+<a href="{{route('reviews.map').'?'.request()->getQueryString()}}">@lang('reviews.map')</a>
 @endsection

@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'remove all markers' => 'Remove all markers',
+    'remove all markers' => 'Remove all pins',
 ];
