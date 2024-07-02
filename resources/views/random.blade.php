@@ -15,30 +15,30 @@
         <input type=hidden name=coordinates>
 
         <div class=actions>
-            <button type=submit name=conclusion value=ok class=button--ok>Apskatīju, nav nekā ievērības cienīga</button>
+            <button type=submit name=conclusion value=ok class=button--ok>@lang('reviewing.ok')</button>
 
             <details open>
-                <summary>Redzi ko aizdomīgu?</summary>
-                <textarea name=review placeholder="Apraksti šeit un atzīmē attēlā"></textarea>
+                <summary>@lang('reviewing.suspicious')</summary>
+                <textarea name=review placeholder="@lang('reviewing.describe')"></textarea>
             </details>
 
             <details>
-                <summary>Ziņot par sliktu/nekvalitatīvu bildi</summary>
+                <summary>@lang('reviewing.bad img')</summary>
                 <textarea name=problem></textarea>
             </details>
 
-            <button type=submit name=conclusion value=suspect class=button--suspect>Iesniegt</button>
+            <button type=submit name=conclusion value=suspect class=button--suspect>@lang('reviewing.submit')</button>
 
             <label>
-                Turpināsim ar
+                @lang('reviewing.continue.with')
                 <select name=mode class=continue >
-                    <option value=random @selected(Route::is('reviewables.random'))>nejaušu
-                    <option value=next @selected(Route::is('reviewables.review'))>nākošo
+                    <option value=random @selected(Route::is('reviewables.random'))>@lang('reviewing.continue.random')
+                    <option value=next @selected(Route::is('reviewables.review'))>@lang('reviewing.continue.sequential')
                 </select>
-                bildi
+                @lang('reviewing.continue.img')
             </label>
 
-            <button type=submit name=conclusion value=skip class=button--skip>Izlaist šo bildi</button>
+            <button type=submit name=conclusion value=skip class=button--skip>@lang('reviewing.skip')</button>
         </div>
 
         <div class=file>
@@ -52,9 +52,9 @@
                 @if ($linkedFile)
                     <br><a href="{{$linkedFile->url}}" target=_blank>
                         @if ($linkedFile->isSrc())
-                            Attēla versija ar ģeometrijas korekciju
+                            @lang('reviewing.versions.SRC')
                         @else
-                            Oriģinālo datu attēls (bez korekcijas)
+                            @lang('reviewing.versions.original')
                         @endif
                     </a>
                 @endif
@@ -63,18 +63,21 @@
         </div>
 
         <aside>
-            <div class=progress data-label="{{$reviewed_percentage}}% pārskatīti" title="Kopā esam pārskatījuši {{$reviewed_percentage}}% no šobrīd ielādētajām vairāk nekā {{$reviewable_count}} bildēm!">
-                <div class=value style="width:{{$reviewed_percentage}}%;"></div>
+            <div
+                class=progress
+                data-label="@lang('reviewing.progress.label', ['percentage' => $reviewedPercentage])"
+                title="@lang('reviewing.progress.description', ['percentage' => $reviewedPercentage, 'total' => $reviewableCount])">
+                <div class=value style="width:{{$reviewedPercentage}}%;"></div>
                 <span class=min>0</span>
-                <span class=max>{{$reviewable_count}}</span>
+                <span class=max>{{$reviewableCount}}</span>
             </div>
 
             <div class=buttons>
                 <button type=button class="js-show-infobox button--info">
-                    Atvērt pamācību
+                    @lang('menu.open infobox')
                 </button>
                 <a class="button button--info" href="{{route('reviewers.me')}}">
-                    Pārskatītās bildes
+                    @lang('menu.reviewed images')
                 </a>
             </div>
         </aside>

@@ -97,7 +97,7 @@
 <script type=module>
 {{-- won't extract this to _displayimagejs because of custom handling for legacy reviews that's only needed on this view --}}
 @if ($file->isSonarImage() && ($exif['LOCATION'] ?? false))
-    const {map, userMarkers} = displayImageOnMap('image', @json($exif['LOCATION']), '{{$file->url}}', false)
+    const {map, userMarkers} = displayImageOnMap('image', @json($exif['LOCATION']), '{{$file->url}}', @json(trans('map')), false)
 @elseif (($exif['EXTENT'] ?? false) && ($exif['LOCATION'] ?? false) && $review->created_at > '2024-06-02')
     const {map, userMarkers} = displayImageWithScale(
         'image',
@@ -105,6 +105,7 @@
         {{$exif['YAW'] ?? 0}},
         [{{$exif['EXTENT']['width'] ?? 0}}, {{$exif['EXTENT']['height'] ?? 0}}],
         '{{$file->url}}',
+        @json(trans('map')),
         false,
         @if($review->created_at < '2024-06-06 18:29:00') true, @endif
     )
@@ -113,6 +114,7 @@
         'image',
         [{{$exif['COMPUTED']['Width'] ?? 0}}, {{$exif['COMPUTED']['Height'] ?? 0}}],
         '{{$file->url}}',
+        @json(trans('map')),
         false,
     )
 @endif

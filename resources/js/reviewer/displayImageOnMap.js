@@ -13,7 +13,7 @@ import BaseEvent from 'ol/events/Event'
 /**
  * Places image with known WGS84 bounds on the map.
  */
-export default function displayImageOnMap(target, bounds, url, interactive = true) {
+export default function displayImageOnMap(target, bounds, url, translations, interactive = true) {
     const extent = transformExtent([
         parseFloat(bounds.west),
         parseFloat(bounds.south),
@@ -21,7 +21,7 @@ export default function displayImageOnMap(target, bounds, url, interactive = tru
         parseFloat(bounds.north),
     ], 'EPSG:4326', 'EPSG:3857')
 
-    const userMarkers = initUserMarkers()
+    const userMarkers = initUserMarkers(translations)
 
     const scaleLine = new ScaleLine({
         units: 'metric',

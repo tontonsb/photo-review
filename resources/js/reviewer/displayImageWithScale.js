@@ -25,7 +25,7 @@ function createSwapViewControl() {
 /**
  * Displays image with known WGS84 center, guessed size and unknown orientation.
  */
-export default function displayImage(target, center, bearing, extent, url, interactive = true, legacyScale = false) {
+export default function displayImage(target, center, bearing, extent, url, translations, interactive = true, legacyScale = false) {
     center = fromLonLat(center)
 
     const viewWithoutExtent = new View({
@@ -47,7 +47,7 @@ export default function displayImage(target, center, bearing, extent, url, inter
         showFullExtent: true,
     })
 
-    const userMarkers = initUserMarkers()
+    const userMarkers = initUserMarkers(translations)
 
     const scaleLine = new ScaleLine({
         units: 'metric',

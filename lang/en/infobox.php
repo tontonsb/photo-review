@@ -28,7 +28,7 @@ The zoomed images can be panned by dragging the mouse cursor or your finger (on 
 Under the minimap in the info block there is the name of the image. Click on it to open additional info about the image — direct link, location and other metadata.
 The location can also be seen on the minimap, along with the locations of nearby images.
 
-If you find it easier to focus on a singel kind of images, you can use the "Continue with ... image" selection to get the next image from the same set instead of a random one.
+If you find it easier to focus on a single kind of images, you can use the "Continue with ... image" selection to get the next image from the same set instead of a random one.
 
 The button at the top right of the image viewer can be used to toggle panning without limits to drag an object besides the scale line.
 </details>

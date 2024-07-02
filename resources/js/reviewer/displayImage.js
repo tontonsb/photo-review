@@ -12,7 +12,7 @@ import BaseEvent from 'ol/events/Event'
 /**
  * Displays image
  */
-export default function displayImage(target, extent, url, interactive = true) {
+export default function displayImage(target, extent, url, translations, interactive = true) {
     extent = [0, 0, extent[0], extent[1]]
     const projection = new Projection({
         code: 'this-image',
@@ -20,7 +20,7 @@ export default function displayImage(target, extent, url, interactive = true) {
         extent: extent,
     })
 
-    const userMarkers = initUserMarkers()
+    const userMarkers = initUserMarkers(translations)
 
     const map = new Map({
         controls: defaultControls().extend([

@@ -3,6 +3,7 @@
         '{{$element}}',
         @json($exif['LOCATION']),
         '{{$file->url}}',
+        @json(trans('map')),
         {{$intercative ? 'true' : 'false'}},
     )
 @elseif (($exif['EXTENT'] ?? false) && ($exif['LOCATION'] ?? false))
@@ -12,6 +13,7 @@
         {{$exif['YAW'] ?? 0}},
         [{{$exif['EXTENT']['width'] ?? 0}}, {{$exif['EXTENT']['height'] ?? 0}}],
         '{{$file->url}}',
+        @json(trans('map')),
         {{$intercative ? 'true' : 'false'}},
     )
 @else
@@ -19,6 +21,7 @@
         '{{$element}}',
         [{{$exif['COMPUTED']['Width'] ?? 0}}, {{$exif['COMPUTED']['Height'] ?? 0}}],
         '{{$file->url}}',
+        @json(trans('map')),
         {{$intercative ? 'true' : 'false'}},
     )
 @endif

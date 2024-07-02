@@ -42,9 +42,9 @@ class ReviewableController
         return view('random', [
             'file' => $reviewable->file,
             'exif' => $reviewable->data,
-            'reviewed_percentage' => number_format(100 * $imgWithReviews / $reviewables, 0),
+            'reviewedPercentage' => number_format(100 * $imgWithReviews / $reviewables, 0),
             // floor to nearest hundred
-            'reviewable_count' => round($reviewables - 50, -2, PHP_ROUND_HALF_DOWN),
+            'reviewableCount' => round($reviewables - 50, -2, PHP_ROUND_HALF_DOWN),
             'seenInfobox' => $seenInfobox,
             'linkedFile' => $reviewable->file->linkedFile(),
         ]);

@@ -9,9 +9,9 @@ import Fill from 'ol/style/Fill'
 import Stroke from 'ol/style/Stroke'
 import Style from 'ol/style/Style'
 
-function createClearControl() {
+function createClearControl(translations) {
     const button = document.createElement('button')
-    button.innerHTML = 'Noņemt visus marķierus'
+    button.innerHTML = translations['remove all markers']
     button.style.width = 'unset'
     button.style.fontWeight = 'unset'
 
@@ -27,10 +27,10 @@ function createClearControl() {
     return {button, element, control}
 }
 
-export default function initUserMarkers() {
+export default function initUserMarkers(translations) {
     const source = new VectorSource()
 
-    const clearControl = createClearControl()
+    const clearControl = createClearControl(translations)
 
     const layer = new VectorLayer({
         source: source,
