@@ -4,17 +4,17 @@
 <nav>
     <ul>
         <li><a href="{{route('reviewables.directory')}}">
-            Katalogs
+            @lang('reviewables.dir')
         </a>
         <li><a href="{{route('reviewables.index')}}">
-            Visi faili
+            @lang('reviewables.all')
         </a>
     </ul>
 </nav>
 
 <table>
     <thead>
-        <tr><th>Mape <th>Bildes <th>Pārskatītas <th>Jāpārskata
+        <tr><th>@lang('reviewables.folder') <th>@lang('reviewables.reviewables') <th>@lang('reviewables.reviewed') <th>@lang('reviewables.unreviewed')
     <tbody>
     @foreach ($directories as $dir)
         <tr>

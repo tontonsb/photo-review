@@ -4,25 +4,25 @@
 <nav>
     <ul>
         <li><a href="{{route('reviewables.review', $reviewable->path)}}">
-            Atvērt pārskatīšanas skatā
+            @lang('reviewables.open for reviewing')
         </a>
         <li><a href="{{$reviewable->url}}">
-            Atvērt tikai attēlu
+            @lang('reviewables.open image')
         </a>
     </ul>
 </nav>
 
-<h2>Pārskatījumi</h2>
+<h2>@lang('reviewables.reviews')</h2>
 @include('_reviews')
 
 <div id=image style="width: 100%; height: 70lvh;"></div>
 
 @if($reviewable->getData()['LOCATION'] ?? false)
-<h2>Vieta</h2>
+<h2>@lang('reviewables.location')</h2>
 <div id=location-map style="width: 100%; height: 70lvh;"></div>
 @endif
 
-<h2>Metadati</h2>
+<h2>@lang('reviewables.data')</h2>
 @include('_exif', ['exif' => $reviewable->getData()])
 
 @vite(['resources/js/review.js'])

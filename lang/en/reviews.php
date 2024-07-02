@@ -5,7 +5,7 @@ return [
     'conclusion' => 'Conclusion',
     'contents' => 'Contents',
     'status' => 'Status',
-    'unreviewed' => 'Not checked yet',
+    'unreviewed' => 'No feedback yet',
     'reviewable' => 'Image',
     'description' => 'Info',
     'problems' => 'Problems',

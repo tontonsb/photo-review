@@ -1,22 +1,22 @@
 @extends('layout')
 
 @section('content')
-<input class=js-quick-filter autofocus placeholder="Filtrēt..." value="{{request()->filter}}">
+<input class=js-quick-filter autofocus placeholder="@lang('reviewables.filter')" value="{{request()->filter}}">
 
 <nav>
     <ul>
         <li><a href="{{route('reviewables.directory')}}">
-            Katalogs
+            @lang('reviewables.dir')
         </a>
         <li><a href="{{route('reviewables.index')}}">
-            Visi faili
+            @lang('reviewables.all')
         </a>
     </ul>
 </nav>
 
 <table>
     <thead>
-        <tr><th>Bilde <th>Apskatījumi <th>Rezultāti
+        <tr><th>@lang('reviewables.reviewable') <th>@lang('reviewables.reviews') <th>@lang('reviewables.results')
     <tbody class=js-filterable>
         @foreach ($reviewables as $reviewable)
         <tr>
