@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang=lv>
+<html lang={{app()->getLocale()}}>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width, initial-scale=1">
 
@@ -23,6 +23,16 @@
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
 <link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
 <link rel=manifest href=/site.webmanifest>
+
+@foreach(LaravelLocalization::getSupportedLocales() as $loc => $props)
+@if($loc !== app()->getLocale())
+<link
+    rel=alternate
+    hreflang={{$loc}}
+    href="{{LaravelLocalization::getLocalizedURL($loc)}}"
+>
+@endif
+@endforeach
 
 @yield('head')
 
