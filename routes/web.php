@@ -10,11 +10,10 @@ use App\Http\Controllers\ReviewerController;
 use App\Http\Controllers\TutorialController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-
-// use Mcamara\LaravelLocalization\Middleware\LocaleSessionRedirect;
+use Mcamara\LaravelLocalization\Middleware\LocaleSessionRedirect;
 
 Route::prefix(LaravelLocalization::setLocale())
-    // ->middleware(LocaleSessionRedirect::class)
+    ->middleware(LocaleSessionRedirect::class)
     ->group(function() {
         Route::name('reviewables.')->controller(ReviewableController::class)->group(function() {
             Route::get('/', 'random')->name('random');
