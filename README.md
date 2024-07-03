@@ -35,9 +35,6 @@ and launch the app:
 php artisan serve
 ```
 
-> [!NOTE]
-> Project has been tried and is being used on MariaDB and SQLite.
-
 ### Training images
 
 Training/tutorial images should be put in the `tutorial` subfolder, then they
@@ -92,6 +89,26 @@ Or build the files to publish:
 ```sh
 npm run build
 ```
+
+## Production
+
+### S3
+
+To use files on a S3 compatible cloud, set `FILESYSTEM_REVIEWABLE=cloud_reviewables`
+in your `.env` and fill in the `AWS_*` values.
+
+### Database
+
+The default setup uses SQLite. You can change it, the DB config works like on
+any default Laravel app and we've tried not to use any vendor-specific SQL.
+
+> [!NOTE]
+> Project has been tried and is being used on MariaDB and SQLite.
+
+### Matomo
+
+This app has a Matomo integration, so fill in `MATOMO_URL` and `MATOMO_SITE_ID`
+if you do have a Matomo instance and want to use it.
 
 ## TODO (sry, only in LV)
 
