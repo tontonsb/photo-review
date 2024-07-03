@@ -16,17 +16,17 @@
         <div class=actions>
             @if ($prev)
             <a class=button href="{{route('tutorial.show', $prev)}}">
-                Atpakaļ uz iepriekšējo
+                @lang('tutorial.prev')
             </a>
             @endif
 
             @if ($next)
             <a class=button href="{{route('tutorial.show', $next)}}">
-                Uz nākošo bildi
+                @lang('tutorial.next')
             </a>
             @else
             <a class="button button--ok" href="{{route('reviewables.random')}}">
-                Ķeramies pie īstajām bildēm!
+                @lang('tutorial.finish')
             </a>
             @endif
         </div>
@@ -45,10 +45,10 @@
         <aside>
             <div class=buttons>
                 <button type=button class="js-show-infobox button--info">
-                    Atvērt pamācību
+                    @lang('menu.open infobox')
                 </button>
                 <a class="button button--info" href="{{route('reviewers.me')}}">
-                    Mani pārskatījumi
+                    @lang('menu.reviewed images')
                 </a>
             </div>
         </aside>
