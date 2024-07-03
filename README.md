@@ -1,8 +1,13 @@
 # PhotoReview
 
-## Uzstādīšana
+An app to split work of reviewing a lot of images.
+Visitors can review images one by one, in random order.
 
-Vajag git, PHP 8.3 un composer. Ja ir, tad aiziet:
+At the moment of writing, app is live and in use here: https://photoreview.glaive.pro/
+
+## Installation
+
+You'll need git, PHP 8.3 and composer. Once you have them:
 
 ```sh
 git clone https://github.com/tontonsb/photo-review.git
@@ -11,45 +16,49 @@ composer install
 composer quick-setup
 ```
 
-## Darbināšana
+## Running
 
-Ieliec dažas bildes vai mapes ar bildēm `storage/app/public/reviewables`,
-piereģistrē jaunieliktās bildes datubāzē:
+Place some images or image folders in `storage/app/public/reviewables`,
+register the new images in the database:
 
 ```sh
 php artisan app:register-reviewables
 
-# var pēc tam arī ieglabāt šo bilžu metadatus datubāzē
+# you can also store the image metadata in the database
+# it will allow showing them on the map as well as remove the need for PHP to read the data every time
 php artisan app:load-metadata
 ```
 
-un startē
+and launch the app:
 
 ```sh
 php artisan serve
 ```
 
 > [!NOTE]
-> Projekts pārbaudīts un tiek lietots ar MariaDB un SQLite.
+> Project has been tried and is being used on MariaDB and SQLite.
 
-### Treniņbildes
+### Training images
 
-Treniņu/mācību bildes ieteicams likt apakšmapē `tutorial`, tad tās neiekļaus
-kopējā plūsmā.
+Training/tutorial images should be put in the `tutorial` subfolder, then they
+will not be included in the reviewing flow outside the tutorial.
 
-Lai bildes tiktu iekļautas treniņu plūsmā, tām jāaizpilda secības lauku
-(`tutorial_order`) datubāzē. Parādāmos tekstus var norādīt `tutorial_info`
-laukā. Šo lauku aizpildei un labošanai UI neeksistē.
+To include images in the tutorial flow, you have to fill in the order field
+(`tutorial_order`) in the database (`reviewables` tables). The displayable
+texts can be specified in the `tutorial_info` field. There is no UI for
+management of these values.
 
-## Lietošana
+## Usage
 
-"Publiskā fasāde" ir redzama.
+The "public facade" is visible instantly.
 
-Datu daļu var apskatīt, apmeklējot `/reviews`. Praktiski viss ir apskatāms bez pieslēgšanās.
+The data "back" end is visible by visiting `/reviews`, nearly everything is
+visible without logging in.
 
-Piereģistrēties var, apmeklējot `/register`. Piereģistrēšanās pati par sevi nekādas tiesības nedos, vienīgi varēs pieslēgties/atslēgties.
+One can register by visiting `/register`. It will give no permissions, but
+registered users are able to log in, log out and bind their progress to the account.
 
-Reģistrētos lietotājus var apstiprināt komandrindā
+You can verify the registered users using CLI:
 
 ```sh
 php artisan tinker
@@ -58,31 +67,33 @@ $user = User::where('email', 'test@example.com')->first();
 $user->verify();
 ```
 
-vai datubāzē ieliekot šodienas datumu laukā `verified_at`.
+or directly in the DB by putting the current timestamp in the `verified_at`.
 
-Apstiprinātie lietotāji var pievienot komentārus un redzēt komentāru autorus.
+The verified users are essentially admins — they can add comments to reviews,
+change statuses, see the comment authors and see the review authors (if they
+are registered).
 
-## Izstrāde
+## Development
 
-Frontend izstrādei vajag uzstādīt arī npm un atvilkt pakas:
+Frontend development requires npm and some packages:
 
 ```sh
 npm install
 ```
 
-Pēc tam var izstrādāt un skatīties apdeitus:
+You can develop from then on and see live updates:
 
 ```sh
 npm run dev
 ```
 
-Un sabūvēt publicējamos failus:
+Or build the files to publish:
 
 ```sh
 npm run build
 ```
 
-## TODO
+## TODO (sry, only in LV)
 
 - [ ] Varētu reviewerim arī izmantot [Pico](https://picocss.com/s): 
   `@import '@picocss/pico';`, vienīgi layouts no jauna jātaisa un dialogam
