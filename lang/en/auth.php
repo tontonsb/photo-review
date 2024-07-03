@@ -29,22 +29,22 @@ return [
     'forgot' => 'Forgot your password?',
 
     'registration description' => <<<DESCRIPTION
-    ### Why should one register?
+        ### Why should one register?
 
-    You'll be able to bind your reviewing progress to your account once you register.
-    It will ensure you won't lose the progress even if you clear cookies or swap devices.
+        You'll be able to bind your reviewing progress to your account once you register.
+        It will ensure you won't lose the progress even if you clear cookies or swap devices.
 
-    It can also be useful if you do the reviews on multiple devices — you can link all of
-    them to the same account and the progress will count together, the images already reviewed
-    on one device will not be shown to you on another.
+        It can also be useful if you do the reviews on multiple devices — you can link all of
+        them to the same account and the progress will count together, the images already reviewed
+        on one device will not be shown to you on another.
 
-    ### What happens to the data I submit?
+        ### What happens to the data I submit?
 
-    The owners of the app can see the submitted names and emails.
-    In some cases the email address may be used to contact the reviewer about a particular review.
-    Passwords are <a href="https://en.wikipedia.org/wiki/Cryptographic_hash_function">hashed</a> before saving and only a hash value is stored.
+        The owners of the app can see the submitted names and emails.
+        In some cases the email address may be used to contact the reviewer about a particular review.
+        Passwords are <a href="https://en.wikipedia.org/wiki/Cryptographic_hash_function">hashed</a> before saving and only a hash value is stored.
 
-    The submitted info will not be used for any marketing or advertising purposes.
-    It will not be published or handed to another parties, except for cases where the law forces us to hand over the information.
-    DESCRIPTION
+        The submitted info will not be used for any marketing or advertising purposes.
+        It will not be published or handed to another parties, except for cases where the law forces us to hand over the information.
+        DESCRIPTION
 ];
