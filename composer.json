@@ -1,9 +1,21 @@
 {
-    "name": "laravel/laravel",
+    "name": "tontonsb/photo-review",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
-    "keywords": ["laravel", "framework"],
+    "description": "App to crowd-source work of reviewing a lot of images.",
+    "keywords": ["photos", "crowd-sourcing"],
     "license": "MIT",
+    "authors": [
+        {
+            "name": "Juris Evertovskis",
+            "email": "juris@glaive.pro",
+            "homepage": "https://juris.glaive.pro",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/tontonsb/photo-review/commits/master/issues",
+        "source": "https://github.com/tontonsb/photo-review"
+    },
     "require": {
         "php": "^8.2",
         "genealabs/laravel-caffeine": "^11.0",
