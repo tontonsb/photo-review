@@ -3,20 +3,20 @@
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width, initial-scale=1">
 
-<title>Attēlu pārskatīšana Annas meklēšanai</title>
-<meta name=title content="Attēlu pārskatīšana Annas meklēšanai">
-<meta name=description content="Pārskatām apkārtnes bildes, lai noskaidrotu, kas un kur noticis ar Annu">
+<title>@lang('meta.title')</title>
+<meta name=title content="@lang('meta.title')">
+<meta name=description content="@lang('meta.description')">
 <meta property=og:type content=website>
 <meta property=og:url content="{{url()->full()}}">
-<meta property=og:title content="Attēlu pārskatīšana Annas meklēšanai">
-<meta property=og:description content="Pārskatām apkārtnes bildes, lai noskaidrotu, kas un kur noticis ar Annu">
+<meta property=og:title content="@lang('meta.title')">
+<meta property=og:description content="@lang('meta.description')">
 <meta property=og:image content="{{url('card.jpg')}}">
-<meta property=og:locale content=lv_LV>
+<meta property=og:locale content={{LaravelLocalization::getCurrentLocaleRegional()}} >
 
 <meta name=twitter:card content=summary_large_image>
 <meta name=twitter:url content="{{url()->full()}}">
-<meta name=twitter:title content="Attēlu pārskatīšana Annas meklēšanai">
-<meta name=twitter:description content="Pārskatām apkārtnes bildes, lai noskaidrotu, kas un kur noticis ar Annu">
+<meta name=twitter:title content="@lang('meta.title')">
+<meta name=twitter:description content="@lang('meta.description')">
 <meta name=twitter:image content="{{url('card.jpg')}}">
 
 <link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
