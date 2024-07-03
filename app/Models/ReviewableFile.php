@@ -3,8 +3,6 @@
 namespace App\Models;
 
 use App\Services\ExifReader;
-use App\Services\ExifTool;
-use App\Services\ParseExif;
 use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Storage;
 use SimpleXMLElement;
@@ -30,17 +28,17 @@ class ReviewableFile
         return $this->data ??= $this->loadData();
     }
 
-    public function linkedFile(): ?ReviewableFile
+    public function linkedFile(): ?static
     {
         if (!$this->isSonarImage())
             return null;
 
         if ($this->isSrc())
-            return new ReviewableFile(
+            return new static(
                 str_replace('-src.png', '-original.png', $this->path)
             );
 
-        return new ReviewableFile(
+        return new static(
             str_replace('-original.png', '-src.png', $this->path)
         );
     }
@@ -75,14 +73,16 @@ class ReviewableFile
                     match($key) {
                         0 => $exif['COMPUTED']['Width'] = $value,
                         1 => $exif['COMPUTED']['Height'] = $value,
-                        2 => ($exif['FileType'] = $value) && $exif['COMPUTED']['ByteOrderMotorola'] = (int) (IMAGETYPE_TIFF_MM === $value),
+                        2 => ($exif['FileType'] = $value) && $exif['COMPUTED']['ByteOrderMotorola'] = (int) (\IMAGETYPE_TIFF_MM === $value),
                         3 => $exif['COMPUTED']['html'] = $value,
                         'mime' => $exif['MimeType'] = $value,
                         'bits' => $exif['Bits'] = $value,
                         // 'channels' => 3 -> rgb, 4 -> cmyk
                         default => $exif[$key] = $value,
                     };
-            } catch(\Throwable) {}
+            } catch(\Throwable) {
+                //
+            }
         }
 
         // Special handling for sonar images that have an associated .kml
@@ -90,7 +90,9 @@ class ReviewableFile
             try {
                 $location = $this->getLocationFromKml();
                 $exif['LOCATION'] = $location;
-            } catch(\Throwable) {}
+            } catch(\Throwable) {
+                //
+            }
         }
 
         return $exif;

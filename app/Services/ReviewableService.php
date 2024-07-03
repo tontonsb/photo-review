@@ -64,10 +64,10 @@ class ReviewableService
             ->nonTutorial()
             // Bildes, kurām nav apskatījuma
             ->whereDoesntHave('reviews', fn($review) => $review
-                    // no tagadējā lietotāja
-                    ->whereIn('reviewer_id', $reviewerTokens)
-                    // bez izlaišanas un ar vismaz 6 veltītām sekundēm
-                    ->reviewed()
+                // no tagadējā lietotāja
+                ->whereIn('reviewer_id', $reviewerTokens)
+                // bez izlaišanas un ar vismaz 6 veltītām sekundēm
+                ->reviewed()
             )->first();
 
         if ($imgNotReviewedByCurrentReviewer)

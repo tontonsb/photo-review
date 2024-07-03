@@ -28,7 +28,7 @@ class Review extends Model
 
     protected static function booted(): void
     {
-        static::addGlobalScope('ancient', function (EloquentBuilder $reviews) {
+        static::addGlobalScope('ancient', function(EloquentBuilder $reviews) {
             $reviews->latest();
         });
     }

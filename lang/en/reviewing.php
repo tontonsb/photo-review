@@ -19,6 +19,6 @@ return [
     ],
     'progress' => [
         'label' => ':percentage% reviewed',
-        'description' => 'Together we\'ve reviewed :percentage% of over :total images that are currently available!'
+        'description' => 'Together we\'ve reviewed :percentage% of over :total images that are currently available!',
     ],
 ];

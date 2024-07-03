@@ -81,7 +81,7 @@ class ReviewController
         $coordinates = [];
 
         foreach ($requestCoordinates as $coords)
-            if (is_array($coords) && 2 == count($coords))
+            if (\is_array($coords) && 2 == \count($coords))
                 $coordinates[] = [
                     (float) $coords[0],
                     (float) $coords[1],
@@ -128,14 +128,14 @@ class ReviewController
                 fn($reviews) => $reviews->where(fn($r) => $r
                     ->whereIn('status', $request->statuses)
                     ->when(
-                        in_array('no_status', $request->statuses ?? []),
+                        \in_array('no_status', $request->statuses ?? []),
                         fn($rr) => $rr->orWhereNull('status')
                     )
                 )
             )
             ->when(
                 $request->has('conclusions'),
-                fn ($reviews) => $reviews->whereIn('conclusion', $request->conclusions ?? []),
+                fn($reviews) => $reviews->whereIn('conclusion', $request->conclusions ?? []),
             );
     }
 }

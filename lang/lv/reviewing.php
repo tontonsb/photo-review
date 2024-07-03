@@ -19,6 +19,6 @@ return [
     ],
     'progress' => [
         'label' => ':percentage% pārskatīti',
-        'description' => 'Kopā esam pārskatījuši :percentage% no šobrīd ielādētajām vairāk nekā :total bildēm!'
+        'description' => 'Kopā esam pārskatījuši :percentage% no šobrīd ielādētajām vairāk nekā :total bildēm!',
     ],
 ];

@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Reviewable;
 use App\Models\Reviewer;
 use App\Models\ReviewerToken;
 use Illuminate\Console\Command;

@@ -35,7 +35,7 @@ return [
     'can' => 'The :attribute field contains an unauthorized value.',
     'confirmed' => ':attribute apstiprinājums nesakrīt.',
     'current_password' => 'Parole nav pareiza',
-    'date'  => ':attribute nav derīgs datums.',
+    'date' => ':attribute nav derīgs datums.',
     'date_equals' => 'The :attribute field must be a date equal to :date.',
     'date_format' => ':attribute formāts neatbilst formātam :format.',
     'decimal' => 'The :attribute field must have :decimal decimal places.',
@@ -69,13 +69,13 @@ return [
     ],
     'hex_color' => 'The :attribute field must be a valid hexadecimal color.',
     'image' => ':attribute ir jābūt attēlam.',
-    'in'  => 'Izvēlētais :attribute nav derīgs.',
+    'in' => 'Izvēlētais :attribute nav derīgs.',
     'in_array' => 'The :attribute field must exist in :other.',
     'integer' => ':attribute ir jābūt veselam skaitlim.',
-    'ip'  => ':attribute ir jābūt derīgai IP adresei.',
+    'ip' => ':attribute ir jābūt derīgai IP adresei.',
     'ipv4' => 'The :attribute field must be a valid IPv4 address.',
     'ipv6' => 'The :attribute field must be a valid IPv6 address.',
-    'json'  => ':attribute ir jābūt derīgai JSON virknei.',
+    'json' => ':attribute ir jābūt derīgai JSON virknei.',
     'list' => 'The :attribute field must be a list.',
     'lowercase' => 'The :attribute field must be lowercase.',
     'lt' => [
@@ -91,7 +91,7 @@ return [
         'string' => 'The :attribute field must be less than or equal to :value characters.',
     ],
     'mac_address' => 'The :attribute field must be a valid MAC address.',
-    'max'  => [
+    'max' => [
         'array' => ':attribute nevar saturēt vairāk nekā :max elementus.',
         'file' => ':attribute nevar būt lielāks par :max kilobaitiem.',
         'numeric' => ':attribute nevar būt lielāks nekā :max.',
@@ -100,7 +100,7 @@ return [
     'max_digits' => 'The :attribute field must not have more than :max digits.',
     'mimes' => ':attribute ir jābūt ar faila tipu: :values.',
     'mimetypes' => 'The :attribute field must be a file of type: :values.',
-    'min'  => [
+    'min' => [
         'array' => ':attribute ir jāsatur vismaz :min elementus.',
         'file' => ':attribute ir jābūt vismaz :min kilobaitiem.',
         'numeric' => ':attribute ir jābūt vismaz :min.',
@@ -143,8 +143,8 @@ return [
     'required_with_all' => 'Lauks :attribute ir obligāts, kad :values ir aizpildīts.',
     'required_without' => 'Lauks :attribute ir obligāts, kad :values nav aizpildīti.',
     'required_without_all' => 'Lauks :attribute ir obligāts, ja :values nav aizpildīti.',
-    'same'  => ':attribute un :other ir jāskarīt.',
-    'size'  => [
+    'same' => ':attribute un :other ir jāskarīt.',
+    'size' => [
         'array' => ':attribute ir jāsatur :size elementi.',
         'file' => ':attribute ir jābūt :size kilobaitiem.',
         'numeric' => ':attribute ir jābūt :size.',
@@ -156,7 +156,7 @@ return [
     'unique' => ':attribute jau ir aizņemts.',
     'uploaded' => 'The :attribute failed to upload.',
     'uppercase' => 'The :attribute field must be uppercase.',
-    'url'  => ':attribute formāts ir nederīgs.',
+    'url' => ':attribute formāts ir nederīgs.',
     'ulid' => 'The :attribute field must be a valid ULID.',
     'uuid' => 'The :attribute field must be a valid UUID.',
 
@@ -194,6 +194,6 @@ return [
         'email' => 'E-pasts',
         'old_password' => 'Vecā parole',
         'file' => 'Fails',
-    ]
+    ],
 
 ];

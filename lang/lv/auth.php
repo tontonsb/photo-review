@@ -28,7 +28,7 @@ return [
     'remember' => 'Atcerēties mani',
     'forgot' => 'Aizmirsi paroli?',
 
-    'registration description' => <<<DESCRIPTION
+    'registration description' => <<<'DESCRIPTION'
         ### Kāpēc reģistrēties?
 
         Pēc piereģistrēšanās varēsi savam kontam piesaistīt pārskatīšanas progresu.

@@ -28,7 +28,7 @@ return [
     'remember' => 'Remember me',
     'forgot' => 'Forgot your password?',
 
-    'registration description' => <<<DESCRIPTION
+    'registration description' => <<<'DESCRIPTION'
         ### Why should one register?
 
         You'll be able to bind your reviewing progress to your account once you register.

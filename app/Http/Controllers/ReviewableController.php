@@ -44,7 +44,7 @@ class ReviewableController
             'exif' => $reviewable->data,
             'reviewedPercentage' => number_format(100 * $imgWithReviews / $reviewables, 0),
             // floor to nearest hundred
-            'reviewableCount' => round($reviewables - 50, -2, PHP_ROUND_HALF_DOWN),
+            'reviewableCount' => round($reviewables - 50, -2, \PHP_ROUND_HALF_DOWN),
             'seenInfobox' => $seenInfobox,
             'linkedFile' => $reviewable->file->linkedFile(),
         ]);
@@ -119,7 +119,8 @@ class ReviewableController
         $dirColumn = "substr(path, 1, instr(path, '/'))";
 
         return view('directory', [
-            'directories' => Reviewable::leftJoinSub(
+            'directories' => Reviewable::query()
+                ->leftJoinSub(
                     Review::reviewed()->groupBy('file'),
                     'reviewed_files',
                     fn($join) => $join->on('reviewed_files.file', '=', 'reviewables.path'),

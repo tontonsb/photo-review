@@ -29,7 +29,7 @@ class ParseExif
         $lon = $exif['GPSLongitude'] ?? $exif['GPS']['GPSLongitude'] ?? null;
         $lonRef = $exif['GPSLongitudeRef'] ?? $exif['GPS']['GPSLongitudeRef'] ?? null;
 
-        if (in_array(null, [$lat, $latRef, $lon, $lonRef]))
+        if (\in_array(null, [$lat, $latRef, $lon, $lonRef]))
             return null;
 
         return [
@@ -40,7 +40,7 @@ class ParseExif
 
     protected static function gpsCoordFromExifCoord(array $exifCoords, string $ref): string
     {
-        $sign = in_array($ref, ['N', 'E']) ? 1 : -1;
+        $sign = \in_array($ref, ['N', 'E']) ? 1 : -1;
 
         $deg = isset($exifCoords[0]) ? static::getFloatFromRational($exifCoords[0]) : 0;
         $min = isset($exifCoords[1]) ? static::getFloatFromRational($exifCoords[1]) : 0;

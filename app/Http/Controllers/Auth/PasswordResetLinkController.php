@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
@@ -36,7 +35,7 @@ class PasswordResetLinkController
             $request->only('email')
         );
 
-        return $status == Password::RESET_LINK_SENT
+        return Password::RESET_LINK_SENT === $status
                     ? back()->with('status', __($status))
                     : back()->withInput($request->only('email'))
                             ->withErrors(['email' => __($status)]);

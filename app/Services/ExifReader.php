@@ -39,10 +39,10 @@ class ExifReader
 
         // And some with our custom additions
         if (isset($exif['GPSLatitude'], $exif['GPSLongitude']))
-        $exif['LOCATION'] = [
-            'lat' => $exif['GPSLatitude'],
-            'lon' => $exif['GPSLongitude'],
-        ];
+            $exif['LOCATION'] = [
+                'lat' => $exif['GPSLatitude'],
+                'lon' => $exif['GPSLongitude'],
+            ];
 
         if (isset($exif['GPSAltitude']))
             $exif['ALTITUDE'] = $exif['GPSAltitude'];
