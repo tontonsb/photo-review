@@ -48,7 +48,7 @@ return [
         When to use which buttons?
         </summary>
 
-        If the image contains anything that might provide clues on what has happened to Anna or where has she gone, type it into the "Anything suspicios?"
+        If the image contains anything that might provide clues on what has happened to Anna or where has she gone, type it into the "Anything suspicious?"
         text area and press "Submit". The same course of action should be taken when you are unsure and it seems that the place should be checked, for example
         if there's a hut that should get looked into.
 

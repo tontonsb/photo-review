@@ -2,7 +2,7 @@
 
 return [
     'ok' => 'Reviewed, nothing to note here',
-    'suspicious' => 'Anything suspicios?',
+    'suspicious' => 'Anything suspicious?',
     'describe' => 'Describe here and mark it in the image',
     'bad img' => 'Is the image bad?',
     'submit' => 'Submit',
