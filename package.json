@@ -12,6 +12,7 @@
     },
     "dependencies": {
         "@picocss/pico": "^2.0.6",
+        "@turf/turf": "^7.0.0",
         "ol": "^9.2.2"
     }
 }

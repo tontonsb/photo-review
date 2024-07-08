@@ -4,10 +4,11 @@ import GeoJSON from 'ol/format/GeoJSON.js'
 import Polygon from 'ol/geom/Polygon.js'
 import TileLayer from 'ol/layer/Tile.js'
 import View from 'ol/View.js'
-import {fromLonLat, getPointResolution} from 'ol/proj.js'
+import {fromLonLat, toLonLat, getPointResolution} from 'ol/proj.js'
 import VectorLayer from 'ol/layer/Vector'
 import VectorSource from 'ol/source/Vector'
 import { XYZ } from 'ol/source'
+import * as turf from '@turf/turf'
 
 function showFeaturesOnMap(target, featureEndpoint, clickFeatures) {
     const source = new VectorSource({
@@ -42,23 +43,23 @@ function showFeaturesOnMap(target, featureEndpoint, clickFeatures) {
                 return
             }
 
-            const center = geometry.getCoordinates()
-            const left = center[0] - (width / 2 / scale)
-            const top = center[1] + (height / 2 / scale)
-            const right = center[0] + (width / 2 / scale)
-            const bottom = center[1] - (height / 2 / scale)
+            // Turf needs WGS84
+            const centerCoord = toLonLat(geometry.getCoordinates())
+            const center = turf.point(centerCoord)
+            const sides = turf.featureCollection([
+                turf.destination(center, width/2, -90, {units: 'meters'}), // left
+                turf.destination(center, height/2, 0, {units: 'meters'}), // top
+                turf.destination(center, width/2, 90, {units: 'meters'}), // right
+                turf.destination(center, height/2, 180, {units: 'meters'}), // bottom
+            ])
 
-            const polygon = new Polygon([[
-                [left, top],
-                [left, bottom],
-                [right, bottom],
-                [right, top],
-                [left, top],
-            ]])
+            const box = turf.envelope(sides)
+            const polygon = turf.transformRotate(box, bearing, {mutate: false, pivot: centerCoord})
+            const coords = turf.getCoords(polygon)
 
-            polygon.rotate(-bearing * Math.PI / 180, center)
-
-            feature.setGeometry(polygon)
+            feature.setGeometry(new Polygon([
+                coords[0].map(coord => fromLonLat(coord))
+            ]))
         })
     )
 
