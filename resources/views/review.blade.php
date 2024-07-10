@@ -93,6 +93,12 @@
 <p class=coords></p>
 <div id=image style="width: 100%; height: 70lvh;"></div>
 
+
+@if($exif['LOCATION'] ?? false)
+<h2>@lang('reviewables.location')</h2>
+<div id=location-map style="width: 100%; height: 70lvh;"></div>
+@endif
+
 @vite(['resources/js/review.js'])
 <script type=module>
 {{-- won't extract this to _displayimagejs because of custom handling for legacy reviews that's only needed on this view --}}
@@ -124,6 +130,10 @@ map.on('gotcoords', e => coords.innerHTML = e.payload)
 
 @if ($review->coordinates)
 userMarkers.addMarkers(@json($review->coordinates))
+@endif
+
+@if($exif['LOCATION'] ?? false)
+@include('_minimap', ['exif' => $exif, 'element' => 'location-map', 'file' => $file])
 @endif
 </script>
 @endsection
