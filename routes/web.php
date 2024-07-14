@@ -19,7 +19,7 @@ Route::prefix(LaravelLocalization::setLocale())
             Route::get('/', 'random')->name('random');
             Route::get('/review/{reviewable}', 'review')->name('review')->where('reviewable', '.*');
             Route::get('reviewables', 'index')->name('index');
-            Route::get('reviewables/geojson', 'geojson')->name('geojson')->middleware('cacheResponse:300');
+            Route::get('reviewables/geojson', 'geojson')->name('geojson')->middleware('cacheResponse:3600');
             Route::get('reviewables/dir', 'dir')->name('directory');
             Route::get('reviewables/{path}', 'show')->name('show')->where('path', '.*');
         });
