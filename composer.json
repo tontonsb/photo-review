@@ -22,7 +22,8 @@
         "laravel/framework": "^11.0",
         "laravel/tinker": "^2.9",
         "league/flysystem-aws-s3-v3": "^3.0",
-        "mcamara/laravel-localization": "^2.0"
+        "mcamara/laravel-localization": "^2.0",
+        "spatie/laravel-responsecache": "^7.5"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.13",

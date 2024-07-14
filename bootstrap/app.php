@@ -13,6 +13,9 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function(Middleware $middleware) {
         $middleware->appendToGroup('web', AddReviewerToken::class);
+        $middleware->alias([
+            'cacheResponse' => \Spatie\ResponseCache\Middlewares\CacheResponse::class,
+        ]);
     })
     ->withExceptions(function(Exceptions $exceptions) {
         //
