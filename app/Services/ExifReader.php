@@ -50,6 +50,12 @@ class ExifReader
         if (isset($exif['GimbalYawDegree']))
             $exif['YAW'] = $exif['GimbalYawDegree'];
 
+        // DJI's Gimbal yaw is sometimes offset, FlightYaw seems to have more correlation
+        // with the actual direction of the camera
+        // https://forum.dji.com/forum.php?mod=viewthread&tid=285087
+        if (isset($exif['FlightYawDegree']))
+            $exif['YAW'] = $exif['FlightYawDegree'];
+
         return $exif;
     }
 
