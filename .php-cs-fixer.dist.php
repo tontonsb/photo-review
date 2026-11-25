@@ -22,8 +22,8 @@ return (new PhpCsFixer\Config)->setFinder($finder)
 	->setRiskyAllowed(true)
 	->setLineEnding("\n")
 	->setRules([
-		'@PHP80Migration:risky' => true,
-		'@PHP84Migration' => true,
+		'@PHP8x5Migration:risky' => true,
+		'@PHP8x5Migration' => true,
         '@PER-CS2.0' => true,
         '@Symfony:risky' => true,
 		'@Symfony' => true,
