@@ -37,6 +37,7 @@ return (new PhpCsFixer\Config)->setFinder($finder)
 
 		// Overrides `@Symfony:risky`
 		'is_null' => false,
+        'static_lambda' => false,
 
 		// Overrides `@PER-CS2.0`
 		'new_with_parentheses' => [
