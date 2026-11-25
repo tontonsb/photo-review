@@ -27,9 +27,10 @@ class ReviewableService
     public function random()
     {
         // Pirmā prioritāte — bildes bez apskatījumiem
-        $imgWithNoReviews = Reviewable::inRandomOrder()
+        $imgWithNoReviews = Reviewable::query()
             ->doesntHave('reviews')
             ->nonTutorial()
+            ->orderByRaw("-log(1-rand())/(case when path like '202407%' then 4 else 1 end)")
             ->first();
 
         if ($imgWithNoReviews)
