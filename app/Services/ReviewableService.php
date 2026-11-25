@@ -27,10 +27,14 @@ class ReviewableService
     public function random()
     {
         // Pirmā prioritāte — bildes bez apskatījumiem
+        $rand = 'sqlite' === Reviewable::query()->getConnection()->getDriverName()
+            ? '(random() / 18446744073709551616.0 + 0.5)'
+            : 'rand()';
+
         $imgWithNoReviews = Reviewable::query()
             ->doesntHave('reviews')
             ->nonTutorial()
-            ->orderByRaw("-log(1-rand())/(case when path like '202407%' then 4 else 1 end)")
+            ->orderByRaw("-log(1-{$rand})/(case when path like '202407%' then 4 else 1 end)")
             ->first();
 
         if ($imgWithNoReviews)

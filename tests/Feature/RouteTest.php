@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Models\Conclusion;
 use App\Models\Review;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class RouteTest extends TestCase
@@ -13,11 +14,16 @@ class RouteTest extends TestCase
 
     public function testRoutesAreAlive(): void
     {
-        $this->get('/')->assertOk();
-        $this->get('reviewables')->assertOk();
-        $this->get('reviewables/somephoto')->assertOk();
-        $this->get('reviewers')->assertOk();
-        $this->get('reviews')->assertOk();
+        Storage::fake(config('filesystems.reviewable_disk'))->put(
+            'somephoto',
+            base64_decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAAAAAA6fptVAAAACklEQVR4nGNgAAAAAgABSK+kcQAAAABJRU5ErkJggg=='),
+        );
+
+        $this->get('lv')->assertOk();
+        $this->get('lv/reviewables')->assertOk();
+        $this->get('lv/reviewables/somephoto')->assertOk();
+        $this->get('lv/reviewers')->assertOk();
+        $this->get('lv/reviews')->assertOk();
     }
 
     public function testSubmissionSomewhatWorks(): void
@@ -25,7 +31,7 @@ class RouteTest extends TestCase
         $path = 'thetestphoto.test';
         $duration = 134543;
 
-        $this->post('/', [
+        $this->post('lv', [
             'filepath' => $path,
             'conclusion' => 'suspect',
             'review' => 'my review',
@@ -33,7 +39,7 @@ class RouteTest extends TestCase
             'reviewing_duration_ms' => $duration,
         ])->assertRedirectToRoute('reviewables.random');
 
-        $this->post('/', [
+        $this->post('lv', [
             'filepath' => $path,
             'conclusion' => 'suspect',
             'review' => null,
@@ -41,7 +47,7 @@ class RouteTest extends TestCase
             'reviewing_duration_ms' => $duration,
         ])->assertRedirectToRoute('reviewables.random');
 
-        $this->post('/', [
+        $this->post('lv', [
             'filepath' => $path,
             'conclusion' => 'skip',
             'review' => null,
@@ -49,7 +55,7 @@ class RouteTest extends TestCase
             'reviewing_duration_ms' => $duration,
         ])->assertRedirectToRoute('reviewables.random');
 
-        $this->post('/', [
+        $this->post('lv', [
             'filepath' => $path,
             'conclusion' => 'ok',
             'review' => 'still left a review',
